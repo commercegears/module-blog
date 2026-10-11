@@ -76,9 +76,7 @@ class SampleData
         $categories = [];
         foreach ([
             'guides' => ['Guides', null, 'Practical guides to choosing and using sportswear and gear.'],
-            'running' => ['Running', 'guides', 'Kit and preparation for runners.'],
             'yoga' => ['Yoga', 'guides', 'Getting started with yoga at home or in a class.'],
-            'product-care' => ['Product Care', null, 'How to look after clothing and equipment so it lasts.'],
         ] as $key => [$name, $parent, $description]) {
             $category = $this->categoryFactory->create();
             $category->setData([
@@ -96,7 +94,7 @@ class SampleData
         }
 
         $tags = [];
-        foreach (['beginners' => 'Beginners', 'outdoor' => 'Outdoor', 'running' => 'Running', 'yoga' => 'Yoga', 'care' => 'Care tips'] as $key => $name) {
+        foreach (['beginners' => 'Beginners', 'outdoor' => 'Outdoor', 'running' => 'Running', 'yoga' => 'Yoga'] as $key => $name) {
             $tag = $this->tagFactory->create();
             $tag->setData([
                 'name' => $name,
@@ -297,7 +295,7 @@ class SampleData
                 'excerpt' => 'Base layer, mid layer, outer layer: a simple system that keeps you comfortable on cold runs.',
                 'alt' => 'Cool blue gradient (sample image)',
                 'colours' => ['#8fb3d9', '#2c4f7c'],
-                'categories' => ['running'],
+                'categories' => ['guides'],
                 'tags' => ['running', 'outdoor'],
                 'skus' => ['MS11', 'MJ04', 'MH13'],
                 'content' => '<p>Cold-weather running is more pleasant when you dress in layers that you can adjust as you warm up.</p>'
@@ -305,24 +303,6 @@ class SampleData
                     . '<h2>Mid layer</h2><p>On colder days add a light, breathable layer such as a thin hoodie.</p>'
                     . '<h2>Outer layer</h2><p>A <a href="{{store url=""}}">lightweight jacket</a> blocks wind and light rain. Choose one you can unzip as you warm up.</p>'
                     . '<p>Start your run feeling slightly cool: you will warm up within the first few minutes.</p>',
-            ],
-            [
-                'title' => 'Caring for your waterproof jacket',
-                'url_key' => 'caring-for-your-waterproof-jacket',
-                'keyword' => 'waterproof jacket',
-                'meta_title' => 'Caring for your waterproof jacket: washing and storing',
-                'meta_description' => 'How to wash, dry and store a waterproof jacket so it keeps you dry: read the care label, use a gentle wash and let it dry fully before you put it away.',
-                'excerpt' => 'Washing, drying and storing: simple habits that help a waterproof jacket keep doing its job.',
-                'alt' => 'Warm amber gradient (sample image)',
-                'colours' => ['#e3b46c', '#9a5b2b'],
-                'categories' => ['product-care'],
-                'tags' => ['care', 'outdoor'],
-                'skus' => ['MJ02', 'MJ11'],
-                'content' => '<p>A waterproof jacket works best when it is clean. Dirt and oils from skin can stop the outer fabric from shedding water.</p>'
-                    . '<h2>Read the care label</h2><p>Always follow the manufacturer\'s instructions first: they know the fabric best.</p>'
-                    . '<h2>Washing</h2><p>Close all zips and fastenings, use a gentle cycle and avoid fabric softener.</p>'
-                    . '<h2>Drying and storing</h2><p>Let the jacket dry fully before you put it away, and store it loosely on a hanger rather than folded tightly.</p>'
-                    . '<p>See our <a href="{{store url=""}}">jackets</a> for more.</p>',
             ],
             [
                 'title' => 'Starting yoga at home',

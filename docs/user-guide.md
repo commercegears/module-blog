@@ -36,7 +36,7 @@ To see the blog straight away, add the sample content:
 bin/magento softaware:blog:sample-data
 ```
 
-This creates four posts, four categories, five tags, one author and a comment, all clearly marked as samples. Remove
+This creates three posts, two categories, four tags, one author and a comment, all clearly marked as samples. Remove
 them again with `bin/magento softaware:blog:sample-data --remove`.
 
 ## Configuration
