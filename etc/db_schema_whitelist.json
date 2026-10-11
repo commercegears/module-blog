@@ -61,7 +61,8 @@
         },
         "constraint": {
             "PRIMARY": true,
-            "COMMERCEGEARS_BLOG_POST_AUTHOR_ID_COMMERCEGEARS_BLOG_AUTHOR_AUTHOR_ID": true
+            "COMMERCEGEARS_BLOG_POST_AUTHOR_ID_COMMERCEGEARS_BLOG_AUTHOR_AUTHOR_ID": true,
+            "FK_455BB72711344E3852498DFE0DD7AE64": true
         }
     },
     "commercegears_blog_post_store": {
@@ -75,7 +76,8 @@
         "constraint": {
             "PRIMARY": true,
             "COMMERCEGEARS_BLOG_POST_STORE_POST_ID_COMMERCEGEARS_BLOG_POST_POST_ID": true,
-            "COMMERCEGEARS_BLOG_POST_STORE_STORE_ID_STORE_STORE_ID": true
+            "COMMERCEGEARS_BLOG_POST_STORE_STORE_ID_STORE_STORE_ID": true,
+            "FK_3E14ED1AA4B2629642DC5159BE7B552F": true
         }
     },
     "commercegears_blog_post_content": {
@@ -99,7 +101,8 @@
         "constraint": {
             "PRIMARY": true,
             "COMMERCEGEARS_BLOG_POST_CONTENT_POST_ID_COMMERCEGEARS_BLOG_POST_POST_ID": true,
-            "COMMERCEGEARS_BLOG_POST_CONTENT_STORE_ID_STORE_STORE_ID": true
+            "COMMERCEGEARS_BLOG_POST_CONTENT_STORE_ID_STORE_STORE_ID": true,
+            "FK_B7A651E2F5B27C972A38BB0E3354AF98": true
         }
     },
     "commercegears_blog_category": {
@@ -128,7 +131,8 @@
         },
         "constraint": {
             "PRIMARY": true,
-            "COMMERCEGEARS_BLOG_CTGR_PARENT_ID_COMMERCEGEARS_BLOG_CTGR_CTGR_ID": true
+            "COMMERCEGEARS_BLOG_CTGR_PARENT_ID_COMMERCEGEARS_BLOG_CTGR_CTGR_ID": true,
+            "FK_48C78D58508034418DEDAAFC8407C539": true
         }
     },
     "commercegears_blog_category_content": {
@@ -149,7 +153,8 @@
         "constraint": {
             "PRIMARY": true,
             "COMMERCEGEARS_BLOG_CTGR_CONTENT_CTGR_ID_COMMERCEGEARS_BLOG_CTGR_CTGR_ID": true,
-            "COMMERCEGEARS_BLOG_CATEGORY_CONTENT_STORE_ID_STORE_STORE_ID": true
+            "COMMERCEGEARS_BLOG_CATEGORY_CONTENT_STORE_ID_STORE_STORE_ID": true,
+            "FK_612E22450AD86B350414443B5EB44E82": true
         }
     },
     "commercegears_blog_tag": {
@@ -190,7 +195,8 @@
         "constraint": {
             "PRIMARY": true,
             "COMMERCEGEARS_BLOG_TAG_CONTENT_TAG_ID_COMMERCEGEARS_BLOG_TAG_TAG_ID": true,
-            "COMMERCEGEARS_BLOG_TAG_CONTENT_STORE_ID_STORE_STORE_ID": true
+            "COMMERCEGEARS_BLOG_TAG_CONTENT_STORE_ID_STORE_STORE_ID": true,
+            "FK_FAA27E3F6E3B96459DD9F68AF8280215": true
         }
     },
     "commercegears_blog_post_category": {
@@ -204,7 +210,9 @@
         "constraint": {
             "PRIMARY": true,
             "COMMERCEGEARS_BLOG_POST_CATEGORY_POST_ID_COMMERCEGEARS_BLOG_POST_POST_ID": true,
-            "COMMERCEGEARS_BLOG_POST_CTGR_CTGR_ID_COMMERCEGEARS_BLOG_CTGR_CTGR_ID": true
+            "COMMERCEGEARS_BLOG_POST_CTGR_CTGR_ID_COMMERCEGEARS_BLOG_CTGR_CTGR_ID": true,
+            "FK_77DB24C12465365695089EFECFB5C4ED": true,
+            "FK_56938D9B34F7E95CB80D7031E43BAC4E": true
         }
     },
     "commercegears_blog_post_tag": {
@@ -218,7 +226,8 @@
         "constraint": {
             "PRIMARY": true,
             "COMMERCEGEARS_BLOG_POST_TAG_POST_ID_COMMERCEGEARS_BLOG_POST_POST_ID": true,
-            "COMMERCEGEARS_BLOG_POST_TAG_TAG_ID_COMMERCEGEARS_BLOG_TAG_TAG_ID": true
+            "COMMERCEGEARS_BLOG_POST_TAG_TAG_ID_COMMERCEGEARS_BLOG_TAG_TAG_ID": true,
+            "FK_4DCC674AE2B64E1A60C429188310AA47": true
         }
     },
     "commercegears_blog_post_product": {
@@ -233,7 +242,8 @@
         "constraint": {
             "PRIMARY": true,
             "COMMERCEGEARS_BLOG_POST_PRODUCT_POST_ID_COMMERCEGEARS_BLOG_POST_POST_ID": true,
-            "COMMERCEGEARS_BLOG_POST_PRD_PRD_ID_CAT_PRD_ENTT_ENTT_ID": true
+            "COMMERCEGEARS_BLOG_POST_PRD_PRD_ID_CAT_PRD_ENTT_ENTT_ID": true,
+            "FK_D6C5E78DA32A894FD4C5182232292C97": true
         }
     },
     "commercegears_blog_comment": {
@@ -264,7 +274,9 @@
             "COMMERCEGEARS_BLOG_COMMENT_POST_ID_COMMERCEGEARS_BLOG_POST_POST_ID": true,
             "FK_F80BD610E3B2DD4034D4432DA88E343F": true,
             "COMMERCEGEARS_BLOG_COMMENT_STORE_ID_STORE_STORE_ID": true,
-            "COMMERCEGEARS_BLOG_COMMENT_CUSTOMER_ID_CUSTOMER_ENTITY_ENTITY_ID": true
+            "COMMERCEGEARS_BLOG_COMMENT_CUSTOMER_ID_CUSTOMER_ENTITY_ENTITY_ID": true,
+            "FK_FFEDB1B94D892333D3DA3B896FC96D60": true,
+            "FK_08F64E9D23896B49A08AF89A126CE0AD": true
         }
     },
     "commercegears_blog_import_job": {
