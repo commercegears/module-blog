@@ -1,0 +1,43 @@
+<!--@subject {{trans "New comment on \"%post_title\"" post_title=$post_title}} @-->
+<!--@vars {
+"var post_title":"Post title",
+"var post_url":"Post URL",
+"var author_name":"Name of the commenter",
+"var author_email":"E-mail of the commenter",
+"var comment_text":"Comment",
+"var status_label":"Status of the comment",
+"var admin_url":"Link to the comment in the admin"
+} @-->
+{{template config_path="design/email/header_template"}}
+
+<p>{{trans "There is a new comment on the blog post %post_title." post_title=$post_title}}</p>
+
+<table class="message-details">
+    <tr>
+        <td><b>{{trans "Post"}}</b></td>
+        <td><a href="{{var post_url|raw}}">{{var post_title}}</a></td>
+    </tr>
+    <tr>
+        <td><b>{{trans "Name"}}</b></td>
+        <td>{{var author_name}}</td>
+    </tr>
+    {{depend author_email}}
+    <tr>
+        <td><b>{{trans "E-mail"}}</b></td>
+        <td>{{var author_email}}</td>
+    </tr>
+    {{/depend}}
+    <tr>
+        <td><b>{{trans "Status"}}</b></td>
+        <td>{{var status_label}}</td>
+    </tr>
+</table>
+
+<p><b>{{trans "Comment"}}</b></p>
+<p>{{var comment_text|escape|nl2br}}</p>
+
+{{depend admin_url}}
+<p><a href="{{var admin_url|raw}}">{{trans "Review the comment in the admin"}}</a></p>
+{{/depend}}
+
+{{template config_path="design/email/footer_template"}}

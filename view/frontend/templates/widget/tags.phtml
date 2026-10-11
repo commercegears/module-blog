@@ -1,0 +1,30 @@
+<?php
+/**
+ * @category  Softaware
+ * @package   Softaware_Blog
+ * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ */
+
+/**
+ * Widget: tags (Luma).
+ *
+ * @var \Softaware\Blog\Block\Widget\TagCloud $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+$tags = $block->getTags();
+if (!$tags) {
+    return;
+}
+?>
+<section class="sw-blog sw-blog-widget sw-blog-widget--tags">
+    <?php if ($block->getTitle() !== ''): ?>
+        <h2 class="sw-blog-sidebar__title"><?= $escaper->escapeHtml($block->getTitle()) ?></h2>
+    <?php endif; ?>
+    <ul class="sw-blog-tags sw-blog-tags--cloud">
+        <?php foreach ($tags as $row): ?>
+            <li class="sw-blog-weight-<?= (int)$row['weight'] ?>">
+                <a href="<?= $escaper->escapeUrl($block->getTagUrl($row['tag'])) ?>">#<?= $escaper->escapeHtml($row['tag']->getName()) ?></a>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+</section>

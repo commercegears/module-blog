@@ -1,0 +1,30 @@
+<?php
+/**
+ * @category  Softaware
+ * @package   Softaware_Blog
+ * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ */
+
+/**
+ * Widget: tags (Hyvä).
+ *
+ * @var \Softaware\Blog\Block\Widget\TagCloud $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+$tags = $block->getTags();
+if (!$tags) {
+    return;
+}
+$sizes = [1 => 'text-sm', 2 => 'text-sm', 3 => 'text-base', 4 => 'text-lg font-semibold'];
+?>
+<section class="my-8">
+    <?php if ($block->getTitle() !== ''): ?>
+        <h2 class="text-sm font-semibold uppercase tracking-wider mb-3"><?= $escaper->escapeHtml($block->getTitle()) ?></h2>
+    <?php endif; ?>
+    <ul class="flex flex-wrap gap-2">
+        <?php foreach ($tags as $row): ?>
+            <li><a href="<?= $escaper->escapeUrl($block->getTagUrl($row['tag'])) ?>"
+                   class="inline-block px-3 py-1 rounded-full bg-bg hover:bg-gray-200 <?= /* @noEscape */ $sizes[$row['weight']] ?? 'text-sm' ?>">#<?= $escaper->escapeHtml($row['tag']->getName()) ?></a></li>
+        <?php endforeach; ?>
+    </ul>
+</section>

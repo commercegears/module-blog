@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category  Softaware
+ * @package   Softaware_Blog
+ * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <!-- Hyvä's product card renderer (product_list_item) for the related products -->
+    <update handle="catalog_list_item"/>
+    <body>
+        <referenceBlock name="softaware.blog.post" template="Softaware_Blog::hyva/post/view.phtml"/>
+        <referenceBlock name="softaware.blog.post.products" template="Softaware_Blog::hyva/post/related-products.phtml"/>
+        <referenceBlock name="softaware.blog.post.related" template="Softaware_Blog::hyva/post/related-posts.phtml"/>
+        <referenceBlock name="softaware.blog.post.comments" template="Softaware_Blog::hyva/post/comments.phtml"/>
+    </body>
+</page>

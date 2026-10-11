@@ -1,0 +1,30 @@
+<?php
+/**
+ * @category  Softaware
+ * @package   Softaware_Blog
+ * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ */
+
+/**
+ * Widget: categories (Luma).
+ *
+ * @var \Softaware\Blog\Block\Widget\Categories $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+$tree = $block->getCategoryTree();
+if (!$tree) {
+    return;
+}
+?>
+<nav class="sw-blog sw-blog-widget sw-blog-widget--categories"<?php if ($block->getTitle() !== ''): ?> aria-label="<?= $escaper->escapeHtmlAttr($block->getTitle()) ?>"<?php endif; ?>>
+    <?php if ($block->getTitle() !== ''): ?>
+        <h2 class="sw-blog-sidebar__title"><?= $escaper->escapeHtml($block->getTitle()) ?></h2>
+    <?php endif; ?>
+    <ul class="sw-blog-sidebar__categories">
+        <?php foreach ($tree as $row): ?>
+            <li class="sw-blog-depth-<?= (int)min($row['depth'], 4) ?>">
+                <a href="<?= $escaper->escapeUrl($block->getCategoryUrl($row['category'])) ?>"><?= $escaper->escapeHtml($row['category']->getName()) ?></a>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+</nav>

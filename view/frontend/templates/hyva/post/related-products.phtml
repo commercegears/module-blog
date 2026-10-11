@@ -1,0 +1,44 @@
+<?php
+/**
+ * @category  Softaware
+ * @package   Softaware_Blog
+ * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ */
+
+/**
+ * Products linked to the post (Hyvä product cards).
+ *
+ * @var \Softaware\Blog\Block\Post\RelatedProducts $block
+ * @var \Magento\Framework\Escaper $escaper
+ * @var \Hyva\Theme\Model\ViewModelRegistry $viewModels
+ */
+
+use Hyva\Theme\ViewModel\ProductListItem;
+use Magento\Catalog\Block\Product\ReviewRendererInterface;
+use Magento\Catalog\Block\Product\AbstractProduct;
+
+$products = $block->getProducts();
+if (!$products) {
+    return;
+}
+/** @var ProductListItem $productListItem */
+$productListItem = $viewModels->require(ProductListItem::class);
+$renderer = $block->getLayout()->getBlock('product_list_item')
+    ?: $block->getLayout()->createBlock(AbstractProduct::class)->setTemplate('Magento_Catalog::product/list/item.phtml');
+?>
+<section class="my-12" aria-labelledby="sw-blog-products-title">
+    <h2 id="sw-blog-products-title" class="text-2xl font-semibold mb-6"><?= $escaper->escapeHtml($block->getTitle()) ?></h2>
+    <div class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+        <?php foreach ($products as $product): ?>
+            <?= /* @noEscape */ $productListItem->getItemHtmlWithRenderer(
+                $renderer,
+                $product,
+                $block,
+                'grid',
+                ReviewRendererInterface::SHORT_VIEW,
+                'category_page_grid',
+                false
+            ) ?>
+        <?php endforeach; ?>
+    </div>
+</section>

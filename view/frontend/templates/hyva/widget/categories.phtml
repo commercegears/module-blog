@@ -1,0 +1,31 @@
+<?php
+/**
+ * @category  Softaware
+ * @package   Softaware_Blog
+ * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ */
+
+/**
+ * Widget: categories (Hyvä).
+ *
+ * @var \Softaware\Blog\Block\Widget\Categories $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+$tree = $block->getCategoryTree();
+if (!$tree) {
+    return;
+}
+$indent = ['', 'pl-4', 'pl-8', 'pl-12', 'pl-12'];
+?>
+<nav class="my-8"<?php if ($block->getTitle() !== ''): ?> aria-label="<?= $escaper->escapeHtmlAttr($block->getTitle()) ?>"<?php endif; ?>>
+    <?php if ($block->getTitle() !== ''): ?>
+        <h2 class="text-sm font-semibold uppercase tracking-wider mb-3"><?= $escaper->escapeHtml($block->getTitle()) ?></h2>
+    <?php endif; ?>
+    <ul class="flex flex-col gap-2">
+        <?php foreach ($tree as $row): ?>
+            <li class="<?= /* @noEscape */ $indent[min($row['depth'], 4)] ?>">
+                <a href="<?= $escaper->escapeUrl($block->getCategoryUrl($row['category'])) ?>" class="hover:underline"><?= $escaper->escapeHtml($row['category']->getName()) ?></a>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+</nav>

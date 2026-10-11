@@ -1,0 +1,292 @@
+{
+    "softaware_blog_author": {
+        "column": {
+            "author_id": true,
+            "name": true,
+            "url_key": true,
+            "job_title": true,
+            "bio": true,
+            "photo": true,
+            "website_url": true,
+            "linkedin_url": true,
+            "x_url": true,
+            "meta_title": true,
+            "meta_description": true,
+            "is_active": true,
+            "external_id": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "index": {
+            "SOFTAWARE_BLOG_AUTHOR_EXTERNAL_ID": true,
+            "SOFTAWARE_BLOG_AUTHOR_NAME": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "SOFTAWARE_BLOG_AUTHOR_URL_KEY": true
+        }
+    },
+    "softaware_blog_post": {
+        "column": {
+            "post_id": true,
+            "title": true,
+            "url_key": true,
+            "short_content": true,
+            "content": true,
+            "featured_image": true,
+            "featured_image_alt": true,
+            "author_id": true,
+            "status": true,
+            "publish_at": true,
+            "schedule_pending": true,
+            "is_featured": true,
+            "allow_comments": true,
+            "meta_title": true,
+            "meta_description": true,
+            "meta_keywords": true,
+            "meta_robots": true,
+            "canonical_url": true,
+            "focus_keyword": true,
+            "seo_score": true,
+            "external_id": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "index": {
+            "SOFTAWARE_BLOG_POST_URL_KEY": true,
+            "SOFTAWARE_BLOG_POST_STATUS_PUBLISH_AT": true,
+            "SOFTAWARE_BLOG_POST_SCHEDULE_PENDING": true,
+            "SOFTAWARE_BLOG_POST_EXTERNAL_ID": true,
+            "SOFTAWARE_BLOG_POST_TITLE": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "SOFTAWARE_BLOG_POST_AUTHOR_ID_SOFTAWARE_BLOG_AUTHOR_AUTHOR_ID": true
+        }
+    },
+    "softaware_blog_post_store": {
+        "column": {
+            "post_id": true,
+            "store_id": true
+        },
+        "index": {
+            "SOFTAWARE_BLOG_POST_STORE_STORE_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "SOFTAWARE_BLOG_POST_STORE_POST_ID_SOFTAWARE_BLOG_POST_POST_ID": true,
+            "SOFTAWARE_BLOG_POST_STORE_STORE_ID_STORE_STORE_ID": true
+        }
+    },
+    "softaware_blog_post_content": {
+        "column": {
+            "post_id": true,
+            "store_id": true,
+            "title": true,
+            "url_key": true,
+            "short_content": true,
+            "content": true,
+            "featured_image_alt": true,
+            "meta_title": true,
+            "meta_description": true,
+            "meta_keywords": true,
+            "meta_robots": true,
+            "focus_keyword": true
+        },
+        "index": {
+            "SOFTAWARE_BLOG_POST_CONTENT_STORE_ID_URL_KEY": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "SOFTAWARE_BLOG_POST_CONTENT_POST_ID_SOFTAWARE_BLOG_POST_POST_ID": true,
+            "SOFTAWARE_BLOG_POST_CONTENT_STORE_ID_STORE_STORE_ID": true
+        }
+    },
+    "softaware_blog_category": {
+        "column": {
+            "category_id": true,
+            "parent_id": true,
+            "path": true,
+            "level": true,
+            "position": true,
+            "name": true,
+            "url_key": true,
+            "description": true,
+            "meta_title": true,
+            "meta_description": true,
+            "meta_keywords": true,
+            "meta_robots": true,
+            "is_active": true,
+            "external_id": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "index": {
+            "SOFTAWARE_BLOG_CATEGORY_URL_KEY": true,
+            "SOFTAWARE_BLOG_CATEGORY_EXTERNAL_ID": true,
+            "SOFTAWARE_BLOG_CATEGORY_NAME": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "SOFTAWARE_BLOG_CTGR_PARENT_ID_SOFTAWARE_BLOG_CTGR_CTGR_ID": true
+        }
+    },
+    "softaware_blog_category_content": {
+        "column": {
+            "category_id": true,
+            "store_id": true,
+            "name": true,
+            "url_key": true,
+            "description": true,
+            "meta_title": true,
+            "meta_description": true,
+            "meta_keywords": true,
+            "meta_robots": true
+        },
+        "index": {
+            "SOFTAWARE_BLOG_CATEGORY_CONTENT_STORE_ID_URL_KEY": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "SOFTAWARE_BLOG_CTGR_CONTENT_CTGR_ID_SOFTAWARE_BLOG_CTGR_CTGR_ID": true,
+            "SOFTAWARE_BLOG_CATEGORY_CONTENT_STORE_ID_STORE_STORE_ID": true
+        }
+    },
+    "softaware_blog_tag": {
+        "column": {
+            "tag_id": true,
+            "name": true,
+            "url_key": true,
+            "description": true,
+            "meta_title": true,
+            "meta_description": true,
+            "meta_robots": true,
+            "external_id": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "index": {
+            "SOFTAWARE_BLOG_TAG_NAME": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "SOFTAWARE_BLOG_TAG_URL_KEY": true
+        }
+    },
+    "softaware_blog_tag_content": {
+        "column": {
+            "tag_id": true,
+            "store_id": true,
+            "name": true,
+            "url_key": true,
+            "description": true,
+            "meta_title": true,
+            "meta_description": true,
+            "meta_robots": true
+        },
+        "index": {
+            "SOFTAWARE_BLOG_TAG_CONTENT_STORE_ID_URL_KEY": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "SOFTAWARE_BLOG_TAG_CONTENT_TAG_ID_SOFTAWARE_BLOG_TAG_TAG_ID": true,
+            "SOFTAWARE_BLOG_TAG_CONTENT_STORE_ID_STORE_STORE_ID": true
+        }
+    },
+    "softaware_blog_post_category": {
+        "column": {
+            "post_id": true,
+            "category_id": true
+        },
+        "index": {
+            "SOFTAWARE_BLOG_POST_CATEGORY_CATEGORY_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "SOFTAWARE_BLOG_POST_CATEGORY_POST_ID_SOFTAWARE_BLOG_POST_POST_ID": true,
+            "SOFTAWARE_BLOG_POST_CTGR_CTGR_ID_SOFTAWARE_BLOG_CTGR_CTGR_ID": true
+        }
+    },
+    "softaware_blog_post_tag": {
+        "column": {
+            "post_id": true,
+            "tag_id": true
+        },
+        "index": {
+            "SOFTAWARE_BLOG_POST_TAG_TAG_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "SOFTAWARE_BLOG_POST_TAG_POST_ID_SOFTAWARE_BLOG_POST_POST_ID": true,
+            "SOFTAWARE_BLOG_POST_TAG_TAG_ID_SOFTAWARE_BLOG_TAG_TAG_ID": true
+        }
+    },
+    "softaware_blog_post_product": {
+        "column": {
+            "post_id": true,
+            "product_id": true,
+            "position": true
+        },
+        "index": {
+            "SOFTAWARE_BLOG_POST_PRODUCT_PRODUCT_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "SOFTAWARE_BLOG_POST_PRODUCT_POST_ID_SOFTAWARE_BLOG_POST_POST_ID": true,
+            "SOFTAWARE_BLOG_POST_PRD_PRD_ID_CAT_PRD_ENTT_ENTT_ID": true
+        }
+    },
+    "softaware_blog_comment": {
+        "column": {
+            "comment_id": true,
+            "post_id": true,
+            "parent_id": true,
+            "store_id": true,
+            "customer_id": true,
+            "author_name": true,
+            "author_email": true,
+            "content": true,
+            "status": true,
+            "is_admin_reply": true,
+            "ip_hash": true,
+            "external_id": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "index": {
+            "SOFTAWARE_BLOG_COMMENT_POST_ID_STATUS": true,
+            "SOFTAWARE_BLOG_COMMENT_STATUS": true,
+            "SOFTAWARE_BLOG_COMMENT_IP_HASH_CREATED_AT": true,
+            "SOFTAWARE_BLOG_COMMENT_AUTHOR_NAME_CONTENT": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "SOFTAWARE_BLOG_COMMENT_POST_ID_SOFTAWARE_BLOG_POST_POST_ID": true,
+            "FK_F80BD610E3B2DD4034D4432DA88E343F": true,
+            "SOFTAWARE_BLOG_COMMENT_STORE_ID_STORE_STORE_ID": true,
+            "SOFTAWARE_BLOG_COMMENT_CUSTOMER_ID_CUSTOMER_ENTITY_ENTITY_ID": true
+        }
+    },
+    "softaware_blog_import_job": {
+        "column": {
+            "job_id": true,
+            "source": true,
+            "file_name": true,
+            "original_name": true,
+            "options": true,
+            "status": true,
+            "stats": true,
+            "log": true,
+            "created_by": true,
+            "created_at": true,
+            "started_at": true,
+            "finished_at": true
+        },
+        "index": {
+            "SOFTAWARE_BLOG_IMPORT_JOB_STATUS": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

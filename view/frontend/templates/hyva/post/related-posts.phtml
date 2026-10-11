@@ -1,0 +1,24 @@
+<?php
+/**
+ * @category  Softaware
+ * @package   Softaware_Blog
+ * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ */
+
+/**
+ * @var \Softaware\Blog\Block\Post\RelatedPosts $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+$posts = $block->getPosts();
+if (!$posts) {
+    return;
+}
+?>
+<section class="my-12" aria-labelledby="sw-blog-related-title">
+    <h2 id="sw-blog-related-title" class="text-2xl font-semibold mb-6"><?= $escaper->escapeHtml(__('You may also like')) ?></h2>
+    <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <?php foreach ($posts as $post): ?>
+            <?= /* @noEscape */ $block->renderCard($post, 'compact', 'h3') ?>
+        <?php endforeach; ?>
+    </div>
+</section>

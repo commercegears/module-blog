@@ -1,0 +1,144 @@
+<?php
+/**
+ * @category  Softaware
+ * @package   Softaware_Blog
+ * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ */
+
+/**
+ * Post page (Hyvä).
+ *
+ * @var \Softaware\Blog\Block\Post\View $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+$post = $block->getPost();
+if (!$post) {
+    return;
+}
+$author = $block->getPostAuthor();
+$categories = $block->getPostCategories($post);
+$tags = $block->getTags();
+$image = $block->getImageUrl($post->getFeaturedImage());
+$minutes = $block->getReadingMinutes($post);
+$neighbours = $block->getNeighbours();
+$share = $block->getShareLinks();
+$photo = $author ? $block->getImageUrl((string)$author->getData('photo')) : '';
+?>
+<article class="max-w-3xl mb-12">
+    <?php if ($block->isPreview()): ?>
+        <div class="message warning mb-6"><span>
+            <?= $escaper->escapeHtml($block->isScheduled()
+                ? __('Preview: this post is scheduled for %1 and is not visible to visitors yet.', $block->formatPublishDate($post, \IntlDateFormatter::LONG))
+                : __('Preview: this post is a draft and is not visible to visitors.')) ?>
+        </span></div>
+    <?php endif; ?>
+    <header class="mb-8">
+        <?php if ($categories): ?>
+            <p class="flex flex-wrap gap-3 mb-3 text-sm font-semibold uppercase tracking-wider">
+                <?php foreach ($categories as $category): ?>
+                    <a href="<?= $escaper->escapeUrl($block->getCategoryUrl($category)) ?>" class="text-primary hover:underline"><?= $escaper->escapeHtml($category->getName()) ?></a>
+                <?php endforeach; ?>
+            </p>
+        <?php endif; ?>
+        <h1 class="text-3xl md:text-5xl font-bold leading-tight mb-4 text-fg"><?= $escaper->escapeHtml($post->getTitle()) ?></h1>
+        <p class="flex flex-wrap items-center gap-2 text-fg-secondary">
+            <?php if ($author && $block->showAuthor()): ?>
+                <a href="<?= $escaper->escapeUrl($block->getAuthorUrl($author)) ?>" class="inline-flex items-center gap-2 font-semibold text-fg hover:underline">
+                    <?php if ($photo !== ''): ?>
+                        <img src="<?= $escaper->escapeUrl($photo) ?>" alt="" loading="lazy" class="w-8 h-8 rounded-full object-cover">
+                    <?php endif; ?>
+                    <span><?= $escaper->escapeHtml($author->getName()) ?></span>
+                </a>
+                <span aria-hidden="true">&middot;</span>
+            <?php endif; ?>
+            <time datetime="<?= $escaper->escapeHtmlAttr($block->getIsoDate($post->getPublishAt())) ?>"><?= $escaper->escapeHtml($block->formatPublishDate($post, \IntlDateFormatter::LONG)) ?></time>
+            <?php if ($minutes > 0): ?>
+                <span aria-hidden="true">&middot;</span>
+                <span><?= $escaper->escapeHtml(__('%1 min read', $minutes)) ?></span>
+            <?php endif; ?>
+        </p>
+    </header>
+
+    <?php if ($image !== ''): ?>
+        <figure class="mb-8">
+            <img src="<?= $escaper->escapeUrl($image) ?>" alt="<?= $escaper->escapeHtmlAttr((string)($post->getData('featured_image_alt') ?: '')) ?>"
+                 fetchpriority="high" class="w-full h-auto rounded-lg">
+        </figure>
+    <?php endif; ?>
+
+    <div class="text-lg leading-8 text-fg break-words
+                [&_p]:mb-5 [&_h2]:text-2xl [&_h2]:font-semibold [&_h2]:mt-10 [&_h2]:mb-4
+                [&_h3]:text-xl [&_h3]:font-semibold [&_h3]:mt-8 [&_h3]:mb-3
+                [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:mb-5 [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:mb-5
+                [&_a]:text-primary [&_a]:underline [&_img]:max-w-full [&_img]:h-auto [&_img]:rounded
+                [&_blockquote]:border-l-4 [&_blockquote]:border-gray-800 [&_blockquote]:pl-5 [&_blockquote]:italic [&_blockquote]:my-6">
+        <?= /* @noEscape */ $block->getContentHtml() ?>
+    </div>
+
+    <?php if ($tags): ?>
+        <ul class="flex flex-wrap gap-2 my-8" aria-label="<?= $escaper->escapeHtmlAttr(__('Tags')) ?>">
+            <?php foreach ($tags as $tag): ?>
+                <li><a href="<?= $escaper->escapeUrl($block->getTagUrl($tag)) ?>"
+                       class="inline-block px-3 py-1 rounded-full bg-bg text-sm text-fg hover:bg-gray-200">#<?= $escaper->escapeHtml($tag->getName()) ?></a></li>
+            <?php endforeach; ?>
+        </ul>
+    <?php endif; ?>
+
+    <?php if ($share): ?>
+        <div class="flex flex-wrap items-center gap-3 py-4 my-8 border-y border-gray-200">
+            <span class="font-semibold mr-2"><?= $escaper->escapeHtml(__('Share')) ?></span>
+            <?php foreach ($share as $link): ?>
+                <a href="<?= $escaper->escapeUrl($link['url']) ?>" class="btn btn-secondary text-sm py-1 px-3"
+                   <?php if ($link['network'] !== 'email'): ?>target="_blank" rel="noopener noreferrer"<?php endif; ?>><?= $escaper->escapeHtml($link['label']) ?></a>
+            <?php endforeach; ?>
+        </div>
+    <?php endif; ?>
+
+    <?php if ($author && $block->showAuthor() && ($author->getData('bio') || $author->getData('job_title'))): ?>
+        <aside class="flex flex-col sm:flex-row gap-5 items-start p-6 my-8 rounded-lg bg-bg" aria-label="<?= $escaper->escapeHtmlAttr(__('About the author')) ?>">
+            <?php if ($photo !== ''): ?>
+                <img src="<?= $escaper->escapeUrl($photo) ?>" alt="" loading="lazy" class="w-16 h-16 rounded-full object-cover shrink-0">
+            <?php endif; ?>
+            <div>
+                <p class="text-lg font-semibold mb-1">
+                    <a href="<?= $escaper->escapeUrl($block->getAuthorUrl($author)) ?>" class="hover:underline"><?= $escaper->escapeHtml($author->getName()) ?></a>
+                </p>
+                <?php if ($author->getData('job_title')): ?>
+                    <p class="text-sm text-fg-secondary mb-2"><?= $escaper->escapeHtml((string)$author->getData('job_title')) ?></p>
+                <?php endif; ?>
+                <?php if ($author->getData('bio')): ?>
+                    <p class="mb-2"><?= nl2br($escaper->escapeHtml((string)$author->getData('bio'))) ?></p>
+                <?php endif; ?>
+                <?php $links = $block->getAuthorLinks($author); ?>
+                <?php if ($links): ?>
+                    <p class="flex gap-4 text-sm">
+                        <?php foreach ($links as $label => $url): ?>
+                            <a href="<?= $escaper->escapeUrl($url) ?>" target="_blank" rel="noopener me" class="text-primary underline"><?= $escaper->escapeHtml($label) ?></a>
+                        <?php endforeach; ?>
+                    </p>
+                <?php endif; ?>
+            </div>
+        </aside>
+    <?php endif; ?>
+
+    <?php if ($neighbours['prev'] || $neighbours['next']): ?>
+        <nav class="grid gap-4 sm:grid-cols-2 my-8" aria-label="<?= $escaper->escapeHtmlAttr(__('More posts')) ?>">
+            <?php if ($neighbours['prev']): ?>
+                <a href="<?= $escaper->escapeUrl($block->getPostUrl($neighbours['prev'])) ?>" rel="prev"
+                   class="block p-4 rounded-lg border border-gray-200 hover:border-gray-400">
+                    <span class="block text-sm text-fg-secondary mb-1"><?= $escaper->escapeHtml(__('Previous post')) ?></span>
+                    <strong><?= $escaper->escapeHtml($neighbours['prev']->getTitle()) ?></strong>
+                </a>
+            <?php else: ?>
+                <span></span>
+            <?php endif; ?>
+            <?php if ($neighbours['next']): ?>
+                <a href="<?= $escaper->escapeUrl($block->getPostUrl($neighbours['next'])) ?>" rel="next"
+                   class="block p-4 rounded-lg border border-gray-200 hover:border-gray-400 sm:text-right">
+                    <span class="block text-sm text-fg-secondary mb-1"><?= $escaper->escapeHtml(__('Next post')) ?></span>
+                    <strong><?= $escaper->escapeHtml($neighbours['next']->getTitle()) ?></strong>
+                </a>
+            <?php endif; ?>
+        </nav>
+    <?php endif; ?>
+</article>

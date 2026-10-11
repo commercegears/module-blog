@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category  Softaware
+ * @package   Softaware_Blog
+ * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="hyva_config_generate_before">
+        <observer name="softaware_blog_hyva_config" instance="Softaware\Blog\Observer\RegisterModuleForHyvaConfig"/>
+    </event>
+    <event name="page_block_html_topmenu_gethtml_before">
+        <observer name="softaware_blog_top_menu" instance="Softaware\Blog\Observer\AddTopMenuLink"/>
+    </event>
+    <event name="layout_generate_blocks_after">
+        <observer name="softaware_blog_breadcrumb_schema" instance="Softaware\Blog\Observer\SkipThemeBreadcrumbSchema"/>
+        <observer name="softaware_blog_footer_link" instance="Softaware\Blog\Observer\AddFooterLink"/>
+    </event>
+</config>

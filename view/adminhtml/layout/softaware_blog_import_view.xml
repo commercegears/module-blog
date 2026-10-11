@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category  Softaware
+ * @package   Softaware_Blog
+ * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Softaware_Blog::css/admin.css"/>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block class="Softaware\Blog\Block\Adminhtml\Import\View" name="softaware.blog.import.view"/>
+        </referenceContainer>
+    </body>
+</page>

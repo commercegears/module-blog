@@ -1,0 +1,153 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category  Softaware
+ * @package   Softaware_Blog
+ * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ */
+-->
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">softaware_blog_author_listing.softaware_blog_author_listing_data_source</item>
+        </item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="add">
+                <url path="*/*/new"/>
+                <class>primary</class>
+                <label translate="true">Add New Author</label>
+            </button>
+        </buttons>
+        <spinner>softaware_blog_author_listing_columns</spinner>
+        <deps>
+            <dep>softaware_blog_author_listing.softaware_blog_author_listing_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="softaware_blog_author_listing_data_source" component="Magento_Ui/js/grid/provider">
+        <settings>
+            <storageConfig>
+                <param name="indexField" xsi:type="string">author_id</param>
+            </storageConfig>
+            <updateUrl path="mui/index/render"/>
+        </settings>
+        <aclResource>Softaware_Blog::authors</aclResource>
+        <dataProvider class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider" name="softaware_blog_author_listing_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>author_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <listingToolbar name="listing_top">
+        <settings>
+            <sticky>true</sticky>
+        </settings>
+        <bookmark name="bookmarks"/>
+        <columnsControls name="columns_controls"/>
+        <filterSearch name="fulltext"/>
+        <filters name="listing_filters"></filters>
+        <massaction name="listing_massaction">
+            <action name="delete">
+                <settings>
+                    <confirm>
+                        <message translate="true">Delete the selected authors? Their posts are kept without an author.</message>
+                        <title translate="true">Delete Authors</title>
+                    </confirm>
+                    <url path="softaware_blog/author/massDelete"/>
+                    <type>delete</type>
+                    <label translate="true">Delete</label>
+                </settings>
+            </action>
+        </massaction>
+        <paging name="listing_paging"/>
+    </listingToolbar>
+    <columns name="softaware_blog_author_listing_columns" component="Softaware_Blog/js/grid/listing">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="emptyTitle" xsi:type="string" translate="true">No authors yet</item>
+                <item name="emptyText" xsi:type="string" translate="true">Authors get a profile page with their posts, and their name appears on each post.</item>
+                <item name="emptyActionLabel" xsi:type="string" translate="true">Add Your First Author</item>
+                <item name="emptyActionUrl" xsi:type="url" path="softaware_blog/author/new"/>
+            </item>
+        </argument>
+        <settings>
+            <childDefaults>
+                <param name="fieldAction" xsi:type="array">
+                    <item name="provider" xsi:type="string">softaware_blog_author_listing.softaware_blog_author_listing.softaware_blog_author_listing_columns.actions</item>
+                    <item name="target" xsi:type="string">applyAction</item>
+                    <item name="params" xsi:type="array">
+                        <item name="0" xsi:type="string">edit</item>
+                        <item name="1" xsi:type="string">${ $.$data.rowIndex }</item>
+                    </item>
+                </param>
+            </childDefaults>
+        </settings>
+        <selectionsColumn name="ids" sortOrder="0">
+            <settings>
+                <indexField>author_id</indexField>
+            </settings>
+        </selectionsColumn>
+        <column name="author_id" sortOrder="10">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">ID</label>
+            </settings>
+        </column>
+        <column name="name" sortOrder="20">
+            <settings>
+                <filter>text</filter><sorting>asc</sorting>
+                <label translate="true">Name</label>
+            </settings>
+        </column>
+        <column name="job_title" sortOrder="30">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Job Title</label>
+            </settings>
+        </column>
+        <column name="url_key" sortOrder="40">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">URL Key</label>
+            </settings>
+        </column>
+        <column name="posts_count" sortOrder="50">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">Posts</label>
+            </settings>
+        </column>
+        <column name="is_active" component="Softaware_Blog/js/grid/columns/status-badge" sortOrder="60">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="severity" xsi:type="array">
+                        <item name="1" xsi:type="string">grid-severity-notice</item>
+                        <item name="0" xsi:type="string">grid-severity-minor</item>
+                    </item>
+                </item>
+            </argument>
+            <settings>
+                <options class="Softaware\Blog\Model\Source\ActiveStatus"/>
+                <filter>select</filter>
+                <dataType>select</dataType>
+                <label translate="true">Status</label>
+            </settings>
+        </column>
+        <actionsColumn name="actions" class="Softaware\Blog\Ui\Component\Listing\Column\Actions" sortOrder="200">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="editUrlPath" xsi:type="string">softaware_blog/author/edit</item>
+                    <item name="deleteUrlPath" xsi:type="string">softaware_blog/author/delete</item>
+                    <item name="deleteResource" xsi:type="string">Softaware_Blog::authors</item>
+                    <item name="entityLabel" xsi:type="string" translate="true">Author</item>
+                    <item name="titleField" xsi:type="string">name</item>
+                </item>
+            </argument>
+            <settings>
+                <indexField>author_id</indexField>
+            </settings>
+        </actionsColumn>
+    </columns>
+</listing>

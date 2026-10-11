@@ -1,0 +1,112 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category  Softaware
+ * @package   Softaware_Blog
+ * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ */
+-->
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+    <widget id="softaware_blog_recent_posts" class="Softaware\Blog\Block\Widget\RecentPosts" is_email_compatible="false">
+        <label translate="true">Softaware Blog: Recent Posts</label>
+        <description translate="true">Latest blog posts, optionally from one category or featured posts only</description>
+        <parameters>
+            <parameter name="title" xsi:type="text" visible="true" sort_order="10">
+                <label translate="true">Heading</label>
+                <value>From our blog</value>
+            </parameter>
+            <parameter name="posts_count" xsi:type="text" visible="true" required="true" sort_order="20">
+                <label translate="true">Number of Posts</label>
+                <description translate="true">1 to 24.</description>
+                <value>3</value>
+            </parameter>
+            <parameter name="category_id" xsi:type="select" visible="true" source_model="Softaware\Blog\Model\Source\CategoryOptions" sort_order="30">
+                <label translate="true">Category</label>
+                <description translate="true">Includes posts of its subcategories.</description>
+            </parameter>
+            <parameter name="featured_only" xsi:type="select" visible="true" sort_order="40">
+                <label translate="true">Featured Posts Only</label>
+                <options>
+                    <option name="yes" value="1">
+                        <label translate="true">Yes</label>
+                    </option>
+                    <option name="no" value="0" selected="true">
+                        <label translate="true">No</label>
+                    </option>
+                </options>
+            </parameter>
+            <parameter name="show_image" xsi:type="select" visible="true" sort_order="50">
+                <label translate="true">Show Featured Image</label>
+                <options>
+                    <option name="yes" value="1" selected="true">
+                        <label translate="true">Yes</label>
+                    </option>
+                    <option name="no" value="0">
+                        <label translate="true">No</label>
+                    </option>
+                </options>
+            </parameter>
+            <parameter name="show_excerpt" xsi:type="select" visible="true" sort_order="60">
+                <label translate="true">Show Excerpt</label>
+                <options>
+                    <option name="yes" value="1" selected="true">
+                        <label translate="true">Yes</label>
+                    </option>
+                    <option name="no" value="0">
+                        <label translate="true">No</label>
+                    </option>
+                </options>
+            </parameter>
+            <parameter name="template" xsi:type="select" visible="false">
+                <options>
+                    <option name="default" value="Softaware_Blog::widget/recent-posts.phtml" selected="true">
+                        <label translate="true">Default Template</label>
+                    </option>
+                </options>
+            </parameter>
+        </parameters>
+    </widget>
+    <widget id="softaware_blog_categories" class="Softaware\Blog\Block\Widget\Categories" is_email_compatible="false">
+        <label translate="true">Softaware Blog: Categories</label>
+        <description translate="true">Links to the blog categories</description>
+        <parameters>
+            <parameter name="title" xsi:type="text" visible="true" sort_order="10">
+                <label translate="true">Heading</label>
+                <value>Blog categories</value>
+            </parameter>
+            <parameter name="max_depth" xsi:type="text" visible="true" sort_order="20">
+                <label translate="true">Levels</label>
+                <description translate="true">Number of category levels to show; empty or 0 shows all.</description>
+            </parameter>
+            <parameter name="template" xsi:type="select" visible="false">
+                <options>
+                    <option name="default" value="Softaware_Blog::widget/categories.phtml" selected="true">
+                        <label translate="true">Default Template</label>
+                    </option>
+                </options>
+            </parameter>
+        </parameters>
+    </widget>
+    <widget id="softaware_blog_tags" class="Softaware\Blog\Block\Widget\TagCloud" is_email_compatible="false">
+        <label translate="true">Softaware Blog: Tags</label>
+        <description translate="true">Most used blog tags</description>
+        <parameters>
+            <parameter name="title" xsi:type="text" visible="true" sort_order="10">
+                <label translate="true">Heading</label>
+                <value>Topics</value>
+            </parameter>
+            <parameter name="tags_count" xsi:type="text" visible="true" sort_order="20">
+                <label translate="true">Number of Tags</label>
+                <description translate="true">1 to 100.</description>
+                <value>20</value>
+            </parameter>
+            <parameter name="template" xsi:type="select" visible="false">
+                <options>
+                    <option name="default" value="Softaware_Blog::widget/tags.phtml" selected="true">
+                        <label translate="true">Default Template</label>
+                    </option>
+                </options>
+            </parameter>
+        </parameters>
+    </widget>
+</widgets>

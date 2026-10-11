@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category  Softaware
+ * @package   Softaware_Blog
+ * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <softaware_blog>
+            <general>
+                <enabled>1</enabled>
+                <title>Blog</title>
+                <route>blog</route>
+                <url_suffix></url_suffix>
+                <category_prefix>category</category_prefix>
+                <tag_prefix>tag</tag_prefix>
+                <author_prefix>author</author_prefix>
+                <top_menu_link>1</top_menu_link>
+                <footer_link>0</footer_link>
+            </general>
+            <list>
+                <posts_per_page>10</posts_per_page>
+                <excerpt_length>250</excerpt_length>
+                <show_featured>1</show_featured>
+                <featured_count>3</featured_count>
+            </list>
+            <post>
+                <show_author>1</show_author>
+                <show_reading_time>1</show_reading_time>
+                <words_per_minute>200</words_per_minute>
+                <show_share>1</show_share>
+                <show_prev_next>1</show_prev_next>
+                <related_posts>3</related_posts>
+                <related_products>4</related_products>
+                <related_products_title>Products in this post</related_products_title>
+            </post>
+            <sidebar>
+                <enabled>1</enabled>
+                <categories>1</categories>
+                <recent_count>5</recent_count>
+                <tags_count>20</tags_count>
+            </sidebar>
+            <product_page>
+                <related_posts>1</related_posts>
+                <count>3</count>
+                <title>From our blog</title>
+            </product_page>
+            <seo>
+                <robots_post>INDEX,FOLLOW</robots_post>
+                <robots_category>INDEX,FOLLOW</robots_category>
+                <robots_tag>NOINDEX,FOLLOW</robots_tag>
+                <robots_author>INDEX,FOLLOW</robots_author>
+                <robots_paginated>INDEX,FOLLOW</robots_paginated>
+                <open_graph>1</open_graph>
+                <json_ld>1</json_ld>
+                <hreflang>1</hreflang>
+            </seo>
+            <sitemap>
+                <enabled>1</enabled>
+                <post_priority>0.5</post_priority>
+                <post_frequency>weekly</post_frequency>
+                <list_priority>0.4</list_priority>
+                <list_frequency>daily</list_frequency>
+                <include_tags>0</include_tags>
+                <include_authors>0</include_authors>
+                <include_images>1</include_images>
+            </sitemap>
+            <rss>
+                <enabled>1</enabled>
+                <items>20</items>
+                <full_content>0</full_content>
+            </rss>
+            <comments>
+                <enabled>1</enabled>
+                <allow_guests>1</allow_guests>
+                <auto_approve>never</auto_approve>
+                <hold_links>1</hold_links>
+                <min_length>10</min_length>
+                <max_length>3000</max_length>
+                <hourly_limit>5</hourly_limit>
+                <notify>1</notify>
+                <email_identity>general</email_identity>
+                <email_template>softaware_blog_comments_email_template</email_template>
+            </comments>
+        </softaware_blog>
+    </default>
+</config>

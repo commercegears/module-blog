@@ -1,0 +1,56 @@
+<?php
+/**
+ * @category  Softaware
+ * @package   Softaware_Blog
+ * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ */
+
+/**
+ * Post card (Hyvä). Rendered through AbstractBlog::renderCard().
+ *
+ * @var \Softaware\Blog\Block\AbstractBlog $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+/** @var \Softaware\Blog\Model\Post $post */
+$post = $block->getData('card_post');
+$variant = (string)$block->getData('card_variant');
+$tag = (string)$block->getData('card_heading');
+$url = $block->getPostUrl($post);
+$image = $block->getImageUrl($post->getFeaturedImage());
+$showImage = !$block->getData('card_no_image');
+$categories = $block->getPostCategories($post);
+$minutes = $block->getReadingMinutes($post);
+$titleSize = match ($variant) {
+    'featured' => 'text-2xl',
+    'compact' => 'text-lg',
+    default => 'text-xl',
+};
+?>
+<article class="group flex flex-col min-w-0">
+    <?php if ($image !== '' && $showImage): ?>
+        <a href="<?= $escaper->escapeUrl($url) ?>" tabindex="-1" aria-hidden="true"
+           class="block mb-4 overflow-hidden rounded-lg bg-bg aspect-video">
+            <img src="<?= $escaper->escapeUrl($image) ?>" loading="lazy"
+                 alt="<?= $escaper->escapeHtmlAttr((string)($post->getData('featured_image_alt') ?: $post->getTitle())) ?>"
+                 class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+        </a>
+    <?php endif; ?>
+    <?php if ($categories && $variant !== 'compact'): ?>
+        <a href="<?= $escaper->escapeUrl($block->getCategoryUrl($categories[0])) ?>"
+           class="mb-1 text-xs font-semibold uppercase tracking-wider text-primary hover:underline">
+            <?= $escaper->escapeHtml($categories[0]->getName()) ?>
+        </a>
+    <?php endif; ?>
+    <<?= /* @noEscape */ $tag ?> class="<?= /* @noEscape */ $titleSize ?> font-semibold leading-snug mb-1">
+        <a href="<?= $escaper->escapeUrl($url) ?>" class="text-fg hover:underline"><?= $escaper->escapeHtml($post->getTitle()) ?></a>
+    </<?= /* @noEscape */ $tag ?>>
+    <p class="mb-2 text-sm text-fg-secondary">
+        <time datetime="<?= $escaper->escapeHtmlAttr($block->getIsoDate($post->getPublishAt())) ?>"><?= $escaper->escapeHtml($block->formatPublishDate($post)) ?></time>
+        <?php if ($minutes > 0 && $variant !== 'compact'): ?>
+            <span aria-hidden="true" class="mx-1">&middot;</span><span><?= $escaper->escapeHtml(__('%1 min read', $minutes)) ?></span>
+        <?php endif; ?>
+    </p>
+    <?php if ($variant !== 'compact' || $block->getData('card_show_excerpt')): ?>
+        <div class="text-fg-secondary leading-relaxed [&_p:last-child]:mb-0"><?= /* @noEscape */ $block->getExcerptHtml($post) ?></div>
+    <?php endif; ?>
+</article>

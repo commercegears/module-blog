@@ -1,0 +1,109 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category  Softaware
+ * @package   Softaware_Blog
+ * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Softaware\Blog\Api\Data\PostInterface" type="Softaware\Blog\Model\Post"/>
+    <preference for="Softaware\Blog\Api\PostRepositoryInterface" type="Softaware\Blog\Model\PostRepository"/>
+
+    <!-- admin grids -->
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="softaware_blog_post_listing_data_source" xsi:type="string">Softaware\Blog\Model\ResourceModel\Post\Grid\Collection</item>
+                <item name="softaware_blog_category_listing_data_source" xsi:type="string">Softaware\Blog\Model\ResourceModel\Category\Grid\Collection</item>
+                <item name="softaware_blog_tag_listing_data_source" xsi:type="string">Softaware\Blog\Model\ResourceModel\Tag\Grid\Collection</item>
+                <item name="softaware_blog_author_listing_data_source" xsi:type="string">Softaware\Blog\Model\ResourceModel\Author\Grid\Collection</item>
+                <item name="softaware_blog_comment_listing_data_source" xsi:type="string">Softaware\Blog\Model\ResourceModel\Comment\Grid\Collection</item>
+                <item name="softaware_blog_import_job_listing_data_source" xsi:type="string">Softaware\Blog\Model\ResourceModel\ImportJob\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Softaware\Blog\Model\ResourceModel\Post\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">softaware_blog_post</argument>
+            <argument name="resourceModel" xsi:type="string">Softaware\Blog\Model\ResourceModel\Post</argument>
+        </arguments>
+    </type>
+    <type name="Softaware\Blog\Model\ResourceModel\Category\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">softaware_blog_category</argument>
+            <argument name="resourceModel" xsi:type="string">Softaware\Blog\Model\ResourceModel\Category</argument>
+        </arguments>
+    </type>
+    <type name="Softaware\Blog\Model\ResourceModel\Tag\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">softaware_blog_tag</argument>
+            <argument name="resourceModel" xsi:type="string">Softaware\Blog\Model\ResourceModel\Tag</argument>
+        </arguments>
+    </type>
+    <type name="Softaware\Blog\Model\ResourceModel\Author\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">softaware_blog_author</argument>
+            <argument name="resourceModel" xsi:type="string">Softaware\Blog\Model\ResourceModel\Author</argument>
+        </arguments>
+    </type>
+    <virtualType name="Softaware\Blog\Model\ResourceModel\ImportJob\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">softaware_blog_import_job</argument>
+            <argument name="resourceModel" xsi:type="string">Softaware\Blog\Model\ResourceModel\ImportJob</argument>
+        </arguments>
+    </virtualType>
+    <type name="Softaware\Blog\Model\ResourceModel\Comment\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">softaware_blog_comment</argument>
+            <argument name="resourceModel" xsi:type="string">Softaware\Blog\Model\ResourceModel\Comment</argument>
+        </arguments>
+    </type>
+
+    <!-- XML sitemap (Marketing > Site Map) -->
+    <type name="Magento\Sitemap\Model\ItemProvider\Composite">
+        <arguments>
+            <argument name="itemProviders" xsi:type="array">
+                <item name="softawareBlogProvider" xsi:type="object">Softaware\Blog\Model\Sitemap\ItemProvider</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!-- mail and backend URL objects are only built when a mail is sent -->
+    <type name="Softaware\Blog\Model\Comment\Notifier">
+        <arguments>
+            <argument name="transportBuilder" xsi:type="object">Magento\Framework\Mail\Template\TransportBuilder\Proxy</argument>
+            <argument name="backendUrl" xsi:type="object">Magento\Backend\Model\UrlInterface\Proxy</argument>
+        </arguments>
+    </type>
+    <type name="Softaware\Blog\Model\Comment\Submission">
+        <arguments>
+            <argument name="notifier" xsi:type="object">Softaware\Blog\Model\Comment\Notifier\Proxy</argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Framework\Console\CommandListInterface">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="softaware_blog_import_wordpress" xsi:type="object">Softaware\Blog\Console\Command\ImportWordPress</item>
+                <item name="softaware_blog_publish_scheduled" xsi:type="object">Softaware\Blog\Console\Command\PublishScheduled</item>
+                <item name="softaware_blog_sample_data" xsi:type="object">Softaware\Blog\Console\Command\SampleData</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Softaware\Blog\Console\Command\ImportWordPress">
+        <arguments>
+            <argument name="jobRunner" xsi:type="object">Softaware\Blog\Model\Import\JobRunner\Proxy</argument>
+        </arguments>
+    </type>
+    <type name="Softaware\Blog\Console\Command\PublishScheduled">
+        <arguments>
+            <argument name="publisher" xsi:type="object">Softaware\Blog\Model\SchedulePublisher\Proxy</argument>
+        </arguments>
+    </type>
+    <type name="Softaware\Blog\Console\Command\SampleData">
+        <arguments>
+            <argument name="sampleData" xsi:type="object">Softaware\Blog\Model\SampleData\Proxy</argument>
+        </arguments>
+    </type>
+</config>

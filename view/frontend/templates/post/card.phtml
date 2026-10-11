@@ -1,0 +1,51 @@
+<?php
+/**
+ * @category  Softaware
+ * @package   Softaware_Blog
+ * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ */
+
+/**
+ * Post card (Luma). Rendered through AbstractBlog::renderCard().
+ *
+ * @var \Softaware\Blog\Block\AbstractBlog $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+/** @var \Softaware\Blog\Model\Post $post */
+$post = $block->getData('card_post');
+$variant = (string)$block->getData('card_variant');
+$tag = (string)$block->getData('card_heading');
+$url = $block->getPostUrl($post);
+$image = $block->getImageUrl($post->getFeaturedImage());
+$showImage = !$block->getData('card_no_image');
+$categories = $block->getPostCategories($post);
+$minutes = $block->getReadingMinutes($post);
+?>
+<article class="sw-blog-card sw-blog-card--<?= $escaper->escapeHtmlAttr($variant) ?>">
+    <?php if ($image !== '' && $showImage): ?>
+        <a class="sw-blog-card__image" href="<?= $escaper->escapeUrl($url) ?>" tabindex="-1" aria-hidden="true">
+            <img src="<?= $escaper->escapeUrl($image) ?>" loading="lazy"
+                 alt="<?= $escaper->escapeHtmlAttr((string)($post->getData('featured_image_alt') ?: $post->getTitle())) ?>"/>
+        </a>
+    <?php endif; ?>
+    <div class="sw-blog-card__body">
+        <?php if ($categories && $variant !== 'compact'): ?>
+            <a class="sw-blog-card__category" href="<?= $escaper->escapeUrl($block->getCategoryUrl($categories[0])) ?>">
+                <?= $escaper->escapeHtml($categories[0]->getName()) ?>
+            </a>
+        <?php endif; ?>
+        <<?= /* @noEscape */ $tag ?> class="sw-blog-card__title">
+            <a href="<?= $escaper->escapeUrl($url) ?>"><?= $escaper->escapeHtml($post->getTitle()) ?></a>
+        </<?= /* @noEscape */ $tag ?>>
+        <p class="sw-blog-card__meta">
+            <time datetime="<?= $escaper->escapeHtmlAttr($block->getIsoDate($post->getPublishAt())) ?>"><?= $escaper->escapeHtml($block->formatPublishDate($post)) ?></time>
+            <?php if ($minutes > 0 && $variant !== 'compact'): ?>
+                <span aria-hidden="true">&middot;</span>
+                <span><?= $escaper->escapeHtml(__('%1 min read', $minutes)) ?></span>
+            <?php endif; ?>
+        </p>
+        <?php if ($variant !== 'compact' || $block->getData('card_show_excerpt')): ?>
+            <div class="sw-blog-card__excerpt"><?= /* @noEscape */ $block->getExcerptHtml($post) ?></div>
+        <?php endif; ?>
+    </div>
+</article>

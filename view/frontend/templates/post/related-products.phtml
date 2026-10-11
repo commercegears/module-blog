@@ -1,0 +1,34 @@
+<?php
+/**
+ * @category  Softaware
+ * @package   Softaware_Blog
+ * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ */
+
+/**
+ * Products linked to the post (Luma).
+ *
+ * @var \Softaware\Blog\Block\Post\RelatedProducts $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+$products = $block->getProducts();
+if (!$products) {
+    return;
+}
+?>
+<section class="sw-blog sw-blog-products" aria-labelledby="sw-blog-products-title">
+    <h2 id="sw-blog-products-title" class="sw-blog-section-title"><?= $escaper->escapeHtml($block->getTitle()) ?></h2>
+    <ol class="sw-blog-products__list">
+        <?php foreach ($products as $product): ?>
+            <li class="sw-blog-products__item">
+                <a class="sw-blog-products__photo" href="<?= $escaper->escapeUrl($block->getProductUrl($product)) ?>" tabindex="-1">
+                    <?= /* @noEscape */ $block->getImage($product, 'related_products_list')->toHtml() ?>
+                </a>
+                <a class="sw-blog-products__name" href="<?= $escaper->escapeUrl($block->getProductUrl($product)) ?>">
+                    <?= $escaper->escapeHtml((string)$product->getName()) ?>
+                </a>
+                <?= /* @noEscape */ $block->getProductPrice($product) ?>
+            </li>
+        <?php endforeach; ?>
+    </ol>
+</section>

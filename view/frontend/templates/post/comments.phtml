@@ -1,0 +1,106 @@
+<?php
+/**
+ * @category  Softaware
+ * @package   Softaware_Blog
+ * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ */
+
+/**
+ * Comments and comment form (Luma). The page is cached; the form posts with AJAX and the visitor's
+ * signed-in state comes from the "customer" section.
+ *
+ * @var \Softaware\Blog\Block\Post\Comments $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+if (!$block->isEnabled()) {
+    return;
+}
+$threads = $block->getThreads();
+$count = $block->getCount();
+$consent = $block->getConsentHtml();
+$honeypot = $block->getHoneypotField();
+?>
+<section id="comments" class="sw-blog sw-blog-comments" aria-labelledby="sw-blog-comments-title"
+         data-mage-init='{"Softaware_Blog/js/comments": <?= /* @noEscape */ $block->getJsConfig() ?>}'>
+    <h2 id="sw-blog-comments-title" class="sw-blog-section-title">
+        <?= $escaper->escapeHtml($count ? __('Comments (%1)', $count) : __('Comments')) ?>
+    </h2>
+    <ol class="sw-blog-comments__list" data-role="list">
+        <?php foreach ($threads as $thread): ?>
+            <?php $comment = $thread['comment']; ?>
+            <li class="sw-blog-comment" id="comment-<?= (int)$comment->getId() ?>">
+                <p class="sw-blog-comment__meta">
+                    <strong><?= $escaper->escapeHtml($comment->getAuthorName()) ?></strong>
+                    <time><?= $escaper->escapeHtml($block->formatCommentDate($comment)) ?></time>
+                </p>
+                <div class="sw-blog-comment__text"><?= /* @noEscape */ $block->getCommentHtml($comment) ?></div>
+                <?php foreach ($thread['replies'] as $reply): ?>
+                    <div class="sw-blog-comment sw-blog-comment--reply" id="comment-<?= (int)$reply->getId() ?>">
+                        <p class="sw-blog-comment__meta">
+                            <strong><?= $escaper->escapeHtml($block->getReplyName($reply)) ?></strong>
+                            <time><?= $escaper->escapeHtml($block->formatCommentDate($reply)) ?></time>
+                        </p>
+                        <div class="sw-blog-comment__text"><?= /* @noEscape */ $block->getCommentHtml($reply) ?></div>
+                    </div>
+                <?php endforeach; ?>
+            </li>
+        <?php endforeach; ?>
+    </ol>
+    <?php if (!$threads): ?>
+        <p class="sw-blog-comments__empty" data-role="empty"><?= $escaper->escapeHtml(__('No comments yet. Be the first to share your thoughts.')) ?></p>
+    <?php endif; ?>
+
+    <p class="sw-blog-comments__login" data-role="login" hidden>
+        <?= $escaper->escapeHtml(__('Please sign in to comment.')) ?>
+        <a href="<?= $escaper->escapeUrl($block->getLoginUrl()) ?>"><?= $escaper->escapeHtml(__('Sign in')) ?></a>
+    </p>
+    <form class="sw-blog-comment-form form" data-role="form" method="post" novalidate
+          action="<?= $escaper->escapeUrl($block->getUrl('softaware_blog/comment/post')) ?>"
+          <?php if (!$block->areGuestsAllowed()): ?>hidden<?php endif; ?>>
+        <h3 class="sw-blog-comment-form__title"><?= $escaper->escapeHtml(__('Leave a comment')) ?></h3>
+        <?= /* @noEscape */ $block->getBlockHtml('formkey') ?>
+        <input type="hidden" name="post_id" value="<?= (int)$block->getPost()->getId() ?>"/>
+        <div class="sw-blog-hp" aria-hidden="true">
+            <label for="sw-blog-<?= $escaper->escapeHtmlAttr($honeypot) ?>"><?= $escaper->escapeHtml(__('Leave this field empty')) ?></label>
+            <input type="text" id="sw-blog-<?= $escaper->escapeHtmlAttr($honeypot) ?>" name="<?= $escaper->escapeHtmlAttr($honeypot) ?>" value="" tabindex="-1" autocomplete="off"/>
+        </div>
+        <fieldset class="fieldset">
+            <div class="field required" data-role="name-field">
+                <label class="label" for="sw-blog-comment-name"><span><?= $escaper->escapeHtml(__('Name')) ?></span></label>
+                <div class="control">
+                    <input type="text" id="sw-blog-comment-name" name="author_name" class="input-text" maxlength="100" required autocomplete="name"/>
+                </div>
+            </div>
+            <div class="field required" data-role="email-field">
+                <label class="label" for="sw-blog-comment-email"><span><?= $escaper->escapeHtml(__('E-mail')) ?></span></label>
+                <div class="control">
+                    <input type="email" id="sw-blog-comment-email" name="author_email" class="input-text" maxlength="255" required autocomplete="email"
+                           aria-describedby="sw-blog-comment-email-note"/>
+                    <p class="note" id="sw-blog-comment-email-note"><?= $escaper->escapeHtml(__('Not published.')) ?></p>
+                </div>
+            </div>
+            <div class="field required">
+                <label class="label" for="sw-blog-comment-text"><span><?= $escaper->escapeHtml(__('Comment')) ?></span></label>
+                <div class="control">
+                    <textarea id="sw-blog-comment-text" name="content" rows="5" required
+                              minlength="<?= (int)$block->getMinLength() ?>" maxlength="<?= (int)$block->getMaxLength() ?>"></textarea>
+                </div>
+            </div>
+            <?php if ($consent !== ''): ?>
+                <div class="field choice required">
+                    <input type="checkbox" id="sw-blog-comment-consent" name="consent" value="1" class="checkbox" required/>
+                    <label class="label" for="sw-blog-comment-consent"><span><?= /* @noEscape */ $consent ?></span></label>
+                </div>
+            <?php endif; ?>
+            <?= /* @noEscape */ $block->getRecaptchaHtml() ?>
+        </fieldset>
+        <div class="actions-toolbar">
+            <div class="primary">
+                <button type="submit" class="action submit primary" data-role="submit">
+                    <span><?= $escaper->escapeHtml(__('Post comment')) ?></span>
+                </button>
+            </div>
+        </div>
+        <div class="sw-blog-comment-form__message" data-role="message" role="status" aria-live="polite"></div>
+    </form>
+</section>

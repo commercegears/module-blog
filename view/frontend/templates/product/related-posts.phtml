@@ -1,0 +1,26 @@
+<?php
+/**
+ * @category  Softaware
+ * @package   Softaware_Blog
+ * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ */
+
+/**
+ * "From our blog" on product pages (Luma).
+ *
+ * @var \Softaware\Blog\Block\Product\RelatedPosts $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+$posts = $block->getPosts();
+if (!$posts) {
+    return;
+}
+?>
+<section class="sw-blog sw-blog-related sw-blog-related--product" aria-labelledby="sw-blog-product-posts-title">
+    <h2 id="sw-blog-product-posts-title" class="sw-blog-section-title"><?= $escaper->escapeHtml($block->getTitle()) ?></h2>
+    <div class="sw-blog-grid sw-blog-grid--3">
+        <?php foreach ($posts as $post): ?>
+            <?= /* @noEscape */ $block->renderCard($post, 'compact', 'h3') ?>
+        <?php endforeach; ?>
+    </div>
+</section>

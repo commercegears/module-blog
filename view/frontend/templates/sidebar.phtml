@@ -1,0 +1,64 @@
+<?php
+/**
+ * @category  Softaware
+ * @package   Softaware_Blog
+ * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ */
+
+/**
+ * Blog sidebar (Luma).
+ *
+ * @var \Softaware\Blog\Block\Sidebar $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+if (!$block->isEnabled()) {
+    return;
+}
+$tree = $block->getCategoryTree();
+$recent = $block->getRecentPosts();
+$tags = $block->getTags();
+$rss = $block->getRssUrl();
+?>
+<div class="sw-blog sw-blog-sidebar">
+    <?php if ($tree): ?>
+        <nav class="sw-blog-sidebar__block" aria-labelledby="sw-blog-sidebar-categories">
+            <h2 id="sw-blog-sidebar-categories" class="sw-blog-sidebar__title"><?= $escaper->escapeHtml(__('Categories')) ?></h2>
+            <ul class="sw-blog-sidebar__categories">
+                <?php foreach ($tree as $row): ?>
+                    <li class="sw-blog-depth-<?= (int)min($row['depth'], 4) ?>">
+                        <a href="<?= $escaper->escapeUrl($block->getCategoryUrl($row['category'])) ?>"
+                           <?php if ($block->isCurrentCategory($row['category'])): ?>aria-current="page"<?php endif; ?>>
+                            <?= $escaper->escapeHtml($row['category']->getName()) ?>
+                        </a>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        </nav>
+    <?php endif; ?>
+    <?php if ($recent): ?>
+        <section class="sw-blog-sidebar__block" aria-labelledby="sw-blog-sidebar-recent">
+            <h2 id="sw-blog-sidebar-recent" class="sw-blog-sidebar__title"><?= $escaper->escapeHtml(__('Recent posts')) ?></h2>
+            <ul class="sw-blog-sidebar__recent">
+                <?php foreach ($recent as $post): ?>
+                    <li>
+                        <a href="<?= $escaper->escapeUrl($block->getPostUrl($post)) ?>"><?= $escaper->escapeHtml($post->getTitle()) ?></a>
+                        <time datetime="<?= $escaper->escapeHtmlAttr($block->getIsoDate($post->getPublishAt())) ?>"><?= $escaper->escapeHtml($block->formatPublishDate($post)) ?></time>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        </section>
+    <?php endif; ?>
+    <?php if ($tags): ?>
+        <section class="sw-blog-sidebar__block" aria-labelledby="sw-blog-sidebar-tags">
+            <h2 id="sw-blog-sidebar-tags" class="sw-blog-sidebar__title"><?= $escaper->escapeHtml(__('Tags')) ?></h2>
+            <ul class="sw-blog-tags">
+                <?php foreach ($tags as $row): ?>
+                    <li><a href="<?= $escaper->escapeUrl($block->getTagUrl($row['tag'])) ?>">#<?= $escaper->escapeHtml($row['tag']->getName()) ?></a></li>
+                <?php endforeach; ?>
+            </ul>
+        </section>
+    <?php endif; ?>
+    <?php if ($rss !== ''): ?>
+        <p class="sw-blog-sidebar__rss"><a href="<?= $escaper->escapeUrl($rss) ?>"><?= $escaper->escapeHtml(__('RSS feed')) ?></a></p>
+    <?php endif; ?>
+</div>

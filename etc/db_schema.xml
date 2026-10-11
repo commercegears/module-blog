@@ -1,0 +1,364 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category  Softaware
+ * @package   Softaware_Blog
+ * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ */
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="softaware_blog_author" resource="default" engine="innodb" comment="Softaware Blog Author">
+        <column xsi:type="int" name="author_id" unsigned="true" nullable="false" identity="true" comment="Author ID"/>
+        <column xsi:type="varchar" name="name" nullable="false" length="255" comment="Name"/>
+        <column xsi:type="varchar" name="url_key" nullable="false" length="255" comment="URL Key"/>
+        <column xsi:type="varchar" name="job_title" nullable="true" length="255" comment="Job Title"/>
+        <column xsi:type="text" name="bio" nullable="true" comment="Biography"/>
+        <column xsi:type="varchar" name="photo" nullable="true" length="255" comment="Photo"/>
+        <column xsi:type="varchar" name="website_url" nullable="true" length="255" comment="Website"/>
+        <column xsi:type="varchar" name="linkedin_url" nullable="true" length="255" comment="LinkedIn"/>
+        <column xsi:type="varchar" name="x_url" nullable="true" length="255" comment="X (Twitter)"/>
+        <column xsi:type="varchar" name="meta_title" nullable="true" length="255" comment="Meta Title"/>
+        <column xsi:type="text" name="meta_description" nullable="true" comment="Meta Description"/>
+        <column xsi:type="smallint" name="is_active" unsigned="true" nullable="false" default="1" comment="Active"/>
+        <column xsi:type="varchar" name="external_id" nullable="true" length="128" comment="Import Source ID"/>
+        <column xsi:type="timestamp" name="created_at" nullable="false" default="CURRENT_TIMESTAMP" comment="Created At"/>
+        <column xsi:type="timestamp" name="updated_at" nullable="false" default="CURRENT_TIMESTAMP" on_update="true" comment="Updated At"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="author_id"/>
+        </constraint>
+        <constraint xsi:type="unique" referenceId="SOFTAWARE_BLOG_AUTHOR_URL_KEY">
+            <column name="url_key"/>
+        </constraint>
+        <index referenceId="SOFTAWARE_BLOG_AUTHOR_EXTERNAL_ID" indexType="btree">
+            <column name="external_id"/>
+        </index>
+        <index referenceId="SOFTAWARE_BLOG_AUTHOR_NAME" indexType="fulltext">
+            <column name="name"/>
+        </index>
+    </table>
+
+    <table name="softaware_blog_post" resource="default" engine="innodb" comment="Softaware Blog Post">
+        <column xsi:type="int" name="post_id" unsigned="true" nullable="false" identity="true" comment="Post ID"/>
+        <column xsi:type="varchar" name="title" nullable="false" length="255" comment="Title"/>
+        <column xsi:type="varchar" name="url_key" nullable="false" length="255" comment="URL Key"/>
+        <column xsi:type="text" name="short_content" nullable="true" comment="Excerpt"/>
+        <column xsi:type="mediumtext" name="content" nullable="true" comment="Content"/>
+        <column xsi:type="varchar" name="featured_image" nullable="true" length="255" comment="Featured Image"/>
+        <column xsi:type="varchar" name="featured_image_alt" nullable="true" length="255" comment="Featured Image Alt Text"/>
+        <column xsi:type="int" name="author_id" unsigned="true" nullable="true" comment="Author ID"/>
+        <column xsi:type="smallint" name="status" unsigned="true" nullable="false" default="0" comment="0 Draft, 1 Published"/>
+        <column xsi:type="datetime" name="publish_at" nullable="true" comment="Publish Date (UTC)"/>
+        <column xsi:type="smallint" name="schedule_pending" unsigned="true" nullable="false" default="0" comment="Waiting For Scheduled Publication"/>
+        <column xsi:type="smallint" name="is_featured" unsigned="true" nullable="false" default="0" comment="Featured"/>
+        <column xsi:type="smallint" name="allow_comments" unsigned="true" nullable="false" default="1" comment="Comments Allowed"/>
+        <column xsi:type="varchar" name="meta_title" nullable="true" length="255" comment="Meta Title"/>
+        <column xsi:type="text" name="meta_description" nullable="true" comment="Meta Description"/>
+        <column xsi:type="text" name="meta_keywords" nullable="true" comment="Meta Keywords"/>
+        <column xsi:type="varchar" name="meta_robots" nullable="true" length="32" comment="Meta Robots"/>
+        <column xsi:type="varchar" name="canonical_url" nullable="true" length="255" comment="Custom Canonical URL"/>
+        <column xsi:type="varchar" name="focus_keyword" nullable="true" length="255" comment="Focus Keyword"/>
+        <column xsi:type="smallint" name="seo_score" unsigned="true" nullable="true" comment="SEO Checklist Score"/>
+        <column xsi:type="varchar" name="external_id" nullable="true" length="128" comment="Import Source ID"/>
+        <column xsi:type="timestamp" name="created_at" nullable="false" default="CURRENT_TIMESTAMP" comment="Created At"/>
+        <column xsi:type="timestamp" name="updated_at" nullable="false" default="CURRENT_TIMESTAMP" on_update="true" comment="Updated At"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="post_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="SOFTAWARE_BLOG_POST_AUTHOR_ID_SOFTAWARE_BLOG_AUTHOR_AUTHOR_ID"
+                    table="softaware_blog_post" column="author_id" referenceTable="softaware_blog_author"
+                    referenceColumn="author_id" onDelete="SET NULL"/>
+        <index referenceId="SOFTAWARE_BLOG_POST_URL_KEY" indexType="btree">
+            <column name="url_key"/>
+        </index>
+        <index referenceId="SOFTAWARE_BLOG_POST_STATUS_PUBLISH_AT" indexType="btree">
+            <column name="status"/>
+            <column name="publish_at"/>
+        </index>
+        <index referenceId="SOFTAWARE_BLOG_POST_SCHEDULE_PENDING" indexType="btree">
+            <column name="schedule_pending"/>
+        </index>
+        <index referenceId="SOFTAWARE_BLOG_POST_EXTERNAL_ID" indexType="btree">
+            <column name="external_id"/>
+        </index>
+        <index referenceId="SOFTAWARE_BLOG_POST_TITLE" indexType="fulltext">
+            <column name="title"/>
+        </index>
+    </table>
+
+    <table name="softaware_blog_post_store" resource="default" engine="innodb" comment="Softaware Blog Post Store Views">
+        <column xsi:type="int" name="post_id" unsigned="true" nullable="false" comment="Post ID"/>
+        <column xsi:type="smallint" name="store_id" unsigned="true" nullable="false" comment="Store View ID (0 = all)"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="post_id"/>
+            <column name="store_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="SOFTAWARE_BLOG_POST_STORE_POST_ID_SOFTAWARE_BLOG_POST_POST_ID"
+                    table="softaware_blog_post_store" column="post_id" referenceTable="softaware_blog_post"
+                    referenceColumn="post_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="SOFTAWARE_BLOG_POST_STORE_STORE_ID_STORE_STORE_ID"
+                    table="softaware_blog_post_store" column="store_id" referenceTable="store"
+                    referenceColumn="store_id" onDelete="CASCADE"/>
+        <index referenceId="SOFTAWARE_BLOG_POST_STORE_STORE_ID" indexType="btree">
+            <column name="store_id"/>
+        </index>
+    </table>
+
+    <table name="softaware_blog_post_content" resource="default" engine="innodb" comment="Softaware Blog Post Store View Content">
+        <column xsi:type="int" name="post_id" unsigned="true" nullable="false" comment="Post ID"/>
+        <column xsi:type="smallint" name="store_id" unsigned="true" nullable="false" comment="Store View ID"/>
+        <column xsi:type="varchar" name="title" nullable="true" length="255" comment="Title"/>
+        <column xsi:type="varchar" name="url_key" nullable="true" length="255" comment="URL Key"/>
+        <column xsi:type="text" name="short_content" nullable="true" comment="Excerpt"/>
+        <column xsi:type="mediumtext" name="content" nullable="true" comment="Content"/>
+        <column xsi:type="varchar" name="featured_image_alt" nullable="true" length="255" comment="Featured Image Alt Text"/>
+        <column xsi:type="varchar" name="meta_title" nullable="true" length="255" comment="Meta Title"/>
+        <column xsi:type="text" name="meta_description" nullable="true" comment="Meta Description"/>
+        <column xsi:type="text" name="meta_keywords" nullable="true" comment="Meta Keywords"/>
+        <column xsi:type="varchar" name="meta_robots" nullable="true" length="32" comment="Meta Robots"/>
+        <column xsi:type="varchar" name="focus_keyword" nullable="true" length="255" comment="Focus Keyword"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="post_id"/>
+            <column name="store_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="SOFTAWARE_BLOG_POST_CONTENT_POST_ID_SOFTAWARE_BLOG_POST_POST_ID"
+                    table="softaware_blog_post_content" column="post_id" referenceTable="softaware_blog_post"
+                    referenceColumn="post_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="SOFTAWARE_BLOG_POST_CONTENT_STORE_ID_STORE_STORE_ID"
+                    table="softaware_blog_post_content" column="store_id" referenceTable="store"
+                    referenceColumn="store_id" onDelete="CASCADE"/>
+        <index referenceId="SOFTAWARE_BLOG_POST_CONTENT_STORE_ID_URL_KEY" indexType="btree">
+            <column name="store_id"/>
+            <column name="url_key"/>
+        </index>
+    </table>
+
+    <table name="softaware_blog_category" resource="default" engine="innodb" comment="Softaware Blog Category">
+        <column xsi:type="int" name="category_id" unsigned="true" nullable="false" identity="true" comment="Category ID"/>
+        <column xsi:type="int" name="parent_id" unsigned="true" nullable="true" comment="Parent Category ID"/>
+        <column xsi:type="varchar" name="path" nullable="false" length="255" default="" comment="ID Path"/>
+        <column xsi:type="smallint" name="level" unsigned="true" nullable="false" default="1" comment="Level"/>
+        <column xsi:type="int" name="position" unsigned="false" nullable="false" default="0" comment="Position"/>
+        <column xsi:type="varchar" name="name" nullable="false" length="255" comment="Name"/>
+        <column xsi:type="varchar" name="url_key" nullable="false" length="255" comment="URL Key"/>
+        <column xsi:type="text" name="description" nullable="true" comment="Description"/>
+        <column xsi:type="varchar" name="meta_title" nullable="true" length="255" comment="Meta Title"/>
+        <column xsi:type="text" name="meta_description" nullable="true" comment="Meta Description"/>
+        <column xsi:type="text" name="meta_keywords" nullable="true" comment="Meta Keywords"/>
+        <column xsi:type="varchar" name="meta_robots" nullable="true" length="32" comment="Meta Robots"/>
+        <column xsi:type="smallint" name="is_active" unsigned="true" nullable="false" default="1" comment="Active"/>
+        <column xsi:type="varchar" name="external_id" nullable="true" length="128" comment="Import Source ID"/>
+        <column xsi:type="timestamp" name="created_at" nullable="false" default="CURRENT_TIMESTAMP" comment="Created At"/>
+        <column xsi:type="timestamp" name="updated_at" nullable="false" default="CURRENT_TIMESTAMP" on_update="true" comment="Updated At"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="category_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="SOFTAWARE_BLOG_CATEGORY_PARENT_ID_SOFTAWARE_BLOG_CATEGORY_CATEGORY_ID"
+                    table="softaware_blog_category" column="parent_id" referenceTable="softaware_blog_category"
+                    referenceColumn="category_id" onDelete="SET NULL"/>
+        <index referenceId="SOFTAWARE_BLOG_CATEGORY_URL_KEY" indexType="btree">
+            <column name="url_key"/>
+        </index>
+        <index referenceId="SOFTAWARE_BLOG_CATEGORY_EXTERNAL_ID" indexType="btree">
+            <column name="external_id"/>
+        </index>
+        <index referenceId="SOFTAWARE_BLOG_CATEGORY_NAME" indexType="fulltext">
+            <column name="name"/>
+        </index>
+    </table>
+
+    <table name="softaware_blog_category_content" resource="default" engine="innodb" comment="Softaware Blog Category Store View Content">
+        <column xsi:type="int" name="category_id" unsigned="true" nullable="false" comment="Category ID"/>
+        <column xsi:type="smallint" name="store_id" unsigned="true" nullable="false" comment="Store View ID"/>
+        <column xsi:type="varchar" name="name" nullable="true" length="255" comment="Name"/>
+        <column xsi:type="varchar" name="url_key" nullable="true" length="255" comment="URL Key"/>
+        <column xsi:type="text" name="description" nullable="true" comment="Description"/>
+        <column xsi:type="varchar" name="meta_title" nullable="true" length="255" comment="Meta Title"/>
+        <column xsi:type="text" name="meta_description" nullable="true" comment="Meta Description"/>
+        <column xsi:type="text" name="meta_keywords" nullable="true" comment="Meta Keywords"/>
+        <column xsi:type="varchar" name="meta_robots" nullable="true" length="32" comment="Meta Robots"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="category_id"/>
+            <column name="store_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="SOFTAWARE_BLOG_CATEGORY_CONTENT_CATEGORY_ID_SOFTAWARE_BLOG_CATEGORY_CATEGORY_ID"
+                    table="softaware_blog_category_content" column="category_id" referenceTable="softaware_blog_category"
+                    referenceColumn="category_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="SOFTAWARE_BLOG_CATEGORY_CONTENT_STORE_ID_STORE_STORE_ID"
+                    table="softaware_blog_category_content" column="store_id" referenceTable="store"
+                    referenceColumn="store_id" onDelete="CASCADE"/>
+        <index referenceId="SOFTAWARE_BLOG_CATEGORY_CONTENT_STORE_ID_URL_KEY" indexType="btree">
+            <column name="store_id"/>
+            <column name="url_key"/>
+        </index>
+    </table>
+
+    <table name="softaware_blog_tag" resource="default" engine="innodb" comment="Softaware Blog Tag">
+        <column xsi:type="int" name="tag_id" unsigned="true" nullable="false" identity="true" comment="Tag ID"/>
+        <column xsi:type="varchar" name="name" nullable="false" length="255" comment="Name"/>
+        <column xsi:type="varchar" name="url_key" nullable="false" length="255" comment="URL Key"/>
+        <column xsi:type="text" name="description" nullable="true" comment="Description"/>
+        <column xsi:type="varchar" name="meta_title" nullable="true" length="255" comment="Meta Title"/>
+        <column xsi:type="text" name="meta_description" nullable="true" comment="Meta Description"/>
+        <column xsi:type="varchar" name="meta_robots" nullable="true" length="32" comment="Meta Robots"/>
+        <column xsi:type="varchar" name="external_id" nullable="true" length="128" comment="Import Source ID"/>
+        <column xsi:type="timestamp" name="created_at" nullable="false" default="CURRENT_TIMESTAMP" comment="Created At"/>
+        <column xsi:type="timestamp" name="updated_at" nullable="false" default="CURRENT_TIMESTAMP" on_update="true" comment="Updated At"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="tag_id"/>
+        </constraint>
+        <constraint xsi:type="unique" referenceId="SOFTAWARE_BLOG_TAG_URL_KEY">
+            <column name="url_key"/>
+        </constraint>
+        <index referenceId="SOFTAWARE_BLOG_TAG_NAME" indexType="fulltext">
+            <column name="name"/>
+        </index>
+    </table>
+
+    <table name="softaware_blog_tag_content" resource="default" engine="innodb" comment="Softaware Blog Tag Store View Content">
+        <column xsi:type="int" name="tag_id" unsigned="true" nullable="false" comment="Tag ID"/>
+        <column xsi:type="smallint" name="store_id" unsigned="true" nullable="false" comment="Store View ID"/>
+        <column xsi:type="varchar" name="name" nullable="true" length="255" comment="Name"/>
+        <column xsi:type="varchar" name="url_key" nullable="true" length="255" comment="URL Key"/>
+        <column xsi:type="text" name="description" nullable="true" comment="Description"/>
+        <column xsi:type="varchar" name="meta_title" nullable="true" length="255" comment="Meta Title"/>
+        <column xsi:type="text" name="meta_description" nullable="true" comment="Meta Description"/>
+        <column xsi:type="varchar" name="meta_robots" nullable="true" length="32" comment="Meta Robots"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="tag_id"/>
+            <column name="store_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="SOFTAWARE_BLOG_TAG_CONTENT_TAG_ID_SOFTAWARE_BLOG_TAG_TAG_ID"
+                    table="softaware_blog_tag_content" column="tag_id" referenceTable="softaware_blog_tag"
+                    referenceColumn="tag_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="SOFTAWARE_BLOG_TAG_CONTENT_STORE_ID_STORE_STORE_ID"
+                    table="softaware_blog_tag_content" column="store_id" referenceTable="store"
+                    referenceColumn="store_id" onDelete="CASCADE"/>
+        <index referenceId="SOFTAWARE_BLOG_TAG_CONTENT_STORE_ID_URL_KEY" indexType="btree">
+            <column name="store_id"/>
+            <column name="url_key"/>
+        </index>
+    </table>
+
+    <table name="softaware_blog_post_category" resource="default" engine="innodb" comment="Softaware Blog Post Category">
+        <column xsi:type="int" name="post_id" unsigned="true" nullable="false" comment="Post ID"/>
+        <column xsi:type="int" name="category_id" unsigned="true" nullable="false" comment="Category ID"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="post_id"/>
+            <column name="category_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="SOFTAWARE_BLOG_POST_CATEGORY_POST_ID_SOFTAWARE_BLOG_POST_POST_ID"
+                    table="softaware_blog_post_category" column="post_id" referenceTable="softaware_blog_post"
+                    referenceColumn="post_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="SOFTAWARE_BLOG_POST_CATEGORY_CATEGORY_ID_SOFTAWARE_BLOG_CATEGORY_CATEGORY_ID"
+                    table="softaware_blog_post_category" column="category_id" referenceTable="softaware_blog_category"
+                    referenceColumn="category_id" onDelete="CASCADE"/>
+        <index referenceId="SOFTAWARE_BLOG_POST_CATEGORY_CATEGORY_ID" indexType="btree">
+            <column name="category_id"/>
+        </index>
+    </table>
+
+    <table name="softaware_blog_post_tag" resource="default" engine="innodb" comment="Softaware Blog Post Tag">
+        <column xsi:type="int" name="post_id" unsigned="true" nullable="false" comment="Post ID"/>
+        <column xsi:type="int" name="tag_id" unsigned="true" nullable="false" comment="Tag ID"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="post_id"/>
+            <column name="tag_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="SOFTAWARE_BLOG_POST_TAG_POST_ID_SOFTAWARE_BLOG_POST_POST_ID"
+                    table="softaware_blog_post_tag" column="post_id" referenceTable="softaware_blog_post"
+                    referenceColumn="post_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="SOFTAWARE_BLOG_POST_TAG_TAG_ID_SOFTAWARE_BLOG_TAG_TAG_ID"
+                    table="softaware_blog_post_tag" column="tag_id" referenceTable="softaware_blog_tag"
+                    referenceColumn="tag_id" onDelete="CASCADE"/>
+        <index referenceId="SOFTAWARE_BLOG_POST_TAG_TAG_ID" indexType="btree">
+            <column name="tag_id"/>
+        </index>
+    </table>
+
+    <table name="softaware_blog_post_product" resource="default" engine="innodb" comment="Softaware Blog Post Related Product">
+        <column xsi:type="int" name="post_id" unsigned="true" nullable="false" comment="Post ID"/>
+        <column xsi:type="int" name="product_id" unsigned="true" nullable="false" comment="Product ID"/>
+        <column xsi:type="int" name="position" unsigned="false" nullable="false" default="0" comment="Position"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="post_id"/>
+            <column name="product_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="SOFTAWARE_BLOG_POST_PRODUCT_POST_ID_SOFTAWARE_BLOG_POST_POST_ID"
+                    table="softaware_blog_post_product" column="post_id" referenceTable="softaware_blog_post"
+                    referenceColumn="post_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="SOFTAWARE_BLOG_POST_PRODUCT_PRODUCT_ID_CATALOG_PRODUCT_ENTITY_ENTITY_ID"
+                    table="softaware_blog_post_product" column="product_id" referenceTable="catalog_product_entity"
+                    referenceColumn="entity_id" onDelete="CASCADE"/>
+        <index referenceId="SOFTAWARE_BLOG_POST_PRODUCT_PRODUCT_ID" indexType="btree">
+            <column name="product_id"/>
+        </index>
+    </table>
+
+    <table name="softaware_blog_comment" resource="default" engine="innodb" comment="Softaware Blog Comment">
+        <column xsi:type="int" name="comment_id" unsigned="true" nullable="false" identity="true" comment="Comment ID"/>
+        <column xsi:type="int" name="post_id" unsigned="true" nullable="false" comment="Post ID"/>
+        <column xsi:type="int" name="parent_id" unsigned="true" nullable="true" comment="Parent Comment ID"/>
+        <column xsi:type="smallint" name="store_id" unsigned="true" nullable="true" comment="Store View ID"/>
+        <column xsi:type="int" name="customer_id" unsigned="true" nullable="true" comment="Customer ID"/>
+        <column xsi:type="varchar" name="author_name" nullable="false" length="255" comment="Name"/>
+        <column xsi:type="varchar" name="author_email" nullable="true" length="255" comment="E-mail"/>
+        <column xsi:type="text" name="content" nullable="false" comment="Comment"/>
+        <column xsi:type="smallint" name="status" unsigned="true" nullable="false" default="0" comment="0 Pending, 1 Approved, 2 Rejected"/>
+        <column xsi:type="smallint" name="is_admin_reply" unsigned="true" nullable="false" default="0" comment="Store Reply"/>
+        <column xsi:type="varchar" name="ip_hash" nullable="true" length="64" comment="Hashed IP Address"/>
+        <column xsi:type="varchar" name="external_id" nullable="true" length="128" comment="Import Source ID"/>
+        <column xsi:type="timestamp" name="created_at" nullable="false" default="CURRENT_TIMESTAMP" comment="Created At"/>
+        <column xsi:type="timestamp" name="updated_at" nullable="false" default="CURRENT_TIMESTAMP" on_update="true" comment="Updated At"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="comment_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="SOFTAWARE_BLOG_COMMENT_POST_ID_SOFTAWARE_BLOG_POST_POST_ID"
+                    table="softaware_blog_comment" column="post_id" referenceTable="softaware_blog_post"
+                    referenceColumn="post_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="SOFTAWARE_BLOG_COMMENT_PARENT_ID_SOFTAWARE_BLOG_COMMENT_COMMENT_ID"
+                    table="softaware_blog_comment" column="parent_id" referenceTable="softaware_blog_comment"
+                    referenceColumn="comment_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="SOFTAWARE_BLOG_COMMENT_STORE_ID_STORE_STORE_ID"
+                    table="softaware_blog_comment" column="store_id" referenceTable="store"
+                    referenceColumn="store_id" onDelete="SET NULL"/>
+        <constraint xsi:type="foreign" referenceId="SOFTAWARE_BLOG_COMMENT_CUSTOMER_ID_CUSTOMER_ENTITY_ENTITY_ID"
+                    table="softaware_blog_comment" column="customer_id" referenceTable="customer_entity"
+                    referenceColumn="entity_id" onDelete="SET NULL"/>
+        <index referenceId="SOFTAWARE_BLOG_COMMENT_POST_ID_STATUS" indexType="btree">
+            <column name="post_id"/>
+            <column name="status"/>
+        </index>
+        <index referenceId="SOFTAWARE_BLOG_COMMENT_STATUS" indexType="btree">
+            <column name="status"/>
+        </index>
+        <index referenceId="SOFTAWARE_BLOG_COMMENT_IP_HASH_CREATED_AT" indexType="btree">
+            <column name="ip_hash"/>
+            <column name="created_at"/>
+        </index>
+        <index referenceId="SOFTAWARE_BLOG_COMMENT_AUTHOR_NAME_CONTENT" indexType="fulltext">
+            <column name="author_name"/>
+            <column name="content"/>
+        </index>
+    </table>
+
+    <table name="softaware_blog_import_job" resource="default" engine="innodb" comment="Softaware Blog Import Job">
+        <column xsi:type="int" name="job_id" unsigned="true" nullable="false" identity="true" comment="Job ID"/>
+        <column xsi:type="varchar" name="source" nullable="false" length="32" default="wordpress" comment="Source"/>
+        <column xsi:type="varchar" name="file_name" nullable="false" length="255" comment="Stored File"/>
+        <column xsi:type="varchar" name="original_name" nullable="true" length="255" comment="Uploaded File Name"/>
+        <column xsi:type="text" name="options" nullable="true" comment="Options (JSON)"/>
+        <column xsi:type="varchar" name="status" nullable="false" length="16" default="queued" comment="queued, running, done, failed"/>
+        <column xsi:type="text" name="stats" nullable="true" comment="Result Counts (JSON)"/>
+        <column xsi:type="mediumtext" name="log" nullable="true" comment="Log"/>
+        <column xsi:type="varchar" name="created_by" nullable="true" length="255" comment="Admin User"/>
+        <column xsi:type="timestamp" name="created_at" nullable="false" default="CURRENT_TIMESTAMP" comment="Created At"/>
+        <column xsi:type="datetime" name="started_at" nullable="true" comment="Started At"/>
+        <column xsi:type="datetime" name="finished_at" nullable="true" comment="Finished At"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="job_id"/>
+        </constraint>
+        <index referenceId="SOFTAWARE_BLOG_IMPORT_JOB_STATUS" indexType="btree">
+            <column name="status"/>
+        </index>
+    </table>
+</schema>

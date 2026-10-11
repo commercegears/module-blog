@@ -1,0 +1,17 @@
+<?php
+/**
+ * @category  Softaware
+ * @package   Softaware_Blog
+ * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ *
+ * One-sentence page introduction under the page title (layout argument "intro", translated by the layout).
+ *
+ * @var \Magento\Backend\Block\Template $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+$intro = (string)$block->getData('intro');
+if ($intro === '') {
+    return;
+}
+?>
+<p class="softaware-page-intro"><?= $escaper->escapeHtml($intro) ?></p>

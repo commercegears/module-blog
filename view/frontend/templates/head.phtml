@@ -1,0 +1,30 @@
+<?php
+/**
+ * @category  Softaware
+ * @package   Softaware_Blog
+ * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ */
+
+/**
+ * Open Graph, Twitter Card, hreflang and JSON-LD for blog pages.
+ *
+ * @var \Softaware\Blog\Block\Head $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+if (!$block->isBlogPage()) {
+    return;
+}
+?>
+<?php // escapeHtml escapes quotes too, so it is safe in these double-quoted attributes and keeps "og:" readable for crawlers ?>
+<?php foreach ($block->getOpenGraphTags() as [$property, $content]): ?>
+<meta property="<?= $escaper->escapeHtml($property) ?>" content="<?= $escaper->escapeHtml($content) ?>"/>
+<?php endforeach; ?>
+<?php foreach ($block->getTwitterTags() as $name => $content): ?>
+<meta name="<?= $escaper->escapeHtml($name) ?>" content="<?= $escaper->escapeHtml($content) ?>"/>
+<?php endforeach; ?>
+<?php foreach ($block->getHreflangLinks() as $language => $url): ?>
+<link rel="alternate" hreflang="<?= $escaper->escapeHtml($language) ?>" href="<?= $escaper->escapeUrl($url) ?>"/>
+<?php endforeach; ?>
+<?php foreach ($block->getJsonLd() as $json): ?>
+<script type="application/ld+json"><?= /* @noEscape */ $json ?></script>
+<?php endforeach; ?>

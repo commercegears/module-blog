@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category  Softaware
+ * @package   Softaware_Blog
+ * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
+    <group id="default">
+        <job name="softaware_blog_publish_scheduled" instance="Softaware\Blog\Cron\PublishScheduled" method="execute">
+            <schedule>*/5 * * * *</schedule>
+        </job>
+    </group>
+    <group id="softaware_blog">
+        <job name="softaware_blog_process_imports" instance="Softaware\Blog\Cron\ProcessImports" method="execute">
+            <schedule>* * * * *</schedule>
+        </job>
+    </group>
+</config>

@@ -1,0 +1,114 @@
+{
+    "tagline": "A blog inside your Magento store with categories, tags, authors, comments, an SEO checklist in the editor and an import from WordPress, for Luma and Hyvä.",
+    "key_features": [
+        "Posts, nested categories, tags and author pages",
+        "Scheduled, featured and draft posts with preview links",
+        "SEO checklist with a score in the post editor",
+        "Meta data, robots, canonical, Open Graph and JSON-LD",
+        "Comments with moderation, store replies and spam protection",
+        "Related products on posts, related posts on product pages",
+        "WordPress import with images, comments and 301 redirects",
+        "Luma and Hyvä templates, widgets, RSS and XML sitemap"
+    ],
+    "benefits": [
+        {
+            "icon": "chart",
+            "title": "Content that sells your products",
+            "text": "Link products to a post and they are shown below it, while the post appears on those product pages under \"From our blog\"."
+        },
+        {
+            "icon": "globe",
+            "title": "Search engine ready",
+            "text": "Clean addresses, meta data per store view, BlogPosting structured data, hreflang, the XML sitemap and a checklist that shows what to improve before you publish."
+        },
+        {
+            "icon": "clock",
+            "title": "Move from WordPress in one step",
+            "text": "Upload the WordPress export file and the import runs in the background, with images, comments and redirects from the old addresses. Running it again creates nothing twice."
+        }
+    ],
+    "showcase": [
+        {
+            "label": "Luma",
+            "title": "A blog home page with featured posts",
+            "text": "A featured post at the top, the latest posts as cards and a sidebar with categories, recent posts and tags.",
+            "image": "docs/images/luma-blog.png"
+        },
+        {
+            "label": "Hyvä",
+            "title": "Native Hyvä templates",
+            "text": "Alpine.js and Tailwind templates for every blog page, the comments and the widgets, CSP-safe and picked automatically.",
+            "image": "docs/images/hyva-post.png"
+        },
+        {
+            "label": "Related products",
+            "title": "Products in the post",
+            "text": "Products you link to a post are shown below it with price and Add to Cart, followed by related posts and the comments.",
+            "image": "docs/images/hyva-related.png"
+        },
+        {
+            "label": "SEO checklist",
+            "title": "See what to improve as you write",
+            "text": "Title and description length, focus keyword placement, length, headings, internal links and image alt texts, with a score saved in the posts grid.",
+            "image": "docs/images/admin-seo-checklist.png"
+        },
+        {
+            "label": "Posts grid",
+            "title": "All posts at a glance",
+            "text": "Status, publish date, author, store views, pending comments and SEO score, with filters and mass actions to publish or delete.",
+            "image": "docs/images/admin-posts.png"
+        },
+        {
+            "label": "WordPress import",
+            "title": "Upload, then let cron do the work",
+            "text": "Choose the store views and options, and follow the progress and log of each import in the grid below.",
+            "image": "docs/images/admin-import.png"
+        }
+    ],
+    "feature_groups": [
+        {
+            "title": "Writing and organising",
+            "items": [
+                "WYSIWYG content, excerpt, featured image and alt text",
+                "Drafts, scheduled posts and featured posts",
+                "Nested categories, tags and author profiles",
+                "Different text and URL keys per store view",
+                "Preview links for drafts and scheduled posts"
+            ]
+        },
+        {
+            "title": "SEO",
+            "items": [
+                "Blog path, URL prefixes and suffix with 301 redirects",
+                "Meta title, description, keywords, robots and canonical URL",
+                "BlogPosting, Blog and BreadcrumbList JSON-LD, Open Graph and hreflang",
+                "Blog pages in Magento's XML sitemap and an RSS feed",
+                "SEO checklist with a score per post"
+            ]
+        },
+        {
+            "title": "Comments",
+            "items": [
+                "Moderation grid with mass actions",
+                "Store replies under a comment",
+                "Honeypot, hourly limit per IP address and optional reCAPTCHA",
+                "Optional consent checkbox and e-mail to the store"
+            ]
+        },
+        {
+            "title": "Store and import",
+            "items": [
+                "Related products on posts and related posts on product pages",
+                "Recent Posts, Categories and Tags widgets",
+                "WordPress import in the admin or on the command line",
+                "Images, comments, Yoast and Rank Math meta data and redirects imported"
+            ]
+        }
+    ],
+    "works_well_with": [
+        {
+            "package": "softaware/module-seo-suite",
+            "text": "Store-wide SEO (robots rules, organisation data, redirects) next to the blog's own meta data and structured data."
+        }
+    ]
+}

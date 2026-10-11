@@ -1,0 +1,57 @@
+<?php
+/**
+ * @category  Softaware
+ * @package   Softaware_Blog
+ * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ */
+
+/**
+ * Blog home, category, tag and author pages (Luma).
+ *
+ * @var \Softaware\Blog\Block\PostList $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+$featured = $block->getFeaturedPosts();
+$posts = $block->getPosts();
+$intro = $block->getIntroHtml();
+$author = $block->getCurrentAuthor();
+?>
+<div class="sw-blog sw-blog-list">
+    <?php if ($author): ?>
+        <?php $photo = $block->getImageUrl((string)$author->getData('photo')); ?>
+        <div class="sw-blog-author-intro">
+            <?php if ($photo !== ''): ?>
+                <img class="sw-blog-avatar sw-blog-avatar--large" src="<?= $escaper->escapeUrl($photo) ?>" alt="" loading="lazy"/>
+            <?php endif; ?>
+            <div>
+                <?php if ($author->getData('job_title')): ?>
+                    <p class="sw-blog-author-intro__role"><?= $escaper->escapeHtml((string)$author->getData('job_title')) ?></p>
+                <?php endif; ?>
+                <?php if ($author->getData('bio')): ?>
+                    <p><?= nl2br($escaper->escapeHtml((string)$author->getData('bio'))) ?></p>
+                <?php endif; ?>
+            </div>
+        </div>
+    <?php elseif ($intro !== ''): ?>
+        <div class="sw-blog-intro sw-blog-content"><?= /* @noEscape */ $intro ?></div>
+    <?php endif; ?>
+
+    <?php if ($featured): ?>
+        <section class="sw-blog-featured" aria-label="<?= $escaper->escapeHtmlAttr(__('Featured posts')) ?>">
+            <?php foreach ($featured as $post): ?>
+                <?= /* @noEscape */ $block->renderCard($post, 'featured', 'h2') ?>
+            <?php endforeach; ?>
+        </section>
+    <?php endif; ?>
+
+    <?php if ($posts): ?>
+        <div class="sw-blog-grid">
+            <?php foreach ($posts as $post): ?>
+                <?= /* @noEscape */ $block->renderCard($post, 'default', $featured ? 'h3' : 'h2') ?>
+            <?php endforeach; ?>
+        </div>
+        <div class="sw-blog-pager"><?= /* @noEscape */ $block->getPagerHtml() ?></div>
+    <?php elseif (!$featured): ?>
+        <div class="message info empty"><div><?= $escaper->escapeHtml($block->getEmptyText()) ?></div></div>
+    <?php endif; ?>
+</div>

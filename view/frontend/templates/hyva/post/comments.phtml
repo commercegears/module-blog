@@ -1,0 +1,213 @@
+<?php
+/**
+ * @category  Softaware
+ * @package   Softaware_Blog
+ * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ */
+
+/**
+ * Comments and comment form (Hyvä, Alpine CSP-safe). Cached with the page; the signed-in state comes from
+ * the customer section via the private-content-loaded event.
+ *
+ * @var \Softaware\Blog\Block\Post\Comments $block
+ * @var \Magento\Framework\Escaper $escaper
+ * @var \Hyva\Theme\Model\ViewModelRegistry $viewModels
+ * @var \Hyva\Theme\ViewModel\HyvaCsp $hyvaCsp
+ */
+
+use Hyva\Theme\ViewModel\ReCaptcha;
+
+if (!$block->isEnabled()) {
+    return;
+}
+$threads = $block->getThreads();
+$count = $block->getCount();
+$consent = $block->getConsentHtml();
+$honeypot = $block->getHoneypotField();
+$recaptcha = $block->isRecaptchaEnabled() ? $viewModels->require(ReCaptcha::class) : null;
+$recaptchaKey = $block->getRecaptchaKey();
+?>
+<section id="comments" class="max-w-3xl my-12" aria-labelledby="sw-blog-comments-title"
+         x-data="softawareBlogComments"
+         data-config="<?= $escaper->escapeHtmlAttr($block->getJsConfig()) ?>"
+         @private-content-loaded.window="onPrivateContent">
+    <h2 id="sw-blog-comments-title" class="text-2xl font-semibold mb-6">
+        <?= $escaper->escapeHtml($count ? __('Comments (%1)', $count) : __('Comments')) ?>
+    </h2>
+    <ol class="flex flex-col gap-4 mb-6">
+        <?php foreach ($threads as $thread): ?>
+            <?php $comment = $thread['comment']; ?>
+            <li id="comment-<?= (int)$comment->getId() ?>" class="pb-4 border-b border-gray-200">
+                <p class="flex items-baseline gap-3 mb-1">
+                    <strong><?= $escaper->escapeHtml($comment->getAuthorName()) ?></strong>
+                    <time class="text-sm text-fg-secondary"><?= $escaper->escapeHtml($block->formatCommentDate($comment)) ?></time>
+                </p>
+                <div class="leading-relaxed"><?= /* @noEscape */ $block->getCommentHtml($comment) ?></div>
+                <?php foreach ($thread['replies'] as $reply): ?>
+                    <div id="comment-<?= (int)$reply->getId() ?>" class="mt-3 ml-6 p-4 rounded-r-lg border-l-4 border-gray-800 bg-bg">
+                        <p class="flex items-baseline gap-3 mb-1">
+                            <strong><?= $escaper->escapeHtml($block->getReplyName($reply)) ?></strong>
+                            <time class="text-sm text-fg-secondary"><?= $escaper->escapeHtml($block->formatCommentDate($reply)) ?></time>
+                        </p>
+                        <div class="leading-relaxed"><?= /* @noEscape */ $block->getCommentHtml($reply) ?></div>
+                    </div>
+                <?php endforeach; ?>
+            </li>
+        <?php endforeach; ?>
+        <template x-for="item in added">
+            <li class="pb-4 border-b border-gray-200">
+                <p class="mb-1"><strong x-text="item.name"></strong></p>
+                <div class="leading-relaxed whitespace-pre-line" x-text="item.text"></div>
+            </li>
+        </template>
+    </ol>
+    <?php if (!$threads): ?>
+        <p class="mb-6 text-fg-secondary" x-show="noneAdded"><?= $escaper->escapeHtml(__('No comments yet. Be the first to share your thoughts.')) ?></p>
+    <?php endif; ?>
+
+    <p class="mb-6 text-fg-secondary" x-show="showLogin" x-cloak>
+        <?= $escaper->escapeHtml(__('Please sign in to comment.')) ?>
+        <a href="<?= $escaper->escapeUrl($block->getLoginUrl()) ?>" class="text-primary underline"><?= $escaper->escapeHtml(__('Sign in')) ?></a>
+    </p>
+    <form x-ref="form" x-show="showForm" method="post" novalidate class="card max-w-2xl p-6"
+          action="<?= $escaper->escapeUrl($block->getUrl('softaware_blog/comment/post')) ?>"
+          @submit.prevent="submit"
+          <?php if (!$block->areGuestsAllowed()): ?>x-cloak<?php endif; ?>>
+        <h3 class="text-lg font-semibold mb-4"><?= $escaper->escapeHtml(__('Leave a comment')) ?></h3>
+        <input type="hidden" name="post_id" value="<?= (int)$block->getPost()->getId() ?>">
+        <?= /* @noEscape */ $recaptcha ? $recaptcha->getInputHtml($recaptchaKey) : '' ?>
+        <div class="absolute -left-[10000px] w-px h-px overflow-hidden" aria-hidden="true">
+            <label for="sw-blog-<?= $escaper->escapeHtmlAttr($honeypot) ?>"><?= $escaper->escapeHtml(__('Leave this field empty')) ?></label>
+            <input type="text" id="sw-blog-<?= $escaper->escapeHtmlAttr($honeypot) ?>" name="<?= $escaper->escapeHtmlAttr($honeypot) ?>" value="" tabindex="-1" autocomplete="off">
+        </div>
+        <div class="grid gap-4 sm:grid-cols-2">
+            <div class="field">
+                <label class="label block mb-1" for="sw-blog-comment-name"><?= $escaper->escapeHtml(__('Name')) ?> <span aria-hidden="true">*</span></label>
+                <input type="text" id="sw-blog-comment-name" name="author_name" x-ref="name" class="form-input w-full" maxlength="100" required autocomplete="name">
+            </div>
+            <div class="field" x-show="showEmail">
+                <label class="label block mb-1" for="sw-blog-comment-email"><?= $escaper->escapeHtml(__('E-mail')) ?> <span aria-hidden="true">*</span></label>
+                <input type="email" id="sw-blog-comment-email" name="author_email" x-ref="email" class="form-input w-full" maxlength="255" required autocomplete="email"
+                       aria-describedby="sw-blog-comment-email-note">
+                <p id="sw-blog-comment-email-note" class="text-xs text-fg-secondary mt-1"><?= $escaper->escapeHtml(__('Not published.')) ?></p>
+            </div>
+        </div>
+        <div class="field mt-4">
+            <label class="label block mb-1" for="sw-blog-comment-text"><?= $escaper->escapeHtml(__('Comment')) ?> <span aria-hidden="true">*</span></label>
+            <textarea id="sw-blog-comment-text" name="content" x-ref="content" rows="5" class="form-textarea w-full" required
+                      minlength="<?= (int)$block->getMinLength() ?>" maxlength="<?= (int)$block->getMaxLength() ?>"></textarea>
+        </div>
+        <?php if ($consent !== ''): ?>
+            <div class="field mt-4 flex items-start gap-2">
+                <input type="checkbox" id="sw-blog-comment-consent" name="consent" value="1" class="form-checkbox mt-1" required>
+                <label for="sw-blog-comment-consent" class="text-sm"><?= /* @noEscape */ $consent ?></label>
+            </div>
+        <?php endif; ?>
+        <div class="mt-5 flex flex-wrap items-center gap-4">
+            <button type="submit" class="btn btn-primary" :disabled="sending"><?= $escaper->escapeHtml(__('Post comment')) ?></button>
+            <?= /* @noEscape */ $recaptcha ? $recaptcha->getLegalNoticeHtml($recaptchaKey) : '' ?>
+        </div>
+        <p class="mt-4" role="status" aria-live="polite" x-show="hasMessage" x-text="message" :class="messageClass" x-cloak></p>
+    </form>
+    <script>
+        (() => {
+            function softawareBlogComments() {
+                return {
+                    config: {},
+                    loggedIn: false,
+                    sending: false,
+                    message: '',
+                    ok: false,
+                    added: [],
+                    errors: 0,
+
+                    init() {
+                        this.config = JSON.parse(this.$el.dataset.config || '{}');
+                    },
+
+                    get showForm() {
+                        return this.loggedIn || !!this.config.guests;
+                    },
+
+                    get showLogin() {
+                        return !this.showForm;
+                    },
+
+                    get showEmail() {
+                        return !this.loggedIn;
+                    },
+
+                    get hasMessage() {
+                        return this.message !== '';
+                    },
+
+                    get noneAdded() {
+                        return this.added.length === 0;
+                    },
+
+                    get messageClass() {
+                        return this.ok ? 'text-green-700' : 'text-red-700';
+                    },
+
+                    onPrivateContent(event) {
+                        const customer = event.detail && event.detail.data ? event.detail.data.customer : null;
+                        this.loggedIn = !!(customer && customer.firstname);
+                        this.$refs.email.required = !this.loggedIn;
+                        if (this.loggedIn && !this.$refs.name.value) {
+                            this.$refs.name.value = customer.fullname || customer.firstname;
+                        }
+                    },
+
+                    submit() {
+                        // Do not rename $form: the reCAPTCHA validation snippet below uses it.
+                        const $form = this.$refs.form;
+                        this.errors = 0;
+                        if (!$form.checkValidity()) {
+                            $form.reportValidity();
+                            return;
+                        }
+                        <?= /* @noEscape */ $recaptcha ? $recaptcha->getValidationJsHtml($recaptchaKey) : '' ?>
+                        if (this.errors === 0) {
+                            this.send($form);
+                        }
+                    },
+
+                    send(form) {
+                        const data = new FormData(form);
+                        data.set('form_key', hyva.getFormKey());
+                        this.sending = true;
+                        this.ok = true;
+                        this.message = this.config.text.sending;
+                        fetch(this.config.url, {
+                            method: 'POST',
+                            body: data,
+                            credentials: 'same-origin',
+                            headers: {'X-Requested-With': 'XMLHttpRequest', 'Accept': 'application/json'}
+                        })
+                            .then((response) => response.json())
+                            .then((result) => {
+                                this.ok = !!result.success;
+                                this.message = result.message || this.config.text.error;
+                                if (result.success) {
+                                    if (result.published && result.comment && result.comment.text) {
+                                        this.added.push({name: result.comment.name, text: result.comment.text});
+                                    }
+                                    this.$refs.content.value = '';
+                                }
+                            })
+                            .catch(() => {
+                                this.ok = false;
+                                this.message = this.config.text.error;
+                            })
+                            .finally(() => {
+                                this.sending = false;
+                            });
+                    }
+                };
+            }
+
+            window.addEventListener('alpine:init', () => Alpine.data('softawareBlogComments', softawareBlogComments), {once: true});
+        })();
+    </script>
+    <?php $hyvaCsp->registerInlineScript() ?>
+</section>

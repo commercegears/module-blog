@@ -1,0 +1,407 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category  Softaware
+ * @package   Softaware_Blog
+ * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="softaware_blog" translate="label" type="text" sortOrder="95" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Blog</label>
+            <tab>softaware</tab>
+            <resource>Softaware_Blog::config</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+                <attribute type="expanded">1</attribute>
+                <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>When set to No, the blog pages, widgets, feeds and sitemap entries are switched off. Default: Yes.</comment>
+                </field>
+                <field id="title" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Blog Title</label>
+                    <validate>required-entry validate-no-html-tags maximum-length-100</validate>
+                    <comment>Page heading of the blog home page, breadcrumb and menu link. Default: Blog.</comment>
+                </field>
+                <field id="route" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Blog URL Path</label>
+                    <backend_model>Softaware\Blog\Model\Config\Backend\UrlPart</backend_model>
+                    <validate>required-entry validate-no-html-tags</validate>
+                    <comment>The blog home page address, for example "blog" for /blog. Letters, digits and hyphens; a slash separates levels ("company/news"). Default: blog.</comment>
+                </field>
+                <field id="url_suffix" translate="label comment" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>URL Suffix</label>
+                    <source_model>Softaware\Blog\Model\Source\UrlSuffix</source_model>
+                    <comment>Added to post, category, tag and author addresses. Changing it keeps old addresses working: they redirect to the new ones. Default: none.</comment>
+                </field>
+                <field id="category_prefix" translate="label comment" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Category URL Prefix</label>
+                    <backend_model>Softaware\Blog\Model\Config\Backend\UrlPart</backend_model>
+                    <validate>required-entry validate-no-html-tags</validate>
+                    <comment>Category addresses: /blog/category/running. Default: category.</comment>
+                </field>
+                <field id="tag_prefix" translate="label comment" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Tag URL Prefix</label>
+                    <backend_model>Softaware\Blog\Model\Config\Backend\UrlPart</backend_model>
+                    <validate>required-entry validate-no-html-tags</validate>
+                    <comment>Tag addresses: /blog/tag/beginners. Default: tag.</comment>
+                </field>
+                <field id="author_prefix" translate="label comment" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Author URL Prefix</label>
+                    <backend_model>Softaware\Blog\Model\Config\Backend\UrlPart</backend_model>
+                    <validate>required-entry validate-no-html-tags</validate>
+                    <comment>Author addresses: /blog/author/alex-morgan. Default: author.</comment>
+                </field>
+                <field id="top_menu_link" translate="label comment" type="select" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Link in the Main Menu</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Adds the blog title as the last item of the category menu (Luma and Hyvä). Default: Yes.</comment>
+                </field>
+                <field id="footer_link" translate="label comment" type="select" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Link in the Footer (Luma)</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Adds the blog to the Luma footer links. Default: No.</comment>
+                </field>
+            </group>
+            <group id="list" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Post Lists</label>
+                <field id="posts_per_page" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Posts per Page</label>
+                    <validate>required-entry validate-digits digits-range-1-100</validate>
+                    <comment>Blog home, category, tag and author pages, 1 to 100. Default: 10.</comment>
+                </field>
+                <field id="excerpt_length" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Excerpt Length (Characters)</label>
+                    <validate>required-entry validate-digits digits-range-50-1000</validate>
+                    <comment>Used when a post has no excerpt: the start of the content, cut at a word, 50 to 1000. Default: 250.</comment>
+                </field>
+                <field id="show_featured" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Featured Posts on the Blog Home Page</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Shows posts marked "Featured" in a highlighted row above the list (first page only). Default: Yes.</comment>
+                </field>
+                <field id="featured_count" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Number of Featured Posts</label>
+                    <validate>required-entry validate-digits digits-range-1-12</validate>
+                    <comment>1 to 12. Default: 3.</comment>
+                    <depends><field id="show_featured">1</field></depends>
+                </field>
+            </group>
+            <group id="post" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Post Page</label>
+                <field id="show_author" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Show Author</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Name, photo and short biography of the author. Default: Yes.</comment>
+                </field>
+                <field id="show_reading_time" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Show Reading Time</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Default: Yes.</comment>
+                </field>
+                <field id="words_per_minute" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Reading Speed (Words per Minute)</label>
+                    <validate>required-entry validate-digits digits-range-100-400</validate>
+                    <comment>Used for the reading time, 100 to 400. Default: 200.</comment>
+                </field>
+                <field id="show_share" translate="label comment" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Show Share Links</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Plain links to share on LinkedIn, X, Facebook and by e-mail. No scripts or tracking are loaded. Default: Yes.</comment>
+                </field>
+                <field id="show_prev_next" translate="label comment" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Show Previous and Next Post</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Default: Yes.</comment>
+                </field>
+                <field id="related_posts" translate="label comment" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Number of Related Posts</label>
+                    <validate>required-entry validate-digits digits-range-0-12</validate>
+                    <comment>Posts that share tags or categories with the current post, 0 to 12; 0 hides the block. Default: 3.</comment>
+                </field>
+                <field id="related_products" translate="label comment" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Number of Related Products</label>
+                    <validate>required-entry validate-digits digits-range-0-12</validate>
+                    <comment>Products linked to the post in the admin, 0 to 12; 0 hides the block. Default: 4.</comment>
+                </field>
+                <field id="related_products_title" translate="label comment" type="text" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Related Products Heading</label>
+                    <validate>required-entry validate-no-html-tags maximum-length-100</validate>
+                    <comment>Default: Products in this post.</comment>
+                </field>
+            </group>
+            <group id="sidebar" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Sidebar</label>
+                <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Show the Blog Sidebar</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Categories, recent posts and tags beside the blog pages (below the content on mobile). Default: Yes.</comment>
+                </field>
+                <field id="categories" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Categories</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Default: Yes.</comment>
+                    <depends><field id="enabled">1</field></depends>
+                </field>
+                <field id="recent_count" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Number of Recent Posts</label>
+                    <validate>required-entry validate-digits digits-range-0-20</validate>
+                    <comment>0 to 20; 0 hides the block. Default: 5.</comment>
+                    <depends><field id="enabled">1</field></depends>
+                </field>
+                <field id="tags_count" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Number of Tags</label>
+                    <validate>required-entry validate-digits digits-range-0-100</validate>
+                    <comment>Most used tags, 0 to 100; 0 hides the block. Default: 20.</comment>
+                    <depends><field id="enabled">1</field></depends>
+                </field>
+            </group>
+            <group id="product_page" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Product Pages</label>
+                <field id="related_posts" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Related Posts on Product Pages</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Lists published posts that link to the product (Related Products in the post editor). Default: Yes.</comment>
+                </field>
+                <field id="count" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Number of Posts</label>
+                    <validate>required-entry validate-digits digits-range-1-12</validate>
+                    <comment>1 to 12. Default: 3.</comment>
+                    <depends><field id="related_posts">1</field></depends>
+                </field>
+                <field id="title" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Heading</label>
+                    <validate>required-entry validate-no-html-tags maximum-length-100</validate>
+                    <comment>Default: From our blog.</comment>
+                    <depends><field id="related_posts">1</field></depends>
+                </field>
+            </group>
+            <group id="seo" translate="label" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Search Engines and Sharing</label>
+                <field id="home_meta_title" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Blog Home Meta Title</label>
+                    <validate>validate-no-html-tags maximum-length-255</validate>
+                    <comment>Empty uses the blog title.</comment>
+                </field>
+                <field id="home_meta_description" translate="label comment" type="textarea" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Blog Home Meta Description</label>
+                    <validate>validate-no-html-tags maximum-length-500</validate>
+                    <comment>About 120 to 160 characters.</comment>
+                </field>
+                <field id="home_meta_keywords" translate="label comment" type="textarea" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Blog Home Meta Keywords</label>
+                    <validate>validate-no-html-tags maximum-length-500</validate>
+                </field>
+                <field id="title_suffix" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Meta Title Suffix</label>
+                    <validate>validate-no-html-tags maximum-length-100</validate>
+                    <comment>Added to every blog page title, for example " | Our Blog". Magento's own title prefix and suffix (Content &gt; Design &gt; Configuration) are added as well. Default: empty.</comment>
+                </field>
+                <field id="robots_post" translate="label comment" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Default Robots for Posts</label>
+                    <source_model>Softaware\Blog\Model\Source\Robots</source_model>
+                    <comment>A post can override it. Default: INDEX, FOLLOW.</comment>
+                </field>
+                <field id="robots_category" translate="label comment" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Default Robots for Categories</label>
+                    <source_model>Softaware\Blog\Model\Source\Robots</source_model>
+                    <comment>A category can override it. Default: INDEX, FOLLOW.</comment>
+                </field>
+                <field id="robots_tag" translate="label comment" type="select" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Robots for Tag Pages</label>
+                    <source_model>Softaware\Blog\Model\Source\Robots</source_model>
+                    <comment>A tag can override it. Default: NOINDEX, FOLLOW (tag pages often repeat category pages).</comment>
+                </field>
+                <field id="robots_author" translate="label comment" type="select" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Robots for Author Pages</label>
+                    <source_model>Softaware\Blog\Model\Source\Robots</source_model>
+                    <comment>Default: INDEX, FOLLOW.</comment>
+                </field>
+                <field id="robots_paginated" translate="label comment" type="select" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Robots for Page 2 and Later</label>
+                    <source_model>Softaware\Blog\Model\Source\Robots</source_model>
+                    <comment>Applies to every paginated list. Default: INDEX, FOLLOW (the canonical points to the page itself).</comment>
+                </field>
+                <field id="open_graph" translate="label comment" type="select" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Open Graph and Twitter Card Tags</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>og:* and twitter:* tags on blog pages, with the featured image of a post. Default: Yes.</comment>
+                </field>
+                <field id="json_ld" translate="label comment" type="select" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Structured Data (JSON-LD)</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>BlogPosting on posts, Blog on the home page, CollectionPage on lists and BreadcrumbList on every blog page. Default: Yes.</comment>
+                </field>
+                <field id="publisher_name" translate="label comment" type="text" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Publisher Name</label>
+                    <validate>validate-no-html-tags maximum-length-255</validate>
+                    <comment>Used as the BlogPosting publisher. Empty uses the store name from General &gt; Store Information.</comment>
+                    <depends><field id="json_ld">1</field></depends>
+                </field>
+                <field id="hreflang" translate="label comment" type="select" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Hreflang Links Between Store Views</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Adds alternate links for the same post, category or list in the other store views it is visible in, using each store view's locale. Default: Yes.</comment>
+                </field>
+            </group>
+            <group id="sitemap" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>XML Sitemap</label>
+                <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Add Blog Pages to the XML Sitemap</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Added to the sitemaps generated in Marketing &gt; Site Map (Magento's own sitemap). Default: Yes.</comment>
+                </field>
+                <field id="post_priority" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Post Priority</label>
+                    <validate>required-entry validate-number number-range-0-1</validate>
+                    <comment>0.0 to 1.0. Default: 0.5.</comment>
+                    <depends><field id="enabled">1</field></depends>
+                </field>
+                <field id="post_frequency" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Post Change Frequency</label>
+                    <source_model>Magento\Sitemap\Model\Config\Source\Frequency</source_model>
+                    <comment>Default: Weekly.</comment>
+                    <depends><field id="enabled">1</field></depends>
+                </field>
+                <field id="list_priority" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Blog Home and Category Priority</label>
+                    <validate>required-entry validate-number number-range-0-1</validate>
+                    <comment>0.0 to 1.0. Default: 0.4.</comment>
+                    <depends><field id="enabled">1</field></depends>
+                </field>
+                <field id="list_frequency" translate="label comment" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Blog Home and Category Change Frequency</label>
+                    <source_model>Magento\Sitemap\Model\Config\Source\Frequency</source_model>
+                    <comment>Default: Daily.</comment>
+                    <depends><field id="enabled">1</field></depends>
+                </field>
+                <field id="include_tags" translate="label comment" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Include Tag Pages</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Tag pages set to NOINDEX are always left out. Default: No.</comment>
+                    <depends><field id="enabled">1</field></depends>
+                </field>
+                <field id="include_authors" translate="label comment" type="select" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Include Author Pages</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Default: No.</comment>
+                    <depends><field id="enabled">1</field></depends>
+                </field>
+                <field id="include_images" translate="label comment" type="select" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Include Featured Images</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Adds the featured image of each post as image:image. Default: Yes.</comment>
+                    <depends><field id="enabled">1</field></depends>
+                </field>
+            </group>
+            <group id="rss" translate="label" type="text" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>RSS Feed</label>
+                <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>RSS Feed</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>A feed of the latest posts at /blog/rss.xml (and per category at /blog/rss.xml?category=url-key), linked in the page head. Default: Yes.</comment>
+                </field>
+                <field id="items" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Number of Posts in the Feed</label>
+                    <validate>required-entry validate-digits digits-range-1-100</validate>
+                    <comment>1 to 100. Default: 20.</comment>
+                    <depends><field id="enabled">1</field></depends>
+                </field>
+                <field id="full_content" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Full Content in the Feed</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>No sends the excerpt and a link to the post. Default: No.</comment>
+                    <depends><field id="enabled">1</field></depends>
+                </field>
+            </group>
+            <group id="comments" translate="label" type="text" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Comments</label>
+                <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Comments</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Can also be switched off per post. Default: Yes.</comment>
+                </field>
+                <field id="allow_guests" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Guests Can Comment</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>No asks visitors to sign in first. Default: Yes.</comment>
+                    <depends><field id="enabled">1</field></depends>
+                </field>
+                <field id="auto_approve" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Publish Without Review</label>
+                    <source_model>Softaware\Blog\Model\Source\AutoApprove</source_model>
+                    <comment>Comments that are not published right away wait in Softaware &gt; Blog &gt; Comments. Default: Never.</comment>
+                    <depends><field id="enabled">1</field></depends>
+                </field>
+                <field id="hold_links" translate="label comment" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Always Review Comments With Links</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Comments that contain a web address wait for review even when they would be published right away. Default: Yes.</comment>
+                    <depends><field id="enabled">1</field></depends>
+                </field>
+                <field id="min_length" translate="label comment" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Minimum Length (Characters)</label>
+                    <validate>required-entry validate-digits digits-range-2-1000</validate>
+                    <comment>2 to 1000. Default: 10.</comment>
+                    <depends><field id="enabled">1</field></depends>
+                </field>
+                <field id="max_length" translate="label comment" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Maximum Length (Characters)</label>
+                    <validate>required-entry validate-digits digits-range-50-10000</validate>
+                    <comment>50 to 10000. Default: 3000.</comment>
+                    <depends><field id="enabled">1</field></depends>
+                </field>
+                <field id="hourly_limit" translate="label comment" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Comments per IP Address per Hour</label>
+                    <validate>required-entry validate-digits digits-range-0-1000</validate>
+                    <comment>0 means no limit. Default: 5.</comment>
+                    <depends><field id="enabled">1</field></depends>
+                </field>
+                <field id="consent_text" translate="label comment" type="textarea" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Consent Checkbox Text</label>
+                    <validate>maximum-length-1000</validate>
+                    <comment>When filled in, visitors must tick this box before sending a comment, for example a link to your privacy policy. Simple HTML links are allowed. Default: empty (no checkbox).</comment>
+                    <depends><field id="enabled">1</field></depends>
+                </field>
+                <field id="reply_name" translate="label comment" type="text" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Store Replies Signed As</label>
+                    <validate>validate-no-html-tags maximum-length-255</validate>
+                    <comment>Name shown on replies written in the admin. Empty uses the store name.</comment>
+                    <depends><field id="enabled">1</field></depends>
+                </field>
+                <field id="recaptcha" translate="label comment" type="select" sortOrder="100" showInDefault="1" showInWebsite="1" canRestore="1">
+                    <label>Google reCAPTCHA on the Comment Form</label>
+                    <source_model>Softaware\Blog\Model\Source\RecaptchaType</source_model>
+                    <config_path>recaptcha_frontend/type_for/softaware_blog_comment</config_path>
+                    <comment>Uses Magento's reCAPTCHA modules (keys in Security &gt; Google reCAPTCHA Storefront); ignored when they are not installed. A hidden honeypot field is always used. Default: No.</comment>
+                    <depends><field id="enabled">1</field></depends>
+                </field>
+                <field id="notify" translate="label comment" type="select" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>E-mail New Comments to the Store</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Default: Yes.</comment>
+                    <depends><field id="enabled">1</field></depends>
+                </field>
+                <field id="notify_email" translate="label comment" type="text" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Send To</label>
+                    <validate>validate-email</validate>
+                    <comment>Empty uses the General Contact address from Store Email Addresses.</comment>
+                    <depends><field id="enabled">1</field><field id="notify">1</field></depends>
+                </field>
+                <field id="email_identity" translate="label comment" type="select" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Sender</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Identity</source_model>
+                    <depends><field id="enabled">1</field><field id="notify">1</field></depends>
+                </field>
+                <field id="email_template" translate="label comment" type="select" sortOrder="140" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>E-mail Template</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                    <comment>Default: "New Blog Comment" (Softaware Blog).</comment>
+                    <depends><field id="enabled">1</field><field id="notify">1</field></depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

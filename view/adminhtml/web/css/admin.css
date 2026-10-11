@@ -1,0 +1,158 @@
+/* Softaware_Blog admin pages */
+/* Page introduction under the title */
+.softaware-page-intro {
+    max-width: 96rem;
+    margin: 0 0 2rem;
+    color: #303030;
+}
+/* Empty state shown inside a grid that has no records yet */
+.softaware-empty-state {
+    max-width: 60rem;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+    text-align: center;
+}
+.softaware-empty-state-title {
+    margin: 0 0 .8rem;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #303030;
+}
+.softaware-empty-state-text {
+    margin: 0 0 2rem;
+    color: #6f6f6f;
+}
+.data-grid .data-grid-tr-no-data .softaware-empty-state-action {
+    display: inline-block;
+    padding: .7rem 1.5rem;
+    text-decoration: none;
+}
+/* Posts grid thumbnail */
+.softaware-blog-thumb {
+    display: block;
+    width: 72px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 2px;
+    background: #f5f5f5;
+}
+/* Category names indented by level in the categories grid */
+.softaware-blog-indent {
+    color: #adadad;
+}
+/* SEO checklist in the post editor */
+.softaware-seo {
+    max-width: 96rem;
+}
+.softaware-seo-score {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin: 0 0 2rem;
+}
+.softaware-seo-score-value {
+    min-width: 6.4rem;
+    padding: .6rem 1rem;
+    border-radius: 3px;
+    font-size: 2rem;
+    font-weight: 600;
+    text-align: center;
+    color: #fff;
+}
+.softaware-seo-score-value._good {
+    background: #5b8116;
+}
+.softaware-seo-score-value._fair {
+    background: #c07600;
+}
+.softaware-seo-score-value._poor {
+    background: #e22626;
+}
+.softaware-seo-score-text {
+    color: #303030;
+}
+.softaware-seo-score-text small {
+    display: block;
+    color: #6f6f6f;
+}
+.softaware-seo-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.softaware-seo-list li {
+    position: relative;
+    margin: 0;
+    padding: .7rem 0 .7rem 2.8rem;
+    border-bottom: 1px solid #e3e3e3;
+}
+.softaware-seo-list li:last-child {
+    border-bottom: 0;
+}
+.softaware-seo-list li::before {
+    position: absolute;
+    top: 1.15rem;
+    left: .4rem;
+    width: 1.2rem;
+    height: 1.2rem;
+    border-radius: 50%;
+    content: '';
+}
+.softaware-seo-list li._good::before {
+    background: #79a22e;
+}
+.softaware-seo-list li._warning::before {
+    background: #eb8f00;
+}
+.softaware-seo-list li._problem::before {
+    background: #e22626;
+}
+.softaware-seo-list li._info::before {
+    background: #adadad;
+}
+.softaware-seo-status {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+}
+/* WordPress import page */
+.softaware-blog-import-form .admin__fieldset {
+    max-width: 96rem;
+    margin-bottom: 2rem;
+}
+.softaware-blog-import-form .admin__field-note {
+    max-width: 64rem;
+}
+.softaware-blog-import-log {
+    max-height: 60rem;
+    overflow: auto;
+    padding: 1.5rem;
+    border: 1px solid #e3e3e3;
+    background: #f8f8f8;
+    font-family: Menlo, Consolas, monospace;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+.softaware-blog-import-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+    gap: 1rem;
+    max-width: 96rem;
+    margin: 0 0 2rem;
+    padding: 0;
+    list-style: none;
+}
+.softaware-blog-import-stats li {
+    padding: 1rem 1.2rem;
+    border: 1px solid #e3e3e3;
+    background: #fff;
+}
+.softaware-blog-import-stats strong {
+    display: block;
+    font-size: 2rem;
+    color: #303030;
+}
