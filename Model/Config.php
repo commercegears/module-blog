@@ -1,25 +1,25 @@
 <?php
 /**
- * @category  Softaware
- * @package   Softaware_Blog
- * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
  */
 declare(strict_types=1);
 
-namespace Softaware\Blog\Model;
+namespace CommerceGears\Blog\Model;
 
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Store\Model\ScopeInterface;
-use Softaware\Core\Api\LicenceStateInterface;
+use CommerceGears\Core\Api\LicenceStateInterface;
 
 /**
- * Typed access to Stores > Configuration > Softaware > Blog (section softaware_blog).
+ * Typed access to Stores > Configuration > CommerceGears > Blog (section commercegears_blog).
  */
 class Config
 {
-    public const SECTION = 'softaware_blog';
-    public const PACKAGE = 'softaware/module-blog';
-    public const RECAPTCHA_KEY = 'softaware_blog_comment';
+    public const SECTION = 'commercegears_blog';
+    public const PACKAGE = 'commercegears/module-blog';
+    public const RECAPTCHA_KEY = 'commercegears_blog_comment';
 
     public const AUTO_APPROVE_NEVER = 'never';
     public const AUTO_APPROVE_CUSTOMERS = 'customers';

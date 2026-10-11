@@ -1,12 +1,12 @@
 <?php
 /**
- * @category  Softaware
- * @package   Softaware_Blog
- * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
  */
 declare(strict_types=1);
 
-namespace Softaware\Blog\Model\Import;
+namespace CommerceGears\Blog\Model\Import;
 
 use Magento\Framework\App\Filesystem\DirectoryList;
 use Magento\Framework\Exception\LocalizedException;
@@ -14,12 +14,12 @@ use Magento\Framework\Filesystem;
 use Magento\Framework\Math\Random;
 
 /**
- * Uploaded WordPress export files and import progress files in var/softaware_blog/import/ (not reachable from the
+ * Uploaded WordPress export files and import progress files in var/commercegears_blog/import/ (not reachable from the
  * web). Files are deleted when their import finishes or the job is deleted.
  */
 class FileStorage
 {
-    public const DIR = 'softaware_blog/import';
+    public const DIR = 'commercegears_blog/import';
 
     public function __construct(
         private readonly Filesystem $filesystem,

@@ -1,20 +1,20 @@
 <?php
 /**
- * @category  Softaware
- * @package   Softaware_Blog
- * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
  */
 declare(strict_types=1);
 
-namespace Softaware\Blog\Block\Product;
+namespace CommerceGears\Blog\Block\Product;
 
 use Magento\Catalog\Model\Product;
 use Magento\Framework\DataObject\IdentityInterface;
 use Magento\Framework\Registry;
 use Magento\Framework\View\Element\Template\Context;
-use Softaware\Blog\Block\AbstractBlog;
-use Softaware\Blog\Model\Frontend\BlockContext;
-use Softaware\Blog\Model\Post;
+use CommerceGears\Blog\Block\AbstractBlog;
+use CommerceGears\Blog\Model\Frontend\BlockContext;
+use CommerceGears\Blog\Model\Post;
 
 /**
  * "From our blog" on product pages: published posts that list the product as a related product.

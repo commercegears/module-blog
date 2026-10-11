@@ -1,23 +1,23 @@
 <?php
 /**
- * @category  Softaware
- * @package   Softaware_Blog
- * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
  *
- * @var \Softaware\Blog\Block\Adminhtml\Import\Form $block
+ * @var \CommerceGears\Blog\Block\Adminhtml\Import\Form $block
  * @var \Magento\Framework\Escaper $escaper
  */
 ?>
-<form class="softaware-blog-import-form" method="post" enctype="multipart/form-data"
+<form class="commercegears-blog-import-form" method="post" enctype="multipart/form-data"
       action="<?= $escaper->escapeUrl($block->getUploadUrl()) ?>"
       data-mage-init='{"validation": {}}'>
     <input type="hidden" name="form_key" value="<?= $escaper->escapeHtmlAttr($block->getFormKey()) ?>">
     <fieldset class="admin__fieldset">
         <legend class="admin__legend"><span><?= $escaper->escapeHtml(__('Import a WordPress Export File')) ?></span></legend>
         <div class="admin__field _required">
-            <label class="admin__field-label" for="softaware-blog-import-file"><span><?= $escaper->escapeHtml(__('Export File')) ?></span></label>
+            <label class="admin__field-label" for="commercegears-blog-import-file"><span><?= $escaper->escapeHtml(__('Export File')) ?></span></label>
             <div class="admin__field-control">
-                <input type="file" id="softaware-blog-import-file" name="import_file" accept=".xml,text/xml,application/xml"
+                <input type="file" id="commercegears-blog-import-file" name="import_file" accept=".xml,text/xml,application/xml"
                        class="admin__control-file required-entry" data-validate='{"required": true}'>
                 <div class="admin__field-note">
                     <?= $escaper->escapeHtml(__('In WordPress: Tools > Export > All content. Up to %1 MB here; import larger files on the command line.', $block->getMaxUploadMb())) ?>
@@ -26,9 +26,9 @@
         </div>
         <?php if (!$block->isSingleStoreMode()): ?>
             <div class="admin__field">
-                <label class="admin__field-label" for="softaware-blog-import-stores"><span><?= $escaper->escapeHtml(__('Store Views')) ?></span></label>
+                <label class="admin__field-label" for="commercegears-blog-import-stores"><span><?= $escaper->escapeHtml(__('Store Views')) ?></span></label>
                 <div class="admin__field-control">
-                    <select id="softaware-blog-import-stores" name="store_ids[]" multiple="multiple" size="6" class="admin__control-multiselect">
+                    <select id="commercegears-blog-import-stores" name="store_ids[]" multiple="multiple" size="6" class="admin__control-multiselect">
                         <?php foreach ($block->getStoreOptions() as $option): ?>
                             <?php if (is_array($option['value'])): ?>
                                 <optgroup label="<?= $escaper->escapeHtmlAttr($option['label']) ?>">
@@ -56,12 +56,12 @@
                 <span class="admin__field-label"><span><?= $escaper->escapeHtml($name === 'download_images' ? __('Options') : '') ?></span></span>
                 <div class="admin__field-control">
                     <div class="admin__field admin__field-option">
-                        <input type="checkbox" class="admin__control-checkbox" id="softaware-blog-import-<?= $escaper->escapeHtmlAttr($name) ?>"
+                        <input type="checkbox" class="admin__control-checkbox" id="commercegears-blog-import-<?= $escaper->escapeHtmlAttr($name) ?>"
                                name="<?= $escaper->escapeHtmlAttr($name) ?>" value="1" <?= $checked ? 'checked' : '' ?>
-                               aria-describedby="softaware-blog-import-<?= $escaper->escapeHtmlAttr($name) ?>-note">
-                        <label class="admin__field-label" for="softaware-blog-import-<?= $escaper->escapeHtmlAttr($name) ?>"><?= $escaper->escapeHtml($label) ?></label>
+                               aria-describedby="commercegears-blog-import-<?= $escaper->escapeHtmlAttr($name) ?>-note">
+                        <label class="admin__field-label" for="commercegears-blog-import-<?= $escaper->escapeHtmlAttr($name) ?>"><?= $escaper->escapeHtml($label) ?></label>
                     </div>
-                    <div class="admin__field-note" id="softaware-blog-import-<?= $escaper->escapeHtmlAttr($name) ?>-note"><?= $escaper->escapeHtml($note) ?></div>
+                    <div class="admin__field-note" id="commercegears-blog-import-<?= $escaper->escapeHtmlAttr($name) ?>-note"><?= $escaper->escapeHtml($note) ?></div>
                 </div>
             </div>
         <?php endforeach; ?>
@@ -70,7 +70,7 @@
             <div class="admin__field-control">
                 <button type="submit" class="action-primary"><span><?= $escaper->escapeHtml(__('Upload and Import')) ?></span></button>
                 <div class="admin__field-note">
-                    <?= $escaper->escapeHtml(__('The import runs in the background with cron, in steps, so large blogs are fine. Running it again with the same file adds nothing twice. Command line: bin/magento softaware:blog:import-wordpress <file>')) ?>
+                    <?= $escaper->escapeHtml(__('The import runs in the background with cron, in steps, so large blogs are fine. Running it again with the same file adds nothing twice. Command line: bin/magento commercegears:blog:import-wordpress <file>')) ?>
                 </div>
             </div>
         </div>

@@ -1,12 +1,12 @@
 <?php
 /**
- * @category  Softaware
- * @package   Softaware_Blog
- * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
  */
 declare(strict_types=1);
 
-namespace Softaware\Blog\Controller\Adminhtml\Comment;
+namespace CommerceGears\Blog\Controller\Adminhtml\Comment;
 
 use Magento\Backend\App\Action;
 use Magento\Framework\App\Action\HttpGetActionInterface;
@@ -14,13 +14,13 @@ use Magento\Framework\View\Result\PageFactory;
 
 class Edit extends Action implements HttpGetActionInterface
 {
-    public const ADMIN_RESOURCE = 'Softaware_Blog::comments';
+    public const ADMIN_RESOURCE = 'CommerceGears_Blog::comments';
 
     public function __construct(
         Action\Context $context,
         private readonly PageFactory $pageFactory,
-        private readonly \Softaware\Blog\Model\CommentFactory $factory,
-        private readonly \Softaware\Blog\Model\ResourceModel\Comment $resource
+        private readonly \CommerceGears\Blog\Model\CommentFactory $factory,
+        private readonly \CommerceGears\Blog\Model\ResourceModel\Comment $resource
     ) {
         parent::__construct($context);
     }
@@ -39,7 +39,7 @@ class Edit extends Action implements HttpGetActionInterface
             $title = (string)__('Comment by %1', (string)$entity->getData('author_name'));
         }
         $page = $this->pageFactory->create();
-        $page->setActiveMenu('Softaware_Blog::comments');
+        $page->setActiveMenu('CommerceGears_Blog::comments');
         $page->getConfig()->getTitle()->prepend($title);
         return $page;
     }

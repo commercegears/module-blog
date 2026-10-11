@@ -1,20 +1,20 @@
 <?php
 /**
- * @category  Softaware
- * @package   Softaware_Blog
- * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
  */
 declare(strict_types=1);
 
-namespace Softaware\Blog\Console\Command;
+namespace CommerceGears\Blog\Console\Command;
 
 use Magento\Framework\App\Area;
 use Magento\Framework\App\State as AppState;
-use Softaware\Blog\Model\Import\JobRunner;
-use Softaware\Blog\Model\Import\WordPress\Importer;
-use Softaware\Blog\Model\ImportJob;
-use Softaware\Blog\Model\ImportJobFactory;
-use Softaware\Blog\Model\ResourceModel\ImportJob as ImportJobResource;
+use CommerceGears\Blog\Model\Import\JobRunner;
+use CommerceGears\Blog\Model\Import\WordPress\Importer;
+use CommerceGears\Blog\Model\ImportJob;
+use CommerceGears\Blog\Model\ImportJobFactory;
+use CommerceGears\Blog\Model\ResourceModel\ImportJob as ImportJobResource;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -37,7 +37,7 @@ class ImportWordPress extends Command
 
     protected function configure(): void
     {
-        $this->setName('softaware:blog:import-wordpress')
+        $this->setName('commercegears:blog:import-wordpress')
             ->setDescription('Import posts, categories, tags, authors, comments and images from a WordPress export file (WXR)')
             ->addArgument('file', InputArgument::OPTIONAL, 'WordPress export file (Tools > Export in WordPress)')
             ->addOption('job', null, InputOption::VALUE_REQUIRED, 'Run (or continue) the import job with this ID instead of a file')
@@ -90,7 +90,7 @@ class ImportWordPress extends Command
             ], 'command line');
             $jobId = (int)$job->getId();
             if ($input->getOption('queue')) {
-                $output->writeln(sprintf('Queued as import job %d. Cron runs it in the background (Softaware > Blog > WordPress Import shows the progress).', $jobId));
+                $output->writeln(sprintf('Queued as import job %d. Cron runs it in the background (CommerceGears > Blog > WordPress Import shows the progress).', $jobId));
                 return Command::SUCCESS;
             }
         }

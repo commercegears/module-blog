@@ -1,15 +1,15 @@
 <?php
 /**
- * @category  Softaware
- * @package   Softaware_Blog
- * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
  */
 
 /**
  * Comments and comment form (Luma). The page is cached; the form posts with AJAX and the visitor's
  * signed-in state comes from the "customer" section.
  *
- * @var \Softaware\Blog\Block\Post\Comments $block
+ * @var \CommerceGears\Blog\Block\Post\Comments $block
  * @var \Magento\Framework\Escaper $escaper
  */
 if (!$block->isEnabled()) {
@@ -21,7 +21,7 @@ $consent = $block->getConsentHtml();
 $honeypot = $block->getHoneypotField();
 ?>
 <section id="comments" class="sw-blog sw-blog-comments" aria-labelledby="sw-blog-comments-title"
-         data-mage-init='{"Softaware_Blog/js/comments": <?= /* @noEscape */ $block->getJsConfig() ?>}'>
+         data-mage-init='{"CommerceGears_Blog/js/comments": <?= /* @noEscape */ $block->getJsConfig() ?>}'>
     <h2 id="sw-blog-comments-title" class="sw-blog-section-title">
         <?= $escaper->escapeHtml($count ? __('Comments (%1)', $count) : __('Comments')) ?>
     </h2>
@@ -55,7 +55,7 @@ $honeypot = $block->getHoneypotField();
         <a href="<?= $escaper->escapeUrl($block->getLoginUrl()) ?>"><?= $escaper->escapeHtml(__('Sign in')) ?></a>
     </p>
     <form class="sw-blog-comment-form form" data-role="form" method="post" novalidate
-          action="<?= $escaper->escapeUrl($block->getUrl('softaware_blog/comment/post')) ?>"
+          action="<?= $escaper->escapeUrl($block->getUrl('commercegears_blog/comment/post')) ?>"
           <?php if (!$block->areGuestsAllowed()): ?>hidden<?php endif; ?>>
         <h3 class="sw-blog-comment-form__title"><?= $escaper->escapeHtml(__('Leave a comment')) ?></h3>
         <?= /* @noEscape */ $block->getBlockHtml('formkey') ?>

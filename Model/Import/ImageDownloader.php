@@ -1,12 +1,12 @@
 <?php
 /**
- * @category  Softaware
- * @package   Softaware_Blog
- * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
  */
 declare(strict_types=1);
 
-namespace Softaware\Blog\Model\Import;
+namespace CommerceGears\Blog\Model\Import;
 
 /**
  * Downloads one image for the WordPress import.
@@ -103,7 +103,7 @@ class ImageDownloader
             CURLOPT_PROXY => '',
             CURLOPT_SSL_VERIFYPEER => true,
             CURLOPT_SSL_VERIFYHOST => 2,
-            CURLOPT_USERAGENT => 'Mozilla/5.0 (compatible; SoftawareBlogImport/1.0)',
+            CURLOPT_USERAGENT => 'Mozilla/5.0 (compatible; CommerceGearsBlogImport/1.0)',
             CURLOPT_HTTPHEADER => ['Accept: image/*'],
             CURLOPT_HEADERFUNCTION => static function ($curl, string $line) use (&$headers): int {
                 $pos = strpos($line, ':');

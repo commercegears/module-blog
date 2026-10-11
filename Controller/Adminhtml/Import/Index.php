@@ -1,12 +1,12 @@
 <?php
 /**
- * @category  Softaware
- * @package   Softaware_Blog
- * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
  */
 declare(strict_types=1);
 
-namespace Softaware\Blog\Controller\Adminhtml\Import;
+namespace CommerceGears\Blog\Controller\Adminhtml\Import;
 
 use Magento\Backend\App\Action;
 use Magento\Framework\App\Action\HttpGetActionInterface;
@@ -17,7 +17,7 @@ use Magento\Framework\View\Result\PageFactory;
  */
 class Index extends Action implements HttpGetActionInterface
 {
-    public const ADMIN_RESOURCE = 'Softaware_Blog::import';
+    public const ADMIN_RESOURCE = 'CommerceGears_Blog::import';
 
     public function __construct(Action\Context $context, private readonly PageFactory $pageFactory)
     {
@@ -27,7 +27,7 @@ class Index extends Action implements HttpGetActionInterface
     public function execute()
     {
         $page = $this->pageFactory->create();
-        $page->setActiveMenu('Softaware_Blog::import');
+        $page->setActiveMenu('CommerceGears_Blog::import');
         $page->getConfig()->getTitle()->prepend(__('WordPress Import'));
         return $page;
     }

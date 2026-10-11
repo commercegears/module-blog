@@ -1,20 +1,20 @@
 <?php
 /**
- * @category  Softaware
- * @package   Softaware_Blog
- * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
  */
 declare(strict_types=1);
 
-namespace Softaware\Blog\Ui\DataProvider;
+namespace CommerceGears\Blog\Ui\DataProvider;
 
 use Magento\Framework\App\Request\DataPersistorInterface;
 use Magento\Framework\App\RequestInterface;
 use Magento\Framework\Model\AbstractModel;
-use Softaware\Blog\Model\AuthorFactory;
-use Softaware\Blog\Model\ImageUploader;
-use Softaware\Blog\Model\ResourceModel\Author as AuthorResource;
-use Softaware\Blog\Model\ResourceModel\Author\CollectionFactory;
+use CommerceGears\Blog\Model\AuthorFactory;
+use CommerceGears\Blog\Model\ImageUploader;
+use CommerceGears\Blog\Model\ResourceModel\Author as AuthorResource;
+use CommerceGears\Blog\Model\ResourceModel\Author\CollectionFactory;
 
 class AuthorFormDataProvider extends AbstractFormDataProvider
 {

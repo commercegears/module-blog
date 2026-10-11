@@ -1,21 +1,21 @@
 <?php
 /**
- * @category  Softaware
- * @package   Softaware_Blog
- * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
  */
 declare(strict_types=1);
 
-namespace Softaware\Blog\Model\ResourceModel\Post;
+namespace CommerceGears\Blog\Model\ResourceModel\Post;
 
-use Softaware\Blog\Model\Post;
-use Softaware\Blog\Model\ResourceModel\AbstractContentCollection;
-use Softaware\Blog\Model\ResourceModel\Post as PostResource;
+use CommerceGears\Blog\Model\Post;
+use CommerceGears\Blog\Model\ResourceModel\AbstractContentCollection;
+use CommerceGears\Blog\Model\ResourceModel\Post as PostResource;
 
 class Collection extends AbstractContentCollection
 {
     protected $_idFieldName = 'post_id';
-    protected $_eventPrefix = 'softaware_blog_post_collection';
+    protected $_eventPrefix = 'commercegears_blog_post_collection';
     protected $_eventObject = 'post_collection';
 
     private bool $withCategoryIds = false;
@@ -31,7 +31,7 @@ class Collection extends AbstractContentCollection
     public function addStoreFilter(int $storeId): static
     {
         $exists = $this->getConnection()->select()
-            ->from(['ps' => $this->getTable('softaware_blog_post_store')], [new \Zend_Db_Expr('1')])
+            ->from(['ps' => $this->getTable('commercegears_blog_post_store')], [new \Zend_Db_Expr('1')])
             ->where('ps.post_id = main_table.post_id')
             ->where('ps.store_id IN (?)', array_unique([0, $storeId]));
         $this->getSelect()->where('EXISTS (' . $exists . ')');
@@ -68,17 +68,17 @@ class Collection extends AbstractContentCollection
      */
     public function addCategoryFilter(array $categoryIds): static
     {
-        return $this->addLinkFilter('softaware_blog_post_category', 'category_id', $categoryIds ?: [0]);
+        return $this->addLinkFilter('commercegears_blog_post_category', 'category_id', $categoryIds ?: [0]);
     }
 
     public function addTagFilter(int $tagId): static
     {
-        return $this->addLinkFilter('softaware_blog_post_tag', 'tag_id', [$tagId]);
+        return $this->addLinkFilter('commercegears_blog_post_tag', 'tag_id', [$tagId]);
     }
 
     public function addProductFilter(int $productId): static
     {
-        return $this->addLinkFilter('softaware_blog_post_product', 'product_id', [$productId]);
+        return $this->addLinkFilter('commercegears_blog_post_product', 'product_id', [$productId]);
     }
 
     public function addAuthorFilter(int $authorId): static
@@ -132,7 +132,7 @@ class Collection extends AbstractContentCollection
         if ($this->withCategoryIds && $this->_items) {
             $rows = $this->getConnection()->fetchAll(
                 $this->getConnection()->select()
-                    ->from($this->getTable('softaware_blog_post_category'), ['post_id', 'category_id'])
+                    ->from($this->getTable('commercegears_blog_post_category'), ['post_id', 'category_id'])
                     ->where('post_id IN (?)', array_keys($this->_items))
             );
             $map = [];

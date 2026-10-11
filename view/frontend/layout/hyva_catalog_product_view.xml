@@ -1,17 +1,17 @@
 <?xml version="1.0"?>
 <!--
 /**
- * @category  Softaware
- * @package   Softaware_Blog
- * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
  */
 -->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
-        <referenceBlock name="softaware.blog.product.posts" remove="true"/>
+        <referenceBlock name="commercegears.blog.product.posts" remove="true"/>
         <referenceContainer name="content">
-            <block class="Softaware\Blog\Block\Product\RelatedPosts" name="softaware.blog.product.posts.hyva"
-                   template="Softaware_Blog::hyva/product/related-posts.phtml" after="related"/>
+            <block class="CommerceGears\Blog\Block\Product\RelatedPosts" name="commercegears.blog.product.posts.hyva"
+                   template="CommerceGears_Blog::hyva/product/related-posts.phtml" after="related"/>
         </referenceContainer>
     </body>
 </page>

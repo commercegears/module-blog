@@ -1,20 +1,20 @@
 <?php
 /**
- * @category  Softaware
- * @package   Softaware_Blog
- * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
  */
 declare(strict_types=1);
 
-namespace Softaware\Blog\Model;
+namespace CommerceGears\Blog\Model;
 
 use Magento\Framework\Exception\CouldNotDeleteException;
 use Magento\Framework\Exception\CouldNotSaveException;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Exception\NoSuchEntityException;
-use Softaware\Blog\Api\Data\PostInterface;
-use Softaware\Blog\Api\PostRepositoryInterface;
-use Softaware\Blog\Model\ResourceModel\Post as PostResource;
+use CommerceGears\Blog\Api\Data\PostInterface;
+use CommerceGears\Blog\Api\PostRepositoryInterface;
+use CommerceGears\Blog\Model\ResourceModel\Post as PostResource;
 
 class PostRepository implements PostRepositoryInterface
 {

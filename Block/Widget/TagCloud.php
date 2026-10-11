@@ -1,22 +1,22 @@
 <?php
 /**
- * @category  Softaware
- * @package   Softaware_Blog
- * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
  */
 declare(strict_types=1);
 
-namespace Softaware\Blog\Block\Widget;
+namespace CommerceGears\Blog\Block\Widget;
 
-use Softaware\Blog\Model\Tag;
+use CommerceGears\Blog\Model\Tag;
 
 /**
- * Widget "Softaware Blog: Tags" (most used tags, sized by use).
+ * Widget "CommerceGears Blog: Tags" (most used tags, sized by use).
  */
 class TagCloud extends AbstractWidget
 {
     protected const TEMPLATES = [
-        'Softaware_Blog::widget/tags.phtml' => 'Softaware_Blog::hyva/widget/tags.phtml',
+        'CommerceGears_Blog::widget/tags.phtml' => 'CommerceGears_Blog::hyva/widget/tags.phtml',
     ];
 
     /**

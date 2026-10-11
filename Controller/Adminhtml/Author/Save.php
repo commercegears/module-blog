@@ -1,25 +1,25 @@
 <?php
 /**
- * @category  Softaware
- * @package   Softaware_Blog
- * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
  */
 declare(strict_types=1);
 
-namespace Softaware\Blog\Controller\Adminhtml\Author;
+namespace CommerceGears\Blog\Controller\Adminhtml\Author;
 
 use Magento\Backend\App\Action;
 use Magento\Framework\App\Action\HttpPostActionInterface;
 use Magento\Framework\App\Request\DataPersistorInterface;
 use Magento\Framework\Exception\LocalizedException;
-use Softaware\Blog\Model\AuthorFactory;
-use Softaware\Blog\Model\ImageUploader;
-use Softaware\Blog\Model\ResourceModel\Author as AuthorResource;
+use CommerceGears\Blog\Model\AuthorFactory;
+use CommerceGears\Blog\Model\ImageUploader;
+use CommerceGears\Blog\Model\ResourceModel\Author as AuthorResource;
 
 class Save extends Action implements HttpPostActionInterface
 {
-    public const ADMIN_RESOURCE = 'Softaware_Blog::authors';
-    public const PERSIST_KEY = 'softaware_blog_author_form_data_source';
+    public const ADMIN_RESOURCE = 'CommerceGears_Blog::authors';
+    public const PERSIST_KEY = 'commercegears_blog_author_form_data_source';
     private const FIELDS = ['name', 'url_key', 'job_title', 'bio', 'website_url', 'linkedin_url', 'x_url', 'meta_title', 'meta_description'];
 
     public function __construct(

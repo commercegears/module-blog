@@ -1,15 +1,15 @@
 <?php
 /**
- * @category  Softaware
- * @package   Softaware_Blog
- * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
  */
 declare(strict_types=1);
 
-namespace Softaware\Blog\Test\Unit\Model\Router;
+namespace CommerceGears\Blog\Test\Unit\Model\Router;
 
 use PHPUnit\Framework\TestCase;
-use Softaware\Blog\Model\Router\PathResolver;
+use CommerceGears\Blog\Model\Router\PathResolver;
 
 class PathResolverTest extends TestCase
 {

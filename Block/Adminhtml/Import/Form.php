@@ -1,12 +1,12 @@
 <?php
 /**
- * @category  Softaware
- * @package   Softaware_Blog
- * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
  */
 declare(strict_types=1);
 
-namespace Softaware\Blog\Block\Adminhtml\Import;
+namespace CommerceGears\Blog\Block\Adminhtml\Import;
 
 use Magento\Backend\Block\Template;
 use Magento\Framework\File\Size as FileSize;
@@ -17,7 +17,7 @@ use Magento\Store\Model\System\Store as SystemStore;
  */
 class Form extends Template
 {
-    protected $_template = 'Softaware_Blog::import/form.phtml';
+    protected $_template = 'CommerceGears_Blog::import/form.phtml';
 
     /**
      * @param array<string, mixed> $data
@@ -33,7 +33,7 @@ class Form extends Template
 
     public function getUploadUrl(): string
     {
-        return $this->getUrl('softaware_blog/import/upload');
+        return $this->getUrl('commercegears_blog/import/upload');
     }
 
     /**

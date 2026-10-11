@@ -1,25 +1,25 @@
 <?php
 /**
- * @category  Softaware
- * @package   Softaware_Blog
- * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
  */
 declare(strict_types=1);
 
-namespace Softaware\Blog\Model\Comment;
+namespace CommerceGears\Blog\Model\Comment;
 
 use Magento\Framework\App\RequestInterface;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Module\Manager as ModuleManager;
 use Magento\Framework\ObjectManagerInterface;
 use Psr\Log\LoggerInterface;
-use Softaware\Blog\Model\Config;
+use CommerceGears\Blog\Model\Config;
 
 /**
  * Optional Google reCAPTCHA through Magento's own reCAPTCHA modules (Magento_ReCaptchaUi and related).
  *
  * Those modules are optional, so their classes are only resolved at runtime once the module is known to be
- * enabled. The form key is "softaware_blog_comment" (config path recaptcha_frontend/type_for/softaware_blog_comment).
+ * enabled. The form key is "commercegears_blog_comment" (config path recaptcha_frontend/type_for/commercegears_blog_comment).
  */
 class Recaptcha
 {
@@ -45,7 +45,7 @@ class Recaptcha
         try {
             return (bool)$this->objectManager->get(self::IS_ENABLED)->isCaptchaEnabledFor(Config::RECAPTCHA_KEY);
         } catch (\Throwable $e) {
-            $this->logger->warning('Softaware_Blog reCAPTCHA check failed: ' . $e->getMessage());
+            $this->logger->warning('CommerceGears_Blog reCAPTCHA check failed: ' . $e->getMessage());
             return false;
         }
     }

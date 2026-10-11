@@ -207,7 +207,7 @@ Disabled,Disabled
 "When the same file is imported again, posts are overwritten with the WordPress content. Otherwise they are skipped and your changes are kept.","When the same file is imported again, posts are overwritten with the WordPress content. Otherwise they are skipped and your changes are kept."
 Options,Options
 "Upload and Import","Upload and Import"
-"The import runs in the background with cron, in steps, so large blogs are fine. Running it again with the same file adds nothing twice. Command line: bin/magento softaware:blog:import-wordpress <file>","The import runs in the background with cron, in steps, so large blogs are fine. Running it again with the same file adds nothing twice. Command line: bin/magento softaware:blog:import-wordpress <file>"
+"The import runs in the background with cron, in steps, so large blogs are fine. Running it again with the same file adds nothing twice. Command line: bin/magento commercegears:blog:import-wordpress <file>","The import runs in the background with cron, in steps, so large blogs are fine. Running it again with the same file adds nothing twice. Command line: bin/magento commercegears:blog:import-wordpress <file>"
 "%1, status: %2. Queued %3%4.","%1, status: %2. Queued %3%4."
 Log,Log
 "Nothing logged yet. The job starts with the next cron run.","Nothing logged yet. The job starts with the next cron run."
@@ -359,7 +359,7 @@ Heading,Heading
 "Guests Can Comment","Guests Can Comment"
 "No asks visitors to sign in first. Default: Yes.","No asks visitors to sign in first. Default: Yes."
 "Publish Without Review","Publish Without Review"
-"Comments that are not published right away wait in Softaware > Blog > Comments. Default: Never.","Comments that are not published right away wait in Softaware > Blog > Comments. Default: Never."
+"Comments that are not published right away wait in CommerceGears > Blog > Comments. Default: Never.","Comments that are not published right away wait in CommerceGears > Blog > Comments. Default: Never."
 "Always Review Comments With Links","Always Review Comments With Links"
 "Comments that contain a web address wait for review even when they would be published right away. Default: Yes.","Comments that contain a web address wait for review even when they would be published right away. Default: Yes."
 "Minimum Length (Characters)","Minimum Length (Characters)"
@@ -379,8 +379,8 @@ Heading,Heading
 "Empty uses the General Contact address from Store Email Addresses.","Empty uses the General Contact address from Store Email Addresses."
 Sender,Sender
 "E-mail Template","E-mail Template"
-"Default: ""New Blog Comment"" (Softaware Blog).","Default: ""New Blog Comment"" (Softaware Blog)."
-"Softaware Blog: Recent Posts","Softaware Blog: Recent Posts"
+"Default: ""New Blog Comment"" (CommerceGears Blog).","Default: ""New Blog Comment"" (CommerceGears Blog)."
+"CommerceGears Blog: Recent Posts","CommerceGears Blog: Recent Posts"
 "Latest blog posts, optionally from one category or featured posts only","Latest blog posts, optionally from one category or featured posts only"
 "1 to 24.","1 to 24."
 Category,Category
@@ -389,11 +389,11 @@ Category,Category
 "Show Featured Image","Show Featured Image"
 "Show Excerpt","Show Excerpt"
 "Default Template","Default Template"
-"Softaware Blog: Categories","Softaware Blog: Categories"
+"CommerceGears Blog: Categories","CommerceGears Blog: Categories"
 "Links to the blog categories","Links to the blog categories"
 Levels,Levels
 "Number of category levels to show; empty or 0 shows all.","Number of category levels to show; empty or 0 shows all."
-"Softaware Blog: Tags","Softaware Blog: Tags"
+"CommerceGears Blog: Tags","CommerceGears Blog: Tags"
 "Most used blog tags","Most used blog tags"
 "1 to 100.","1 to 100."
 "Authors are named on their posts and get a profile page with their biography and posts.","Authors are named on their posts and get a profile page with their biography and posts."
@@ -510,7 +510,7 @@ Publish,Publish
 "Delete the selected posts and their comments? This cannot be undone.","Delete the selected posts and their comments? This cannot be undone."
 "Delete Posts","Delete Posts"
 "No posts yet","No posts yet"
-"Write your first post, add sample content with bin/magento softaware:blog:sample-data, or bring your posts over from WordPress.","Write your first post, add sample content with bin/magento softaware:blog:sample-data, or bring your posts over from WordPress."
+"Write your first post, add sample content with bin/magento commercegears:blog:sample-data, or bring your posts over from WordPress.","Write your first post, add sample content with bin/magento commercegears:blog:sample-data, or bring your posts over from WordPress."
 "Add Your First Post","Add Your First Post"
 Image,Image
 "Pending Comments","Pending Comments"

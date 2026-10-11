@@ -1,16 +1,16 @@
 <?php
 /**
- * @category  Softaware
- * @package   Softaware_Blog
- * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
  */
 declare(strict_types=1);
 
-namespace Softaware\Blog\Test\Unit\Model\Import;
+namespace CommerceGears\Blog\Test\Unit\Model\Import;
 
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
-use Softaware\Blog\Model\Import\UrlGuard;
+use CommerceGears\Blog\Model\Import\UrlGuard;
 
 class UrlGuardTest extends TestCase
 {

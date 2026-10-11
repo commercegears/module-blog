@@ -1,12 +1,12 @@
 <?php
 /**
- * @category  Softaware
- * @package   Softaware_Blog
- * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
  */
 declare(strict_types=1);
 
-namespace Softaware\Blog\Controller;
+namespace CommerceGears\Blog\Controller;
 
 use Magento\Framework\App\Action\HttpGetActionInterface;
 use Magento\Framework\App\RequestInterface;
@@ -14,9 +14,9 @@ use Magento\Framework\Exception\NotFoundException;
 use Magento\Framework\View\Result\Page;
 use Magento\Framework\View\Result\PageFactory;
 use Magento\Store\Model\StoreManagerInterface;
-use Softaware\Blog\Model\Config;
-use Softaware\Blog\Model\CurrentPage;
-use Softaware\Blog\Model\Frontend\PageHead;
+use CommerceGears\Blog\Model\Config;
+use CommerceGears\Blog\Model\CurrentPage;
+use CommerceGears\Blog\Model\Frontend\PageHead;
 
 /**
  * Base for the storefront blog pages.
@@ -56,10 +56,10 @@ abstract class AbstractView implements HttpGetActionInterface
     protected function createPage(): Page
     {
         $page = $this->pageFactory->create();
-        $page->addHandle('softaware_blog');
+        $page->addHandle('commercegears_blog');
         if ($this->currentPage->isPreview()) {
             // holds an uncacheable block, so a draft never reaches the full-page cache
-            $page->addHandle('softaware_blog_preview');
+            $page->addHandle('commercegears_blog_preview');
         }
         $this->pageHead->apply($page);
         return $page;

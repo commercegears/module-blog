@@ -1,15 +1,15 @@
 <?php
 /**
- * @category  Softaware
- * @package   Softaware_Blog
- * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
  */
 declare(strict_types=1);
 
-namespace Softaware\Blog\Model;
+namespace CommerceGears\Blog\Model;
 
 use Magento\Framework\Model\AbstractModel;
-use Softaware\Blog\Model\ResourceModel\ImportJob as ImportJobResource;
+use CommerceGears\Blog\Model\ResourceModel\ImportJob as ImportJobResource;
 
 class ImportJob extends AbstractModel
 {

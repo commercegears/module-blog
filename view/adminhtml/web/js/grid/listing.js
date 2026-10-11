@@ -1,7 +1,7 @@
 /**
- * @category  Softaware
- * @package   Softaware_Blog
- * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
  */
 /**
  * Grid with an empty state: when the table has no records at all (no filter or search applied), it shows a short
@@ -15,7 +15,7 @@ define([
 
     return Listing.extend({
         defaults: {
-            template: 'Softaware_Blog/grid/listing',
+            template: 'CommerceGears_Blog/grid/listing',
             emptyTitle: '',
             emptyText: '',
             emptyActionLabel: '',

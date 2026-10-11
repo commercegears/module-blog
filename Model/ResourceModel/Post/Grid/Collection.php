@@ -1,12 +1,12 @@
 <?php
 /**
- * @category  Softaware
- * @package   Softaware_Blog
- * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
  */
 declare(strict_types=1);
 
-namespace Softaware\Blog\Model\ResourceModel\Post\Grid;
+namespace CommerceGears\Blog\Model\ResourceModel\Post\Grid;
 
 use Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult;
 
@@ -24,14 +24,14 @@ class Collection extends SearchResult
             "CASE WHEN main_table.status = 0 THEN 'draft' WHEN main_table.publish_at > " . $now
             . " THEN 'scheduled' ELSE 'published' END"
         );
-        $commentTable = $this->getTable('softaware_blog_comment');
+        $commentTable = $this->getTable('commercegears_blog_comment');
         $pending = new \Zend_Db_Expr('(SELECT COUNT(*) FROM ' . $commentTable
             . ' pc WHERE pc.post_id = main_table.post_id AND pc.status = 0)');
         $approved = new \Zend_Db_Expr('(SELECT COUNT(*) FROM ' . $commentTable
             . ' ac WHERE ac.post_id = main_table.post_id AND ac.status = 1)');
         $this->getSelect()
             ->joinLeft(
-                ['author' => $this->getTable('softaware_blog_author')],
+                ['author' => $this->getTable('commercegears_blog_author')],
                 'author.author_id = main_table.author_id',
                 ['author_name' => 'author.name']
             )
@@ -40,7 +40,7 @@ class Collection extends SearchResult
                 'comments_pending' => $pending,
                 'comments_approved' => $approved,
                 'store_ids' => new \Zend_Db_Expr('(SELECT GROUP_CONCAT(ps.store_id) FROM '
-                    . $this->getTable('softaware_blog_post_store') . ' ps WHERE ps.post_id = main_table.post_id)'),
+                    . $this->getTable('commercegears_blog_post_store') . ' ps WHERE ps.post_id = main_table.post_id)'),
             ]);
         $this->addFilterToMap('state', $state);
         $this->addFilterToMap('author_name', 'author.name');
@@ -57,7 +57,7 @@ class Collection extends SearchResult
         if ($field === 'store_id') {
             $value = is_array($condition) ? ($condition['eq'] ?? reset($condition)) : $condition;
             $exists = $this->getConnection()->select()
-                ->from(['fs' => $this->getTable('softaware_blog_post_store')], [new \Zend_Db_Expr('1')])
+                ->from(['fs' => $this->getTable('commercegears_blog_post_store')], [new \Zend_Db_Expr('1')])
                 ->where('fs.post_id = main_table.post_id')
                 ->where('fs.store_id IN (?)', array_unique([0, (int)$value]));
             $this->getSelect()->where('EXISTS (' . $exists . ')');
@@ -66,7 +66,7 @@ class Collection extends SearchResult
         if ($field === 'category_id') {
             $value = is_array($condition) ? ($condition['eq'] ?? reset($condition)) : $condition;
             $exists = $this->getConnection()->select()
-                ->from(['fc' => $this->getTable('softaware_blog_post_category')], [new \Zend_Db_Expr('1')])
+                ->from(['fc' => $this->getTable('commercegears_blog_post_category')], [new \Zend_Db_Expr('1')])
                 ->where('fc.post_id = main_table.post_id')
                 ->where('fc.category_id = ?', (int)$value);
             $this->getSelect()->where('EXISTS (' . $exists . ')');

@@ -1,17 +1,17 @@
 <?php
 /**
- * @category  Softaware
- * @package   Softaware_Blog
- * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
  */
 declare(strict_types=1);
 
-namespace Softaware\Blog\Observer;
+namespace CommerceGears\Blog\Observer;
 
 use Magento\Framework\Data\Tree\Node;
 use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
-use Softaware\Blog\Model\Frontend\MenuLink;
+use CommerceGears\Blog\Model\Frontend\MenuLink;
 
 /**
  * Luma top menu: adds the blog link (event page_block_html_topmenu_gethtml_before).

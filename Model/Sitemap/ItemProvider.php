@@ -1,23 +1,23 @@
 <?php
 /**
- * @category  Softaware
- * @package   Softaware_Blog
- * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
  */
 declare(strict_types=1);
 
-namespace Softaware\Blog\Model\Sitemap;
+namespace CommerceGears\Blog\Model\Sitemap;
 
 use Magento\Framework\DataObject;
 use Magento\Sitemap\Model\ItemProvider\ItemProviderInterface;
 use Magento\Sitemap\Model\SitemapItemInterface;
 use Magento\Sitemap\Model\SitemapItemInterfaceFactory;
 use Psr\Log\LoggerInterface;
-use Softaware\Blog\Model\Config;
-use Softaware\Blog\Model\Frontend\Catalog;
-use Softaware\Blog\Model\Post;
-use Softaware\Blog\Model\ResourceModel\Author\CollectionFactory as AuthorCollectionFactory;
-use Softaware\Blog\Model\Url;
+use CommerceGears\Blog\Model\Config;
+use CommerceGears\Blog\Model\Frontend\Catalog;
+use CommerceGears\Blog\Model\Post;
+use CommerceGears\Blog\Model\ResourceModel\Author\CollectionFactory as AuthorCollectionFactory;
+use CommerceGears\Blog\Model\Url;
 
 /**
  * Adds the blog home page, categories, posts (and optionally tags and authors) to Magento's XML sitemap.
@@ -48,7 +48,7 @@ class ItemProvider implements ItemProviderInterface
         try {
             return $this->buildItems($storeId);
         } catch (\Throwable $e) {
-            $this->logger->error('Softaware_Blog sitemap: ' . $e->getMessage());
+            $this->logger->error('CommerceGears_Blog sitemap: ' . $e->getMessage());
             return [];
         }
     }

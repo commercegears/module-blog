@@ -1,26 +1,26 @@
 <?php
 /**
- * @category  Softaware
- * @package   Softaware_Blog
- * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
  */
 declare(strict_types=1);
 
-namespace Softaware\Blog\Controller\Adminhtml\Tag;
+namespace CommerceGears\Blog\Controller\Adminhtml\Tag;
 
 use Magento\Backend\App\Action;
 use Magento\Framework\App\Action\HttpPostActionInterface;
 use Magento\Framework\App\Request\DataPersistorInterface;
 use Magento\Framework\Exception\LocalizedException;
-use Softaware\Blog\Model\ResourceModel\Tag as TagResource;
-use Softaware\Blog\Model\Tag;
-use Softaware\Blog\Model\TagFactory;
-use Softaware\Blog\Model\UrlKeyFormatter;
+use CommerceGears\Blog\Model\ResourceModel\Tag as TagResource;
+use CommerceGears\Blog\Model\Tag;
+use CommerceGears\Blog\Model\TagFactory;
+use CommerceGears\Blog\Model\UrlKeyFormatter;
 
 class Save extends Action implements HttpPostActionInterface
 {
-    public const ADMIN_RESOURCE = 'Softaware_Blog::tags';
-    public const PERSIST_KEY = 'softaware_blog_tag_form_data_source';
+    public const ADMIN_RESOURCE = 'CommerceGears_Blog::tags';
+    public const PERSIST_KEY = 'commercegears_blog_tag_form_data_source';
 
     public function __construct(
         Action\Context $context,

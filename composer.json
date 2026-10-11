@@ -1,12 +1,12 @@
 {
-    "name": "softaware/module-blog",
+    "name": "commercegears/module-blog",
     "description": "Blog for Magento 2 (Luma and Hyvä): posts, nested categories, tags, authors, scheduling, comments with moderation, SEO, RSS, XML sitemap and WordPress import.",
     "type": "magento2-module",
     "license": "proprietary",
     "authors": [
         {
-            "name": "Softaware Commerce Ltd",
-            "homepage": "https://softawarecommerce.com/"
+            "name": "CommerceGears",
+            "homepage": "https://commercegears.com/"
         }
     ],
     "require": {
@@ -15,7 +15,7 @@
         "ext-libxml": "*",
         "ext-xmlreader": "*",
         "magento/framework": "~103.0.7",
-        "softaware/module-core": "^1.3",
+        "commercegears/module-core": "^2.0",
         "magento/module-backend": "*",
         "magento/module-catalog": "*",
         "magento/module-cms": "*",
@@ -34,14 +34,17 @@
         "hyva-themes/magento2-default-theme": "Hyvä storefront templates are included",
         "magento/module-page-builder": "Page Builder for post content (used automatically when installed)",
         "magento/module-re-captcha-ui": "Google reCAPTCHA on the comment form",
-        "softaware/module-seo-suite": "Store-wide SEO (robots rules, Organisation JSON-LD, redirects); the blog fills in blog pages"
+        "commercegears/module-seo-suite": "^2.0"
     },
     "autoload": {
         "files": [
             "registration.php"
         ],
         "psr-4": {
-            "Softaware\\Blog\\": ""
+            "CommerceGears\\Blog\\": ""
         }
+    },
+    "replace": {
+        "softaware/module-blog": "*"
     }
 }

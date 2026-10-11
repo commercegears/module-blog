@@ -1,12 +1,12 @@
 <?php
 /**
- * @category  Softaware
- * @package   Softaware_Blog
- * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
  */
 declare(strict_types=1);
 
-namespace Softaware\Blog\Model\Comment;
+namespace CommerceGears\Blog\Model\Comment;
 
 use Magento\Customer\Model\Session as CustomerSession;
 use Magento\Framework\App\DeploymentConfig;
@@ -15,13 +15,13 @@ use Magento\Framework\Config\ConfigOptionsListConstants;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\HTTP\PhpEnvironment\RemoteAddress;
 use Magento\Store\Model\StoreManagerInterface;
-use Softaware\Blog\Model\Comment;
-use Softaware\Blog\Model\CommentFactory;
-use Softaware\Blog\Model\Config;
-use Softaware\Blog\Model\Frontend\Catalog;
-use Softaware\Blog\Model\PostFactory;
-use Softaware\Blog\Model\ResourceModel\Comment as CommentResource;
-use Softaware\Blog\Model\ResourceModel\Post as PostResource;
+use CommerceGears\Blog\Model\Comment;
+use CommerceGears\Blog\Model\CommentFactory;
+use CommerceGears\Blog\Model\Config;
+use CommerceGears\Blog\Model\Frontend\Catalog;
+use CommerceGears\Blog\Model\PostFactory;
+use CommerceGears\Blog\Model\ResourceModel\Comment as CommentResource;
+use CommerceGears\Blog\Model\ResourceModel\Post as PostResource;
 
 /**
  * Validates and stores a comment sent from the storefront.

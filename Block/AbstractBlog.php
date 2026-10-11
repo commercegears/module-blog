@@ -1,25 +1,25 @@
 <?php
 /**
- * @category  Softaware
- * @package   Softaware_Blog
- * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
  */
 declare(strict_types=1);
 
-namespace Softaware\Blog\Block;
+namespace CommerceGears\Blog\Block;
 
 use Magento\Framework\View\Element\Template;
 use Magento\Framework\View\Element\Template\Context;
-use Softaware\Blog\Model\Author;
-use Softaware\Blog\Model\Category;
-use Softaware\Blog\Model\Config;
-use Softaware\Blog\Model\CurrentPage;
-use Softaware\Blog\Model\Frontend\BlockContext;
-use Softaware\Blog\Model\Frontend\Catalog;
-use Softaware\Blog\Model\Frontend\ContentRenderer;
-use Softaware\Blog\Model\Post;
-use Softaware\Blog\Model\Tag;
-use Softaware\Blog\Model\Url;
+use CommerceGears\Blog\Model\Author;
+use CommerceGears\Blog\Model\Category;
+use CommerceGears\Blog\Model\Config;
+use CommerceGears\Blog\Model\CurrentPage;
+use CommerceGears\Blog\Model\Frontend\BlockContext;
+use CommerceGears\Blog\Model\Frontend\Catalog;
+use CommerceGears\Blog\Model\Frontend\ContentRenderer;
+use CommerceGears\Blog\Model\Post;
+use CommerceGears\Blog\Model\Tag;
+use CommerceGears\Blog\Model\Url;
 
 /**
  * Shared helpers for storefront blog blocks and templates.
@@ -165,7 +165,7 @@ abstract class AbstractBlog extends Template
         $this->setData('card_post', $post);
         $this->setData('card_variant', $variant);
         $this->setData('card_heading', in_array($headingTag, ['h2', 'h3', 'h4'], true) ? $headingTag : 'h2');
-        $template = $this->isHyva() ? 'Softaware_Blog::hyva/post/card.phtml' : 'Softaware_Blog::post/card.phtml';
+        $template = $this->isHyva() ? 'CommerceGears_Blog::hyva/post/card.phtml' : 'CommerceGears_Blog::post/card.phtml';
         $html = $this->fetchView($this->getTemplateFile($template));
         $this->unsetData('card_post');
         return $html;

@@ -1,12 +1,12 @@
 <?php
 /**
- * @category  Softaware
- * @package   Softaware_Blog
- * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
  */
 declare(strict_types=1);
 
-namespace Softaware\Blog\Model;
+namespace CommerceGears\Blog\Model;
 
 use Magento\Framework\UrlInterface;
 use Magento\Store\Model\Store;
@@ -97,7 +97,7 @@ class Url
         /** @var Store $store */
         $store = $this->storeManager->getStore($storeId);
         $media = $store->getBaseUrl(UrlInterface::URL_TYPE_MEDIA);
-        // "/path" is relative to pub/media (images picked from the media gallery), else to pub/media/softaware_blog
+        // "/path" is relative to pub/media (images picked from the media gallery), else to pub/media/commercegears_blog
         return str_starts_with($file, '/') ? $media . ltrim($file, '/') : $media . ImageUploader::BASE_PATH . '/' . $file;
     }
 }

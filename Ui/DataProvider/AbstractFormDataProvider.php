@@ -1,18 +1,18 @@
 <?php
 /**
- * @category  Softaware
- * @package   Softaware_Blog
- * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
  */
 declare(strict_types=1);
 
-namespace Softaware\Blog\Ui\DataProvider;
+namespace CommerceGears\Blog\Ui\DataProvider;
 
 use Magento\Framework\App\Request\DataPersistorInterface;
 use Magento\Framework\App\RequestInterface;
 use Magento\Framework\Model\AbstractModel;
 use Magento\Ui\DataProvider\AbstractDataProvider;
-use Softaware\Blog\Model\AbstractContentModel;
+use CommerceGears\Blog\Model\AbstractContentModel;
 
 /**
  * Edit form data. For entities with store view content, the form opened with ?store=<id> shows the store

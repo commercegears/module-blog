@@ -1,20 +1,20 @@
 <?php
 /**
- * @category  Softaware
- * @package   Softaware_Blog
- * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
  */
 declare(strict_types=1);
 
-namespace Softaware\Blog\Block;
+namespace CommerceGears\Blog\Block;
 
 use Magento\Framework\View\Element\Html\Link;
 use Magento\Framework\View\Element\Template\Context;
-use Softaware\Blog\Model\Config;
-use Softaware\Blog\Model\Url;
+use CommerceGears\Blog\Model\Config;
+use CommerceGears\Blog\Model\Url;
 
 /**
- * Blog link in the Luma footer links (Stores > Configuration > Softaware > Blog > General).
+ * Blog link in the Luma footer links (Stores > Configuration > CommerceGears > Blog > General).
  */
 class FooterLink extends Link
 {

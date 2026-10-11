@@ -1,6 +1,6 @@
-# Softaware Blog for Magento 2: User Guide
+# CommerceGears Blog for Magento 2: User Guide
 
-Softaware Blog adds a blog to your Magento store: posts, categories, tags, author pages and comments, with the SEO
+CommerceGears Blog adds a blog to your Magento store: posts, categories, tags, author pages and comments, with the SEO
 details search engines look for, a per-post SEO checklist, widgets for CMS pages and an import from WordPress. It has
 templates for Luma and for Hyvä.
 
@@ -11,16 +11,16 @@ templates for Luma and for Hyvä.
 | Magento | Magento Open Source or Adobe Commerce 2.4.7 to 2.4.9 |
 | PHP | 8.2, 8.3, 8.4 or 8.5 (with the curl, dom and xmlreader extensions) |
 | Themes | Luma (and themes based on it) and Hyvä |
-| Other | `softaware/module-core` 1.3 or later (installed automatically), Magento cron for scheduled posts and imports |
+| Other | `commercegears/module-core` 1.3 or later (installed automatically), Magento cron for scheduled posts and imports |
 
 ## Installation
 
-Softaware modules are installed with Composer from repo.softawarecommerce.com. Set up access once as described on
-https://softawarecommerce.com/shop/composer-access/, then:
+CommerceGears modules are installed with Composer from repo.commercegears.com. Set up access once as described on
+https://commercegears.com/shop/composer-access/, then:
 
 ```
-composer require softaware/module-blog
-bin/magento module:enable Softaware_Core Softaware_Blog
+composer require commercegears/module-blog
+bin/magento module:enable CommerceGears_Core CommerceGears_Blog
 bin/magento setup:upgrade
 bin/magento setup:di:compile            # production mode only
 bin/magento setup:static-content:deploy # production mode only
@@ -33,15 +33,15 @@ Tailwind classes are included. The module registers itself for Hyvä's Tailwind 
 To see the blog straight away, add the sample content:
 
 ```
-bin/magento softaware:blog:sample-data
+bin/magento commercegears:blog:sample-data
 ```
 
 This creates three posts, two categories, four tags, one author and a comment, all clearly marked as samples. Remove
-them again with `bin/magento softaware:blog:sample-data --remove`.
+them again with `bin/magento commercegears:blog:sample-data --remove`.
 
 ## Configuration
 
-Stores > Configuration > Softaware > Blog. Every setting can be set per website or store view.
+Stores > Configuration > CommerceGears > Blog. Every setting can be set per website or store view.
 
 **General**
 
@@ -86,7 +86,7 @@ e-mail to the store about new comments (recipient, sender and template).
 
 ## Writing posts
 
-Softaware > Blog > Posts lists the posts with their image, status (Draft, Scheduled, Published), publish date, author,
+CommerceGears > Blog > Posts lists the posts with their image, status (Draft, Scheduled, Published), publish date, author,
 store views, pending comments and SEO score. Filter by store view or category, search by title, and publish, set to
 draft or delete several posts at once.
 
@@ -137,7 +137,7 @@ can be published whatever its score.
 
 ## Comments
 
-Comments appear under the post once approved. Softaware > Blog > Comments lists them with their status; approve,
+Comments appear under the post once approved. CommerceGears > Blog > Comments lists them with their status; approve,
 reject, set back to pending or delete several at once. Open a comment to correct its text, change its status or reply:
 the reply is published under the comment in the store's name.
 
@@ -151,15 +151,15 @@ a page reload, so the post page stays in the full page cache.
 
 Content > Widgets (or Insert Widget in any editor) offers three widgets for CMS pages and blocks:
 
-- Softaware Blog: Recent Posts: latest posts, optionally of one category (including its subcategories) or featured
+- CommerceGears Blog: Recent Posts: latest posts, optionally of one category (including its subcategories) or featured
   posts only, with or without image and excerpt.
-- Softaware Blog: Categories: links to the blog categories, optionally limited to a number of levels.
-- Softaware Blog: Tags: the most used tags.
+- CommerceGears Blog: Categories: links to the blog categories, optionally limited to a number of levels.
+- CommerceGears Blog: Tags: the most used tags.
 
 ## Importing from WordPress
 
 1. In WordPress, go to Tools > Export, choose All content and download the file.
-2. In Magento, go to Softaware > Blog > WordPress Import, choose the file, the store views and the options, and click
+2. In Magento, go to CommerceGears > Blog > WordPress Import, choose the file, the store views and the options, and click
    Upload and Import.
 
 ![WordPress import](images/admin-import.png)
@@ -169,7 +169,7 @@ about 50 seconds, each continuing where the previous one stopped; the grid shows
 details. Larger files than the upload limit can be imported on the command line:
 
 ```
-bin/magento softaware:blog:import-wordpress /path/to/export.xml
+bin/magento commercegears:blog:import-wordpress /path/to/export.xml
 ```
 
 What is imported:
@@ -182,7 +182,7 @@ What is imported:
   template variables are skipped).
 - Approved and pending comments with their replies; spam, trash, pingbacks and trackbacks are left out.
 - Images: the featured image and the images in the posts that are stored on the WordPress site (or its subdomains and
-  WordPress.com's image service) are downloaded to pub/media/softaware_blog/ and the posts point to the copies.
+  WordPress.com's image service) are downloaded to pub/media/commercegears_blog/ and the posts point to the copies.
 - Redirects: 301 redirects from the old post addresses to the new ones, as custom URL rewrites in Marketing > SEO &
   Search > URL Rewrites. An address that the store already uses, or that starts with one of the store's own routes
   (for example /checkout/ or /customer/), is never redirected.
@@ -201,10 +201,10 @@ text and is not run as a directive.
 ## Command line
 
 ```
-bin/magento softaware:blog:import-wordpress <file> [--store=1,2] [--no-images] [--no-redirects] [--no-comments] [--drafts] [--update] [--queue]
-bin/magento softaware:blog:import-wordpress --job=<id>
-bin/magento softaware:blog:publish-scheduled
-bin/magento softaware:blog:sample-data [--remove]
+bin/magento commercegears:blog:import-wordpress <file> [--store=1,2] [--no-images] [--no-redirects] [--no-comments] [--drafts] [--update] [--queue]
+bin/magento commercegears:blog:import-wordpress --job=<id>
+bin/magento commercegears:blog:publish-scheduled
+bin/magento commercegears:blog:sample-data [--remove]
 ```
 
 `--queue` only adds the job for cron; `--job` runs a job from the admin (also a failed one, which continues where it
@@ -213,9 +213,9 @@ five minutes.
 
 ## Permissions
 
-System > Permissions > User Roles > Role Resources, under Softaware > Blog: Posts (with Create and Edit, Publish and
+System > Permissions > User Roles > Role Resources, under CommerceGears > Blog: Posts (with Create and Edit, Publish and
 Delete), Categories, Tags, Authors, Comments (with Moderate and Reply, and Delete) and WordPress Import. The settings are
-under Stores > Settings > Configuration > Softaware Blog. Editors without Publish can write new posts (saved as drafts)
+under Stores > Settings > Configuration > CommerceGears Blog. Editors without Publish can write new posts (saved as drafts)
 and edit existing ones, but cannot change their status or publish date.
 
 ## Troubleshooting
@@ -223,21 +223,21 @@ and edit existing ones, but cannot change their status or publish date.
 - **The blog shows a 404 page**: check that the blog is enabled for the store view and that the blog URL path does not
   clash with a CMS page or category with the same address.
 - **An import stays queued**: Magento cron is not running. Run `bin/magento cron:run`, or import on the command line
-  with `bin/magento softaware:blog:import-wordpress --job=<id>`.
+  with `bin/magento commercegears:blog:import-wordpress --job=<id>`.
 - **Images were not imported**: View Log lists each image that failed and why (for example a 404 on the old site or an
   image larger than 10 MB). Images on other domains are not downloaded.
 - **A scheduled post did not appear**: cron refreshes the cached pages every five minutes; run
-  `bin/magento softaware:blog:publish-scheduled` to do it now.
+  `bin/magento commercegears:blog:publish-scheduled` to do it now.
 - **Hyvä styles look unstyled**: rebuild the Hyvä theme CSS so the blog's Tailwind classes are included.
 
 ## Uninstall
 
 ```
-bin/magento module:disable Softaware_Blog
-composer remove softaware/module-blog
+bin/magento module:disable CommerceGears_Blog
+composer remove commercegears/module-blog
 bin/magento setup:upgrade
 ```
 
-The blog tables (`softaware_blog_*`) and the images in pub/media/softaware_blog/ are kept; delete them if you no longer
+The blog tables (`commercegears_blog_*`) and the images in pub/media/commercegears_blog/ are kept; delete them if you no longer
 need the content. Redirects created by the WordPress import are ordinary URL rewrites and can be removed in Marketing >
 SEO & Search > URL Rewrites.

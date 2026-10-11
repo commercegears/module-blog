@@ -1,19 +1,19 @@
 <?php
 /**
- * @category  Softaware
- * @package   Softaware_Blog
- * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
  */
 declare(strict_types=1);
 
-namespace Softaware\Blog\Model\Frontend;
+namespace CommerceGears\Blog\Model\Frontend;
 
 use Magento\Store\Model\StoreManagerInterface;
-use Softaware\Blog\Model\Config;
-use Softaware\Blog\Model\CurrentPage;
-use Softaware\Blog\Model\Category;
-use Softaware\Blog\Model\TextAnalyser;
-use Softaware\Blog\Model\Url;
+use CommerceGears\Blog\Model\Config;
+use CommerceGears\Blog\Model\CurrentPage;
+use CommerceGears\Blog\Model\Category;
+use CommerceGears\Blog\Model\TextAnalyser;
+use CommerceGears\Blog\Model\Url;
 
 /**
  * Meta data of the current blog page, shared by the head, Open Graph and structured data.

@@ -1,23 +1,23 @@
 <?php
 /**
- * @category  Softaware
- * @package   Softaware_Blog
- * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
  */
 declare(strict_types=1);
 
-namespace Softaware\Blog\Controller\Tag;
+namespace CommerceGears\Blog\Controller\Tag;
 
 use Magento\Framework\App\RequestInterface;
 use Magento\Framework\Controller\ResultInterface;
 use Magento\Framework\Exception\NotFoundException;
 use Magento\Framework\View\Result\PageFactory;
 use Magento\Store\Model\StoreManagerInterface;
-use Softaware\Blog\Controller\AbstractView;
-use Softaware\Blog\Model\Config;
-use Softaware\Blog\Model\CurrentPage;
-use Softaware\Blog\Model\Frontend\Catalog;
-use Softaware\Blog\Model\Frontend\PageHead;
+use CommerceGears\Blog\Controller\AbstractView;
+use CommerceGears\Blog\Model\Config;
+use CommerceGears\Blog\Model\CurrentPage;
+use CommerceGears\Blog\Model\Frontend\Catalog;
+use CommerceGears\Blog\Model\Frontend\PageHead;
 
 /**
  * Posts of one tag.

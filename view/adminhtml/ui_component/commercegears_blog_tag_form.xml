@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
+ */
+-->
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">commercegears_blog_tag_form.commercegears_blog_tag_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Tag</item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="back" class="CommerceGears\Blog\Block\Adminhtml\Edit\BackButton"/>
+            <button name="delete" class="CommerceGears\Blog\Block\Adminhtml\Edit\DeleteButton"/>
+            <button name="save_and_continue" class="CommerceGears\Blog\Block\Adminhtml\Edit\SaveAndContinueButton"/>
+            <button name="save" class="CommerceGears\Blog\Block\Adminhtml\Edit\SaveButton"/>
+        </buttons>
+        <namespace>commercegears_blog_tag_form</namespace>
+        <dataScope>data</dataScope>
+        <deps>
+            <dep>commercegears_blog_tag_form.commercegears_blog_tag_form_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="commercegears_blog_tag_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="commercegears_blog/tag/save"/>
+        </settings>
+        <dataProvider class="CommerceGears\Blog\Ui\DataProvider\TagFormDataProvider" name="commercegears_blog_tag_form_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>tag_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <fieldset name="general" sortOrder="10">
+        <settings>
+            <label translate="true">Tag</label>
+            <collapsible>false</collapsible>
+        </settings>
+        <field name="tag_id" formElement="input" sortOrder="1">
+            <settings>
+                <dataType>text</dataType>
+                <visible>false</visible>
+                <dataScope>tag_id</dataScope>
+            </settings>
+        </field>
+        <field name="store" formElement="input" sortOrder="2">
+            <settings>
+                <dataType>text</dataType>
+                <visible>false</visible>
+                <dataScope>store</dataScope>
+            </settings>
+        </field>
+        <field name="name" formElement="input" sortOrder="10">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Name</label>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                    <rule name="max_text_length" xsi:type="number">255</rule>
+                </validation>
+                <dataScope>name</dataScope>
+            </settings>
+        </field>
+        <field name="url_key" formElement="input" sortOrder="20">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">URL Key</label>
+                <notice translate="true">Leave empty to create it from the name.</notice>
+                <validation>
+                    <rule name="max_text_length" xsi:type="number">200</rule>
+                </validation>
+                <dataScope>url_key</dataScope>
+            </settings>
+        </field>
+        <field name="description" formElement="wysiwyg" sortOrder="30">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="wysiwygConfigData" xsi:type="array">
+                        <item name="height" xsi:type="string">200px</item>
+                        <item name="add_variables" xsi:type="boolean">false</item>
+                        <item name="add_widgets" xsi:type="boolean">false</item>
+                        <item name="add_images" xsi:type="boolean">true</item>
+                        <item name="add_directives" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+            <settings>
+                <label translate="true">Description</label>
+                <notice translate="true">Optional text shown above the posts with this tag.</notice>
+                <dataScope>description</dataScope>
+            </settings>
+            <formElements>
+                <wysiwyg>
+                    <settings>
+                        <rows>8</rows>
+                        <wysiwyg>true</wysiwyg>
+                    </settings>
+                </wysiwyg>
+            </formElements>
+        </field>
+    </fieldset>
+    <fieldset name="seo" sortOrder="20">
+        <settings>
+            <label translate="true">Search Engine Optimisation</label>
+            <collapsible>true</collapsible>
+            <opened>false</opened>
+        </settings>
+        <field name="meta_title" formElement="input" sortOrder="10">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Meta Title</label>
+                <notice translate="true">Leave empty to use "Posts tagged ...".</notice>
+                <validation>
+                    <rule name="max_text_length" xsi:type="number">255</rule>
+                </validation>
+                <dataScope>meta_title</dataScope>
+            </settings>
+        </field>
+        <field name="meta_description" formElement="textarea" sortOrder="20">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Meta Description</label>
+                <dataScope>meta_description</dataScope>
+            </settings>
+            <formElements>
+                <textarea>
+                    <settings>
+                        <rows>3</rows>
+                    </settings>
+                </textarea>
+            </formElements>
+        </field>
+        <field name="meta_robots" formElement="select" sortOrder="30">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Robots</label>
+                <notice translate="true">Tag pages are set to NOINDEX by default in the configuration, as they often repeat category pages.</notice>
+                <dataScope>meta_robots</dataScope>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="CommerceGears\Blog\Model\Source\EntityRobots"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+    </fieldset>
+</form>

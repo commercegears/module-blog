@@ -1,12 +1,12 @@
 <?php
 /**
- * @category  Softaware
- * @package   Softaware_Blog
- * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
  */
 declare(strict_types=1);
 
-namespace Softaware\Blog\Model\ResourceModel;
+namespace CommerceGears\Blog\Model\ResourceModel;
 
 use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
 
@@ -14,7 +14,7 @@ class ImportJob extends AbstractDb
 {
     protected function _construct()
     {
-        $this->_init('softaware_blog_import_job', 'job_id');
+        $this->_init('commercegears_blog_import_job', 'job_id');
     }
 
     /**

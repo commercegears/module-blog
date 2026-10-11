@@ -1,12 +1,12 @@
 <?php
 /**
- * @category  Softaware
- * @package   Softaware_Blog
- * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
  */
 declare(strict_types=1);
 
-namespace Softaware\Blog\Ui\DataProvider;
+namespace CommerceGears\Blog\Ui\DataProvider;
 
 use Magento\Catalog\Helper\Image as ImageHelper;
 use Magento\Catalog\Model\ResourceModel\Product\CollectionFactory as ProductCollectionFactory;
@@ -14,14 +14,14 @@ use Magento\Framework\App\Request\DataPersistorInterface;
 use Magento\Framework\App\RequestInterface;
 use Magento\Framework\Model\AbstractModel;
 use Magento\Store\Model\StoreManagerInterface;
-use Softaware\Blog\Model\Config;
-use Softaware\Blog\Model\ImageUploader;
-use Softaware\Blog\Model\Post;
-use Softaware\Blog\Model\PostFactory;
-use Softaware\Blog\Model\ResourceModel\Post as PostResource;
-use Softaware\Blog\Model\ResourceModel\Post\CollectionFactory;
-use Softaware\Blog\Model\ResourceModel\Tag\CollectionFactory as TagCollectionFactory;
-use Softaware\Blog\Model\SeoChecklist;
+use CommerceGears\Blog\Model\Config;
+use CommerceGears\Blog\Model\ImageUploader;
+use CommerceGears\Blog\Model\Post;
+use CommerceGears\Blog\Model\PostFactory;
+use CommerceGears\Blog\Model\ResourceModel\Post as PostResource;
+use CommerceGears\Blog\Model\ResourceModel\Post\CollectionFactory;
+use CommerceGears\Blog\Model\ResourceModel\Tag\CollectionFactory as TagCollectionFactory;
+use CommerceGears\Blog\Model\SeoChecklist;
 
 class PostFormDataProvider extends AbstractFormDataProvider
 {

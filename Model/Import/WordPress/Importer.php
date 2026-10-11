@@ -1,34 +1,34 @@
 <?php
 /**
- * @category  Softaware
- * @package   Softaware_Blog
- * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
  */
 declare(strict_types=1);
 
-namespace Softaware\Blog\Model\Import\WordPress;
+namespace CommerceGears\Blog\Model\Import\WordPress;
 
 use Magento\Framework\App\ResourceConnection;
 use Magento\Store\Model\StoreManagerInterface;
-use Softaware\Blog\Model\AuthorFactory;
-use Softaware\Blog\Model\CategoryFactory;
-use Softaware\Blog\Model\CommentFactory;
-use Softaware\Blog\Model\ImageUploader;
-use Softaware\Blog\Model\Import\FileStorage;
-use Softaware\Blog\Model\Import\ImageDownloader;
-use Softaware\Blog\Model\Import\RedirectWriter;
-use Softaware\Blog\Model\ImportJob;
-use Softaware\Blog\Model\Post;
-use Softaware\Blog\Model\PostFactory;
-use Softaware\Blog\Model\ResourceModel\Author as AuthorResource;
-use Softaware\Blog\Model\ResourceModel\Category as CategoryResource;
-use Softaware\Blog\Model\ResourceModel\Comment as CommentResource;
-use Softaware\Blog\Model\ResourceModel\Post as PostResource;
-use Softaware\Blog\Model\ResourceModel\Tag as TagResource;
-use Softaware\Blog\Model\TagFactory;
-use Softaware\Blog\Model\Url;
-use Softaware\Blog\Model\UrlKeyFormatter;
-use Softaware\Blog\Model\UrlReservedWords;
+use CommerceGears\Blog\Model\AuthorFactory;
+use CommerceGears\Blog\Model\CategoryFactory;
+use CommerceGears\Blog\Model\CommentFactory;
+use CommerceGears\Blog\Model\ImageUploader;
+use CommerceGears\Blog\Model\Import\FileStorage;
+use CommerceGears\Blog\Model\Import\ImageDownloader;
+use CommerceGears\Blog\Model\Import\RedirectWriter;
+use CommerceGears\Blog\Model\ImportJob;
+use CommerceGears\Blog\Model\Post;
+use CommerceGears\Blog\Model\PostFactory;
+use CommerceGears\Blog\Model\ResourceModel\Author as AuthorResource;
+use CommerceGears\Blog\Model\ResourceModel\Category as CategoryResource;
+use CommerceGears\Blog\Model\ResourceModel\Comment as CommentResource;
+use CommerceGears\Blog\Model\ResourceModel\Post as PostResource;
+use CommerceGears\Blog\Model\ResourceModel\Tag as TagResource;
+use CommerceGears\Blog\Model\TagFactory;
+use CommerceGears\Blog\Model\Url;
+use CommerceGears\Blog\Model\UrlKeyFormatter;
+use CommerceGears\Blog\Model\UrlReservedWords;
 
 /**
  * Imports a WordPress export in steps, so large files are spread over several cron runs:
@@ -264,7 +264,7 @@ class Importer
     {
         $siteKey = (string)$this->state['site_key'];
         $externalId = $this->mapper->externalId($siteKey, 'post', (int)$item['post_id']);
-        $postId = $this->findId('softaware_blog_post', 'post_id', $externalId);
+        $postId = $this->findId('commercegears_blog_post', 'post_id', $externalId);
         $title = trim(html_entity_decode((string)$item['title'], ENT_QUOTES | ENT_HTML5, 'UTF-8'));
         if ($title === '') {
             $title = 'Untitled post ' . (int)$item['post_id'];
@@ -351,7 +351,7 @@ class Importer
         $storeId = (int)(array_values(array_filter($storeIds))[0] ?? 0);
         foreach ($comments as $comment) {
             $externalId = $this->mapper->externalId($siteKey, 'comment', (int)$comment['id']);
-            if ($this->findId('softaware_blog_comment', 'comment_id', $externalId)) {
+            if ($this->findId('commercegears_blog_comment', 'comment_id', $externalId)) {
                 continue;
             }
             $data = $this->mapper->mapComment($comment);
@@ -361,7 +361,7 @@ class Importer
             $parentId = 0;
             if ((int)$comment['parent'] > 0) {
                 $parentId = $this->findId(
-                    'softaware_blog_comment',
+                    'commercegears_blog_comment',
                     'comment_id',
                     $this->mapper->externalId($siteKey, 'comment', (int)$comment['parent'])
                 );
@@ -374,7 +374,7 @@ class Importer
                 'external_id' => $externalId,
             ]);
             $this->commentResource->save($model);
-            $this->idCache['softaware_blog_comment|' . $externalId] = (int)$model->getId();
+            $this->idCache['commercegears_blog_comment|' . $externalId] = (int)$model->getId();
             $this->bump('comments');
         }
     }
@@ -392,7 +392,7 @@ class Importer
         foreach ($this->targetStores($storeIds) as $storeId) {
             $target = $this->url->getPostPath($post->getUrlKey(), $storeId);
             // Magento's URL finder matches the address with and without the trailing slash
-            $result = $this->redirectWriter->add($oldPath, $target, $storeId, 'Softaware Blog: WordPress import');
+            $result = $this->redirectWriter->add($oldPath, $target, $storeId, 'CommerceGears Blog: WordPress import');
             if ($result === RedirectWriter::CREATED) {
                 $this->bump('redirects');
             } elseif ($result === RedirectWriter::SKIPPED) {
@@ -457,7 +457,7 @@ class Importer
     }
 
     /**
-     * @return string path below pub/media/softaware_blog/, '' when the image could not be downloaded
+     * @return string path below pub/media/commercegears_blog/, '' when the image could not be downloaded
      */
     private function downloadImage(string $url, string $context): string
     {
@@ -486,7 +486,7 @@ class Importer
             return 0;
         }
         $externalId = $this->mapper->externalId((string)$this->state['site_key'], 'author', $login);
-        $id = $this->findId('softaware_blog_author', 'author_id', $externalId);
+        $id = $this->findId('commercegears_blog_author', 'author_id', $externalId);
         if ($id) {
             return $id;
         }
@@ -503,23 +503,23 @@ class Importer
         $connection = $this->resourceConnection->getConnection();
         $existing = (int)$connection->fetchOne(
             $connection->select()
-                ->from($this->resourceConnection->getTableName('softaware_blog_author'), ['author_id'])
+                ->from($this->resourceConnection->getTableName('commercegears_blog_author'), ['author_id'])
                 ->where('LOWER(name) = ?', mb_strtolower($name))
                 ->limit(1)
         );
         if ($existing) {
-            return $this->idCache['softaware_blog_author|' . $externalId] = $existing;
+            return $this->idCache['commercegears_blog_author|' . $externalId] = $existing;
         }
         $author = $this->authorFactory->create();
         $author->setData([
             'name' => mb_substr($name, 0, 255),
-            'url_key' => $this->uniqueKey('softaware_blog_author', 'author_id', $this->urlKeyFormatter->format($name) ?: 'author'),
+            'url_key' => $this->uniqueKey('commercegears_blog_author', 'author_id', $this->urlKeyFormatter->format($name) ?: 'author'),
             'is_active' => 1,
             'external_id' => $externalId,
         ]);
         $this->authorResource->save($author);
         $this->bump('authors');
-        return $this->idCache['softaware_blog_author|' . $externalId] = (int)$author->getId();
+        return $this->idCache['commercegears_blog_author|' . $externalId] = (int)$author->getId();
     }
 
     private function resolveCategory(string $slug, string $name, string $description = ''): int
@@ -529,14 +529,14 @@ class Importer
             return 0;
         }
         $externalId = $this->mapper->externalId((string)$this->state['site_key'], 'category', $key);
-        $id = $this->findId('softaware_blog_category', 'category_id', $externalId);
+        $id = $this->findId('commercegears_blog_category', 'category_id', $externalId);
         if ($id) {
             return $id;
         }
         $urlKey = $this->urlKeyFormatter->format($key) ?: $this->urlKeyFormatter->format($name);
-        $existing = $urlKey !== '' ? $this->findIdBy('softaware_blog_category', 'category_id', 'url_key', $urlKey) : 0;
+        $existing = $urlKey !== '' ? $this->findIdBy('commercegears_blog_category', 'category_id', 'url_key', $urlKey) : 0;
         if ($existing) {
-            return $this->idCache['softaware_blog_category|' . $externalId] = $existing;
+            return $this->idCache['commercegears_blog_category|' . $externalId] = $existing;
         }
         $category = $this->categoryFactory->create();
         $category->setData([
@@ -548,7 +548,7 @@ class Importer
         ]);
         $this->categoryResource->save($category);
         $this->bump('categories');
-        return $this->idCache['softaware_blog_category|' . $externalId] = (int)$category->getId();
+        return $this->idCache['commercegears_blog_category|' . $externalId] = (int)$category->getId();
     }
 
     private function resolveTag(string $slug, string $name): int
@@ -558,7 +558,7 @@ class Importer
             return 0;
         }
         $externalId = $this->mapper->externalId((string)$this->state['site_key'], 'tag', $key);
-        $id = $this->findId('softaware_blog_tag', 'tag_id', $externalId);
+        $id = $this->findId('commercegears_blog_tag', 'tag_id', $externalId);
         if ($id) {
             return $id;
         }
@@ -566,12 +566,12 @@ class Importer
         $connection = $this->resourceConnection->getConnection();
         $existing = (int)$connection->fetchOne(
             $connection->select()
-                ->from($this->resourceConnection->getTableName('softaware_blog_tag'), ['tag_id'])
+                ->from($this->resourceConnection->getTableName('commercegears_blog_tag'), ['tag_id'])
                 ->where('url_key = ? OR LOWER(name) = ' . $connection->quote(mb_strtolower($name !== '' ? $name : $slug)), $urlKey)
                 ->limit(1)
         );
         if ($existing) {
-            return $this->idCache['softaware_blog_tag|' . $externalId] = $existing;
+            return $this->idCache['commercegears_blog_tag|' . $externalId] = $existing;
         }
         $tag = $this->tagFactory->create();
         $tag->setData([
@@ -581,7 +581,7 @@ class Importer
         ]);
         $this->tagResource->save($tag);
         $this->bump('tags');
-        return $this->idCache['softaware_blog_tag|' . $externalId] = (int)$tag->getId();
+        return $this->idCache['commercegears_blog_tag|' . $externalId] = (int)$tag->getId();
     }
 
     private function uniquePostKey(string $value): string

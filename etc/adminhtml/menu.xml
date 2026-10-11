@@ -1,29 +1,29 @@
 <?xml version="1.0"?>
 <!--
 /**
- * @category  Softaware
- * @package   Softaware_Blog
- * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
  */
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
     <menu>
-        <add id="Softaware_Blog::blog" title="Blog" translate="title" module="Softaware_Blog"
-             sortOrder="45" parent="Softaware_Core::core" resource="Softaware_Blog::blog"/>
-        <add id="Softaware_Blog::posts" title="Posts" translate="title" module="Softaware_Blog" sortOrder="10"
-             parent="Softaware_Blog::blog" action="softaware_blog/post/index" resource="Softaware_Blog::posts"/>
-        <add id="Softaware_Blog::categories" title="Categories" translate="title" module="Softaware_Blog" sortOrder="20"
-             parent="Softaware_Blog::blog" action="softaware_blog/category/index" resource="Softaware_Blog::categories"/>
-        <add id="Softaware_Blog::tags" title="Tags" translate="title" module="Softaware_Blog" sortOrder="30"
-             parent="Softaware_Blog::blog" action="softaware_blog/tag/index" resource="Softaware_Blog::tags"/>
-        <add id="Softaware_Blog::authors" title="Authors" translate="title" module="Softaware_Blog" sortOrder="40"
-             parent="Softaware_Blog::blog" action="softaware_blog/author/index" resource="Softaware_Blog::authors"/>
-        <add id="Softaware_Blog::comments" title="Comments" translate="title" module="Softaware_Blog" sortOrder="50"
-             parent="Softaware_Blog::blog" action="softaware_blog/comment/index" resource="Softaware_Blog::comments"/>
-        <add id="Softaware_Blog::import" title="WordPress Import" translate="title" module="Softaware_Blog" sortOrder="60"
-             parent="Softaware_Blog::blog" action="softaware_blog/import/index" resource="Softaware_Blog::import"/>
-        <add id="Softaware_Blog::config" title="Configuration" translate="title" module="Softaware_Blog" sortOrder="70"
-             parent="Softaware_Blog::blog" action="adminhtml/system_config/edit/section/softaware_blog"
-             resource="Softaware_Blog::config"/>
+        <add id="CommerceGears_Blog::blog" title="Blog" translate="title" module="CommerceGears_Blog"
+             sortOrder="45" parent="CommerceGears_Core::core" resource="CommerceGears_Blog::blog"/>
+        <add id="CommerceGears_Blog::posts" title="Posts" translate="title" module="CommerceGears_Blog" sortOrder="10"
+             parent="CommerceGears_Blog::blog" action="commercegears_blog/post/index" resource="CommerceGears_Blog::posts"/>
+        <add id="CommerceGears_Blog::categories" title="Categories" translate="title" module="CommerceGears_Blog" sortOrder="20"
+             parent="CommerceGears_Blog::blog" action="commercegears_blog/category/index" resource="CommerceGears_Blog::categories"/>
+        <add id="CommerceGears_Blog::tags" title="Tags" translate="title" module="CommerceGears_Blog" sortOrder="30"
+             parent="CommerceGears_Blog::blog" action="commercegears_blog/tag/index" resource="CommerceGears_Blog::tags"/>
+        <add id="CommerceGears_Blog::authors" title="Authors" translate="title" module="CommerceGears_Blog" sortOrder="40"
+             parent="CommerceGears_Blog::blog" action="commercegears_blog/author/index" resource="CommerceGears_Blog::authors"/>
+        <add id="CommerceGears_Blog::comments" title="Comments" translate="title" module="CommerceGears_Blog" sortOrder="50"
+             parent="CommerceGears_Blog::blog" action="commercegears_blog/comment/index" resource="CommerceGears_Blog::comments"/>
+        <add id="CommerceGears_Blog::import" title="WordPress Import" translate="title" module="CommerceGears_Blog" sortOrder="60"
+             parent="CommerceGears_Blog::blog" action="commercegears_blog/import/index" resource="CommerceGears_Blog::import"/>
+        <add id="CommerceGears_Blog::config" title="Configuration" translate="title" module="CommerceGears_Blog" sortOrder="70"
+             parent="CommerceGears_Blog::blog" action="adminhtml/system_config/edit/section/commercegears_blog"
+             resource="CommerceGears_Blog::config"/>
     </menu>
 </config>

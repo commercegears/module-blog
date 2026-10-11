@@ -1,18 +1,18 @@
 <?php
 /**
- * @category  Softaware
- * @package   Softaware_Blog
- * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
  */
 declare(strict_types=1);
 
-namespace Softaware\Blog\Model\Frontend;
+namespace CommerceGears\Blog\Model\Frontend;
 
 use Magento\Cms\Model\Template\FilterProvider;
 use Psr\Log\LoggerInterface;
-use Softaware\Blog\Model\Config;
-use Softaware\Blog\Model\Post;
-use Softaware\Blog\Model\TextAnalyser;
+use CommerceGears\Blog\Model\Config;
+use CommerceGears\Blog\Model\Post;
+use CommerceGears\Blog\Model\TextAnalyser;
 
 /**
  * Post content as HTML (CMS directives and widgets, Page Builder output), excerpts and reading time.
@@ -40,7 +40,7 @@ class ContentRenderer
             try {
                 $this->rendered[$key] = (string)$this->filterProvider->getPageFilter()->setStoreId($storeId)->filter($html);
             } catch (\Throwable $e) {
-                $this->logger->error('Softaware_Blog content filter: ' . $e->getMessage());
+                $this->logger->error('CommerceGears_Blog content filter: ' . $e->getMessage());
                 $this->rendered[$key] = $html;
             }
         }

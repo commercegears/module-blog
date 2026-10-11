@@ -1,15 +1,15 @@
 <?php
 /**
- * @category  Softaware
- * @package   Softaware_Blog
- * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
  */
 declare(strict_types=1);
 
-namespace Softaware\Blog\Test\Unit\Model\Import\WordPress;
+namespace CommerceGears\Blog\Test\Unit\Model\Import\WordPress;
 
 use PHPUnit\Framework\TestCase;
-use Softaware\Blog\Model\Import\WordPress\WxrReader;
+use CommerceGears\Blog\Model\Import\WordPress\WxrReader;
 
 class WxrReaderTest extends TestCase
 {

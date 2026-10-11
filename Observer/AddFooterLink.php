@@ -1,17 +1,17 @@
 <?php
 /**
- * @category  Softaware
- * @package   Softaware_Blog
- * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
  */
 declare(strict_types=1);
 
-namespace Softaware\Blog\Observer;
+namespace CommerceGears\Blog\Observer;
 
 use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
 use Magento\Framework\View\LayoutInterface;
-use Softaware\Blog\Block\FooterLink;
+use CommerceGears\Blog\Block\FooterLink;
 
 /**
  * Adds the blog link to the footer link list of Luma-based themes ("footer_links"). Themes without that list
@@ -23,10 +23,10 @@ class AddFooterLink implements ObserverInterface
     {
         $layout = $observer->getData('layout');
         if (!$layout instanceof LayoutInterface || !$layout->getBlock('footer_links')
-            || $layout->getBlock('softaware.blog.footer.link')
+            || $layout->getBlock('commercegears.blog.footer.link')
         ) {
             return;
         }
-        $layout->addBlock(FooterLink::class, 'softaware.blog.footer.link', 'footer_links');
+        $layout->addBlock(FooterLink::class, 'commercegears.blog.footer.link', 'footer_links');
     }
 }

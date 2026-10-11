@@ -1,15 +1,15 @@
 <?php
 /**
- * @category  Softaware
- * @package   Softaware_Blog
- * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
  */
 
 /**
  * Comments and comment form (Hyvä, Alpine CSP-safe). Cached with the page; the signed-in state comes from
  * the customer section via the private-content-loaded event.
  *
- * @var \Softaware\Blog\Block\Post\Comments $block
+ * @var \CommerceGears\Blog\Block\Post\Comments $block
  * @var \Magento\Framework\Escaper $escaper
  * @var \Hyva\Theme\Model\ViewModelRegistry $viewModels
  * @var \Hyva\Theme\ViewModel\HyvaCsp $hyvaCsp
@@ -28,7 +28,7 @@ $recaptcha = $block->isRecaptchaEnabled() ? $viewModels->require(ReCaptcha::clas
 $recaptchaKey = $block->getRecaptchaKey();
 ?>
 <section id="comments" class="max-w-3xl my-12" aria-labelledby="sw-blog-comments-title"
-         x-data="softawareBlogComments"
+         x-data="commercegearsBlogComments"
          data-config="<?= $escaper->escapeHtmlAttr($block->getJsConfig()) ?>"
          @private-content-loaded.window="onPrivateContent">
     <h2 id="sw-blog-comments-title" class="text-2xl font-semibold mb-6">
@@ -70,7 +70,7 @@ $recaptchaKey = $block->getRecaptchaKey();
         <a href="<?= $escaper->escapeUrl($block->getLoginUrl()) ?>" class="text-primary underline"><?= $escaper->escapeHtml(__('Sign in')) ?></a>
     </p>
     <form x-ref="form" x-show="showForm" method="post" novalidate class="card max-w-2xl p-6"
-          action="<?= $escaper->escapeUrl($block->getUrl('softaware_blog/comment/post')) ?>"
+          action="<?= $escaper->escapeUrl($block->getUrl('commercegears_blog/comment/post')) ?>"
           @submit.prevent="submit"
           <?php if (!$block->areGuestsAllowed()): ?>x-cloak<?php endif; ?>>
         <h3 class="text-lg font-semibold mb-4"><?= $escaper->escapeHtml(__('Leave a comment')) ?></h3>
@@ -111,7 +111,7 @@ $recaptchaKey = $block->getRecaptchaKey();
     </form>
     <script>
         (() => {
-            function softawareBlogComments() {
+            function commercegearsBlogComments() {
                 return {
                     config: {},
                     loggedIn: false,
@@ -206,7 +206,7 @@ $recaptchaKey = $block->getRecaptchaKey();
                 };
             }
 
-            window.addEventListener('alpine:init', () => Alpine.data('softawareBlogComments', softawareBlogComments), {once: true});
+            window.addEventListener('alpine:init', () => Alpine.data('commercegearsBlogComments', commercegearsBlogComments), {once: true});
         })();
     </script>
     <?php $hyvaCsp->registerInlineScript() ?>

@@ -1,12 +1,12 @@
 <?php
 /**
- * @category  Softaware
- * @package   Softaware_Blog
- * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
  */
 declare(strict_types=1);
 
-namespace Softaware\Blog\Ui\Component\Listing\Column;
+namespace CommerceGears\Blog\Ui\Component\Listing\Column;
 
 use Magento\Framework\Escaper;
 use Magento\Framework\View\Element\UiComponent\ContextInterface;
@@ -33,7 +33,7 @@ class CategoryName extends Column
         foreach ($dataSource['data']['items'] ?? [] as $index => $item) {
             $level = max(1, (int)($item['level'] ?? 1));
             $prefix = $level > 1
-                ? '<span class="softaware-blog-indent" aria-hidden="true">' . str_repeat('&nbsp;&nbsp;&nbsp;&nbsp;', $level - 2) . '&#8627;&nbsp;</span>'
+                ? '<span class="commercegears-blog-indent" aria-hidden="true">' . str_repeat('&nbsp;&nbsp;&nbsp;&nbsp;', $level - 2) . '&#8627;&nbsp;</span>'
                 : '';
             $dataSource['data']['items'][$index][(string)$this->getData('name')] = $prefix . $this->escaper->escapeHtml((string)($item['name'] ?? ''));
         }

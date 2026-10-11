@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <!-- posts first on small screens, the sidebar below them -->
+        <referenceContainer name="div.sidebar.main" htmlClass="sidebar sidebar-main order-last"/>
+        <referenceBlock name="commercegears.blog.sidebar" template="CommerceGears_Blog::hyva/sidebar.phtml"/>
+    </body>
+</page>

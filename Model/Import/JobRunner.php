@@ -1,25 +1,25 @@
 <?php
 /**
- * @category  Softaware
- * @package   Softaware_Blog
- * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
  */
 declare(strict_types=1);
 
-namespace Softaware\Blog\Model\Import;
+namespace CommerceGears\Blog\Model\Import;
 
 use Psr\Log\LoggerInterface;
-use Softaware\Blog\Model\Config;
-use Softaware\Blog\Model\Import\WordPress\Importer;
-use Softaware\Blog\Model\ImportJob;
-use Softaware\Blog\Model\ImportJobFactory;
-use Softaware\Blog\Model\ResourceModel\ImportJob as ImportJobResource;
-use Softaware\Blog\Model\ResourceModel\ImportJob\CollectionFactory as ImportJobCollectionFactory;
+use CommerceGears\Blog\Model\Config;
+use CommerceGears\Blog\Model\Import\WordPress\Importer;
+use CommerceGears\Blog\Model\ImportJob;
+use CommerceGears\Blog\Model\ImportJobFactory;
+use CommerceGears\Blog\Model\ResourceModel\ImportJob as ImportJobResource;
+use CommerceGears\Blog\Model\ResourceModel\ImportJob\CollectionFactory as ImportJobCollectionFactory;
 
 /**
  * Queues and runs WordPress import jobs.
  *
- * Cron (group softaware_blog, every minute, own process) runs one batch of the oldest queued job per run, about
+ * Cron (group commercegears_blog, every minute, own process) runs one batch of the oldest queued job per run, about
  * 50 seconds of work, then puts the job back in the queue until it is finished. A job that stopped in the
  * middle (process killed) is queued again after 15 minutes and continues where it stopped.
  */
@@ -125,7 +125,7 @@ class JobRunner
                     $output
                 );
             } catch (\Throwable $e) {
-                $this->logger->error('Softaware_Blog import job ' . $jobId . ': ' . $e->getMessage(), ['exception' => $e]);
+                $this->logger->error('CommerceGears_Blog import job ' . $jobId . ': ' . $e->getMessage(), ['exception' => $e]);
                 $job->setData('log', trim((string)$job->getData('log') . "\n" . gmdate('Y-m-d H:i:s') . ' Import stopped: ' . $e->getMessage()));
                 if ($output) {
                     $output('Import stopped: ' . $e->getMessage());

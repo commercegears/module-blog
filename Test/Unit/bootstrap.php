@@ -19,7 +19,7 @@ if ($autoload !== null) {
 }
 $moduleRoot = dirname(__DIR__, 2);
 spl_autoload_register(static function (string $class) use ($moduleRoot): void {
-    $prefix = 'Softaware\\Blog\\';
+    $prefix = 'CommerceGears\\Blog\\';
     if (str_starts_with($class, $prefix)) {
         $file = $moduleRoot . '/' . str_replace('\\', '/', substr($class, strlen($prefix))) . '.php';
         if (is_file($file)) {

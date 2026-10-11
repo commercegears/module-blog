@@ -1,23 +1,23 @@
 <?php
 /**
- * @category  Softaware
- * @package   Softaware_Blog
- * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
  */
 declare(strict_types=1);
 
-namespace Softaware\Blog\Block\Post;
+namespace CommerceGears\Blog\Block\Post;
 
 use Magento\Framework\DataObject\IdentityInterface;
 use Magento\Framework\View\Element\Template\Context;
-use Softaware\Blog\Block\AbstractBlog;
-use Softaware\Blog\Model\Comment;
-use Softaware\Blog\Model\Comment\Guard;
-use Softaware\Blog\Model\Comment\Recaptcha;
-use Softaware\Blog\Model\Config;
-use Softaware\Blog\Model\Frontend\BlockContext;
-use Softaware\Blog\Model\Post;
-use Softaware\Blog\Model\ResourceModel\Comment\CollectionFactory;
+use CommerceGears\Blog\Block\AbstractBlog;
+use CommerceGears\Blog\Model\Comment;
+use CommerceGears\Blog\Model\Comment\Guard;
+use CommerceGears\Blog\Model\Comment\Recaptcha;
+use CommerceGears\Blog\Model\Config;
+use CommerceGears\Blog\Model\Frontend\BlockContext;
+use CommerceGears\Blog\Model\Post;
+use CommerceGears\Blog\Model\ResourceModel\Comment\CollectionFactory;
 
 /**
  * Approved comments (with store replies) and the comment form. Cached with the page: visitor data
@@ -169,19 +169,19 @@ class Comments extends AbstractBlog implements IdentityInterface
         try {
             $block = $this->getLayout()->createBlock(
                 'Magento\ReCaptchaUi\Block\ReCaptcha',
-                'softaware.blog.comment.recaptcha',
+                'commercegears.blog.comment.recaptcha',
                 ['data' => [
                     'recaptcha_for' => Config::RECAPTCHA_KEY,
                     'jsLayout' => ['components' => ['recaptcha' => [
                         'component' => 'Magento_ReCaptchaFrontendUi/js/reCaptcha',
-                        'reCaptchaId' => 'softaware-blog-comment-recaptcha',
+                        'reCaptchaId' => 'commercegears-blog-comment-recaptcha',
                     ]]],
                 ]]
             );
             $block->setTemplate('Magento_ReCaptchaFrontendUi::recaptcha.phtml');
             return $block->toHtml();
         } catch (\Throwable $e) {
-            $this->_logger->warning('Softaware_Blog reCAPTCHA block: ' . $e->getMessage());
+            $this->_logger->warning('CommerceGears_Blog reCAPTCHA block: ' . $e->getMessage());
             return '';
         }
     }
@@ -189,7 +189,7 @@ class Comments extends AbstractBlog implements IdentityInterface
     public function getJsConfig(): string
     {
         return (string)json_encode([
-            'url' => $this->getUrl('softaware_blog/comment/post'),
+            'url' => $this->getUrl('commercegears_blog/comment/post'),
             'guests' => $this->areGuestsAllowed(),
             'text' => [
                 'error' => (string)__('Sorry, the comment could not be sent. Please try again.'),

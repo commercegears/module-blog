@@ -1,27 +1,27 @@
 <?php
 /**
- * @category  Softaware
- * @package   Softaware_Blog
- * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
  */
 declare(strict_types=1);
 
-namespace Softaware\Blog\Model\Frontend;
+namespace CommerceGears\Blog\Model\Frontend;
 
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\UrlInterface;
 use Magento\Store\Model\ScopeInterface;
 use Magento\Store\Model\StoreManagerInterface;
-use Softaware\Blog\Model\Config;
-use Softaware\Blog\Model\CurrentPage;
-use Softaware\Blog\Model\Post;
-use Softaware\Blog\Model\TextAnalyser;
-use Softaware\Blog\Model\Url;
+use CommerceGears\Blog\Model\Config;
+use CommerceGears\Blog\Model\CurrentPage;
+use CommerceGears\Blog\Model\Post;
+use CommerceGears\Blog\Model\TextAnalyser;
+use CommerceGears\Blog\Model\Url;
 
 /**
  * JSON-LD for blog pages: BlogPosting, Blog, CollectionPage, ProfilePage and BreadcrumbList.
  *
- * Softaware_Seo (when installed) does not describe blog pages, so there is no duplicate; its Organisation
+ * CommerceGears_Seo (when installed) does not describe blog pages, so there is no duplicate; its Organisation
  * node, when set to "every page", sits next to these nodes.
  */
 class StructuredData

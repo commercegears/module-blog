@@ -1,24 +1,24 @@
 <?php
 /**
- * @category  Softaware
- * @package   Softaware_Blog
- * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
  */
 declare(strict_types=1);
 
-namespace Softaware\Blog\Model\Frontend;
+namespace CommerceGears\Blog\Model\Frontend;
 
-use Softaware\Blog\Model\Author;
-use Softaware\Blog\Model\Category;
-use Softaware\Blog\Model\Post;
-use Softaware\Blog\Model\ResourceModel\Author\CollectionFactory as AuthorCollectionFactory;
-use Softaware\Blog\Model\ResourceModel\Category as CategoryResource;
-use Softaware\Blog\Model\ResourceModel\Category\CollectionFactory as CategoryCollectionFactory;
-use Softaware\Blog\Model\ResourceModel\Post\Collection as PostCollection;
-use Softaware\Blog\Model\ResourceModel\Post\CollectionFactory as PostCollectionFactory;
-use Softaware\Blog\Model\ResourceModel\Tag as TagResource;
-use Softaware\Blog\Model\ResourceModel\Tag\CollectionFactory as TagCollectionFactory;
-use Softaware\Blog\Model\Tag;
+use CommerceGears\Blog\Model\Author;
+use CommerceGears\Blog\Model\Category;
+use CommerceGears\Blog\Model\Post;
+use CommerceGears\Blog\Model\ResourceModel\Author\CollectionFactory as AuthorCollectionFactory;
+use CommerceGears\Blog\Model\ResourceModel\Category as CategoryResource;
+use CommerceGears\Blog\Model\ResourceModel\Category\CollectionFactory as CategoryCollectionFactory;
+use CommerceGears\Blog\Model\ResourceModel\Post\Collection as PostCollection;
+use CommerceGears\Blog\Model\ResourceModel\Post\CollectionFactory as PostCollectionFactory;
+use CommerceGears\Blog\Model\ResourceModel\Tag as TagResource;
+use CommerceGears\Blog\Model\ResourceModel\Tag\CollectionFactory as TagCollectionFactory;
+use CommerceGears\Blog\Model\Tag;
 
 /**
  * Storefront reads: posts visible in a store view, categories, tags and authors (cached per request).
@@ -213,9 +213,9 @@ class Catalog
         $collection = $this->createPostCollection($storeId)->excludeIds([(int)$post->getId()]);
         $tagIds = $post->getTagIds() ?: [0];
         $categoryIds = $post->getCategoryIds() ?: [0];
-        $score = '((SELECT COUNT(*) FROM ' . $collection->getTable('softaware_blog_post_tag')
+        $score = '((SELECT COUNT(*) FROM ' . $collection->getTable('commercegears_blog_post_tag')
             . ' rt WHERE rt.post_id = main_table.post_id AND rt.tag_id IN (' . implode(',', array_map('intval', $tagIds)) . ')) * 2'
-            . ' + (SELECT COUNT(*) FROM ' . $collection->getTable('softaware_blog_post_category')
+            . ' + (SELECT COUNT(*) FROM ' . $collection->getTable('commercegears_blog_post_category')
             . ' rc WHERE rc.post_id = main_table.post_id AND rc.category_id IN (' . implode(',', array_map('intval', $categoryIds)) . ')))';
         $collection->getSelect()
             ->columns(['relevance' => new \Zend_Db_Expr($score)])

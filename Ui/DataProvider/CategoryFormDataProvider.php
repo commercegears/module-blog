@@ -1,21 +1,21 @@
 <?php
 /**
- * @category  Softaware
- * @package   Softaware_Blog
- * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
  */
 declare(strict_types=1);
 
-namespace Softaware\Blog\Ui\DataProvider;
+namespace CommerceGears\Blog\Ui\DataProvider;
 
 use Magento\Framework\App\Request\DataPersistorInterface;
 use Magento\Framework\App\RequestInterface;
 use Magento\Framework\Model\AbstractModel;
-use Softaware\Blog\Model\Category;
-use Softaware\Blog\Model\CategoryFactory;
-use Softaware\Blog\Model\ResourceModel\Category as CategoryResource;
-use Softaware\Blog\Model\ResourceModel\Category\CollectionFactory;
-use Softaware\Blog\Model\Source\CategoryOptions;
+use CommerceGears\Blog\Model\Category;
+use CommerceGears\Blog\Model\CategoryFactory;
+use CommerceGears\Blog\Model\ResourceModel\Category as CategoryResource;
+use CommerceGears\Blog\Model\ResourceModel\Category\CollectionFactory;
+use CommerceGears\Blog\Model\Source\CategoryOptions;
 
 class CategoryFormDataProvider extends AbstractFormDataProvider
 {

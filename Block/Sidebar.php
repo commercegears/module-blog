@@ -1,17 +1,17 @@
 <?php
 /**
- * @category  Softaware
- * @package   Softaware_Blog
- * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
  */
 declare(strict_types=1);
 
-namespace Softaware\Blog\Block;
+namespace CommerceGears\Blog\Block;
 
 use Magento\Framework\DataObject\IdentityInterface;
-use Softaware\Blog\Model\Category;
-use Softaware\Blog\Model\Post;
-use Softaware\Blog\Model\Tag;
+use CommerceGears\Blog\Model\Category;
+use CommerceGears\Blog\Model\Post;
+use CommerceGears\Blog\Model\Tag;
 
 /**
  * Sidebar of the blog pages: categories, recent posts, tags and the RSS link.

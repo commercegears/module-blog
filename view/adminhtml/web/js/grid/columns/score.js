@@ -1,7 +1,7 @@
 /**
- * @category  Softaware
- * @package   Softaware_Blog
- * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
  */
 /**
  * SEO checklist score (0-100) shown as a status badge: 80+ green, 50+ yellow, below 50 red.
@@ -13,7 +13,7 @@ define([
 
     return Column.extend({
         defaults: {
-            bodyTmpl: 'Softaware_Blog/grid/cells/score'
+            bodyTmpl: 'CommerceGears_Blog/grid/cells/score'
         },
 
         /**

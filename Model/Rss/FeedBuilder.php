@@ -1,20 +1,20 @@
 <?php
 /**
- * @category  Softaware
- * @package   Softaware_Blog
- * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
  */
 declare(strict_types=1);
 
-namespace Softaware\Blog\Model\Rss;
+namespace CommerceGears\Blog\Model\Rss;
 
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Store\Model\ScopeInterface;
-use Softaware\Blog\Model\Config;
-use Softaware\Blog\Model\Frontend\Catalog;
-use Softaware\Blog\Model\Frontend\ContentRenderer;
-use Softaware\Blog\Model\ResourceModel\Category as CategoryResource;
-use Softaware\Blog\Model\Url;
+use CommerceGears\Blog\Model\Config;
+use CommerceGears\Blog\Model\Frontend\Catalog;
+use CommerceGears\Blog\Model\Frontend\ContentRenderer;
+use CommerceGears\Blog\Model\ResourceModel\Category as CategoryResource;
+use CommerceGears\Blog\Model\Url;
 
 /**
  * Builds the RSS 2.0 document.

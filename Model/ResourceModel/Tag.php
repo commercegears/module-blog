@@ -1,22 +1,22 @@
 <?php
 /**
- * @category  Softaware
- * @package   Softaware_Blog
- * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
  */
 declare(strict_types=1);
 
-namespace Softaware\Blog\Model\ResourceModel;
+namespace CommerceGears\Blog\Model\ResourceModel;
 
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Model\AbstractModel;
 use Magento\Framework\Model\ResourceModel\Db\Context;
-use Softaware\Blog\Model\Tag as TagModel;
-use Softaware\Blog\Model\UrlKeyFormatter;
+use CommerceGears\Blog\Model\Tag as TagModel;
+use CommerceGears\Blog\Model\UrlKeyFormatter;
 
 class Tag extends AbstractContentResource
 {
-    public const TABLE = 'softaware_blog_tag';
+    public const TABLE = 'commercegears_blog_tag';
 
     public function __construct(
         Context $context,
@@ -33,7 +33,7 @@ class Tag extends AbstractContentResource
 
     public function getContentTableName(): string
     {
-        return 'softaware_blog_tag_content';
+        return 'commercegears_blog_tag_content';
     }
 
     public function getStoreFields(): array
@@ -106,12 +106,12 @@ class Tag extends AbstractContentResource
     {
         $connection = $this->getConnection();
         $storeExists = $connection->select()
-            ->from(['ps' => $this->getTable('softaware_blog_post_store')], [new \Zend_Db_Expr('1')])
+            ->from(['ps' => $this->getTable('commercegears_blog_post_store')], [new \Zend_Db_Expr('1')])
             ->where('ps.post_id = p.post_id')
             ->where('ps.store_id IN (?)', array_unique([0, $storeId]));
         $select = $connection->select()
-            ->from(['pt' => $this->getTable('softaware_blog_post_tag')], ['tag_id', 'cnt' => new \Zend_Db_Expr('COUNT(*)')])
-            ->join(['p' => $this->getTable('softaware_blog_post')], 'p.post_id = pt.post_id', [])
+            ->from(['pt' => $this->getTable('commercegears_blog_post_tag')], ['tag_id', 'cnt' => new \Zend_Db_Expr('COUNT(*)')])
+            ->join(['p' => $this->getTable('commercegears_blog_post')], 'p.post_id = pt.post_id', [])
             ->where('p.status = 1')
             ->where('p.publish_at IS NULL OR p.publish_at <= ?', gmdate('Y-m-d H:i:s'))
             ->where('EXISTS (' . $storeExists . ')')

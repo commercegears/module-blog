@@ -1,22 +1,22 @@
 <?php
 /**
- * @category  Softaware
- * @package   Softaware_Blog
- * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
  */
 declare(strict_types=1);
 
-namespace Softaware\Blog\Ui\DataProvider;
+namespace CommerceGears\Blog\Ui\DataProvider;
 
 use Magento\Framework\App\Request\DataPersistorInterface;
 use Magento\Framework\App\RequestInterface;
 use Magento\Framework\Model\AbstractModel;
 use Magento\Framework\UrlInterface;
 use Magento\Store\Model\StoreManagerInterface;
-use Softaware\Blog\Model\CommentFactory;
-use Softaware\Blog\Model\ResourceModel\Comment as CommentResource;
-use Softaware\Blog\Model\ResourceModel\Comment\CollectionFactory;
-use Softaware\Blog\Model\ResourceModel\Post as PostResource;
+use CommerceGears\Blog\Model\CommentFactory;
+use CommerceGears\Blog\Model\ResourceModel\Comment as CommentResource;
+use CommerceGears\Blog\Model\ResourceModel\Comment\CollectionFactory;
+use CommerceGears\Blog\Model\ResourceModel\Post as PostResource;
 
 class CommentFormDataProvider extends AbstractFormDataProvider
 {
@@ -58,7 +58,7 @@ class CommentFormDataProvider extends AbstractFormDataProvider
                 ->where('post_id = ?', (int)$entity->getData('post_id'))
         );
         $data['post_title'] = $title;
-        $data['post_link'] = $this->urlBuilder->getUrl('softaware_blog/post/edit', ['id' => (int)$entity->getData('post_id')]);
+        $data['post_link'] = $this->urlBuilder->getUrl('commercegears_blog/post/edit', ['id' => (int)$entity->getData('post_id')]);
         $data['status'] = (string)(int)$entity->getData('status');
         $storeId = (int)$entity->getData('store_id');
         try {

@@ -1,6 +1,6 @@
-# Softaware Blog for Magento 2
+# CommerceGears Blog for Magento 2
 
-`softaware/module-blog` (Magento module `Softaware_Blog`): a blog inside the Magento store, for Luma and Hyvä.
+`commercegears/module-blog` (Magento module `CommerceGears_Blog`): a blog inside the Magento store, for Luma and Hyvä.
 
 ## Features
 
@@ -25,27 +25,27 @@
 
 ## Admin
 
-- Softaware > Blog > Posts, Categories, Tags, Authors, Comments, WordPress Import.
-- Settings: Stores > Configuration > Softaware > Blog (section `softaware_blog`).
-- Permissions (System > User Roles): Softaware > Blog with Posts (Create and Edit, Publish, Delete), Categories,
-  Tags, Authors, Comments (Moderate and Reply, Delete), WordPress Import; Stores > Configuration > Softaware Blog.
+- CommerceGears > Blog > Posts, Categories, Tags, Authors, Comments, WordPress Import.
+- Settings: Stores > Configuration > CommerceGears > Blog (section `commercegears_blog`).
+- Permissions (System > User Roles): CommerceGears > Blog with Posts (Create and Edit, Publish, Delete), Categories,
+  Tags, Authors, Comments (Moderate and Reply, Delete), WordPress Import; Stores > Configuration > CommerceGears Blog.
 
 ## Command line
 
 ```
-bin/magento softaware:blog:import-wordpress <file> [--store=1,2] [--no-images] [--no-redirects] [--no-comments] [--drafts] [--update] [--queue]
-bin/magento softaware:blog:import-wordpress --job=<id>     # run or continue a job queued in the admin
-bin/magento softaware:blog:publish-scheduled               # refresh the caches of scheduled posts that are due
-bin/magento softaware:blog:sample-data [--remove]          # add or remove the sample posts
+bin/magento commercegears:blog:import-wordpress <file> [--store=1,2] [--no-images] [--no-redirects] [--no-comments] [--drafts] [--update] [--queue]
+bin/magento commercegears:blog:import-wordpress --job=<id>     # run or continue a job queued in the admin
+bin/magento commercegears:blog:publish-scheduled               # refresh the caches of scheduled posts that are due
+bin/magento commercegears:blog:sample-data [--remove]          # add or remove the sample posts
 ```
 
-Cron jobs: `softaware_blog_publish_scheduled` (every 5 minutes, group `default`) and `softaware_blog_process_imports`
-(every minute, own group `softaware_blog` in a separate process).
+Cron jobs: `commercegears_blog_publish_scheduled` (every 5 minutes, group `default`) and `commercegears_blog_process_imports`
+(every minute, own group `commercegears_blog` in a separate process).
 
 ## Compatibility
 
 Magento Open Source and Adobe Commerce 2.4.7 to 2.4.9, PHP 8.2 to 8.5, Luma and Hyvä themes (Hyvä templates are
-Alpine CSP-safe). Requires `softaware/module-core` ^1.3.
+Alpine CSP-safe). Requires `commercegears/module-core` ^1.3.
 
 ## Limitations
 

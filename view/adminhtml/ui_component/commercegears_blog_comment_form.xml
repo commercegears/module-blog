@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
+ */
+-->
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">commercegears_blog_comment_form.commercegears_blog_comment_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Comment</item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="back" class="CommerceGears\Blog\Block\Adminhtml\Edit\BackButton"/>
+            <button name="delete" class="CommerceGears\Blog\Block\Adminhtml\Edit\DeleteButton"/>
+            <button name="save_and_continue" class="CommerceGears\Blog\Block\Adminhtml\Edit\SaveAndContinueButton"/>
+            <button name="save" class="CommerceGears\Blog\Block\Adminhtml\Edit\SaveButton"/>
+        </buttons>
+        <namespace>commercegears_blog_comment_form</namespace>
+        <dataScope>data</dataScope>
+        <deps>
+            <dep>commercegears_blog_comment_form.commercegears_blog_comment_form_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="commercegears_blog_comment_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="commercegears_blog/comment/save"/>
+        </settings>
+        <dataProvider class="CommerceGears\Blog\Ui\DataProvider\CommentFormDataProvider" name="commercegears_blog_comment_form_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>comment_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <fieldset name="general" sortOrder="10">
+        <settings>
+            <label translate="true">Comment</label>
+            <collapsible>false</collapsible>
+        </settings>
+        <field name="comment_id" formElement="input" sortOrder="1">
+            <settings>
+                <dataType>text</dataType>
+                <visible>false</visible>
+                <dataScope>comment_id</dataScope>
+            </settings>
+        </field>
+        <field name="post_title" formElement="input" sortOrder="10">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="elementTmpl" xsi:type="string">ui/form/element/text</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Post</label>
+                <dataScope>post_title</dataScope>
+            </settings>
+        </field>
+        <field name="author_name" formElement="input" sortOrder="20">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="elementTmpl" xsi:type="string">ui/form/element/text</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Name</label>
+                <dataScope>author_name</dataScope>
+            </settings>
+        </field>
+        <field name="author_email" formElement="input" sortOrder="30">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="elementTmpl" xsi:type="string">ui/form/element/text</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">E-mail</label>
+                <notice translate="true">Never shown on the storefront.</notice>
+                <dataScope>author_email</dataScope>
+            </settings>
+        </field>
+        <field name="store_name" formElement="input" sortOrder="40">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="elementTmpl" xsi:type="string">ui/form/element/text</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Store View</label>
+                <dataScope>store_name</dataScope>
+            </settings>
+        </field>
+        <field name="status" formElement="select" sortOrder="50">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Status</label>
+                <notice translate="true">Only approved comments are shown on the post.</notice>
+                <dataScope>status</dataScope>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="CommerceGears\Blog\Model\Source\CommentStatus"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="content" formElement="textarea" sortOrder="60">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Comment</label>
+                <notice translate="true">You can correct the text, for example to remove personal details.</notice>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataScope>content</dataScope>
+            </settings>
+            <formElements>
+                <textarea>
+                    <settings>
+                        <rows>6</rows>
+                    </settings>
+                </textarea>
+            </formElements>
+        </field>
+    </fieldset>
+    <fieldset name="reply" sortOrder="20">
+        <settings>
+            <label translate="true">Reply</label>
+            <collapsible>true</collapsible>
+            <opened>true</opened>
+        </settings>
+        <field name="reply" formElement="textarea" sortOrder="10">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Your Reply</label>
+                <notice translate="true">Published under the post in the store's name (Configuration &gt; Comments &gt; Store Replies Signed As), below this comment.</notice>
+                <dataScope>reply</dataScope>
+            </settings>
+            <formElements>
+                <textarea>
+                    <settings>
+                        <rows>5</rows>
+                    </settings>
+                </textarea>
+            </formElements>
+        </field>
+    </fieldset>
+</form>

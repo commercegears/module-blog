@@ -1,28 +1,28 @@
 <?php
 /**
- * @category  Softaware
- * @package   Softaware_Blog
- * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
  */
 declare(strict_types=1);
 
-namespace Softaware\Blog\Controller\Adminhtml\Comment;
+namespace CommerceGears\Blog\Controller\Adminhtml\Comment;
 
 use Magento\Backend\App\Action;
 use Magento\Framework\App\Action\HttpPostActionInterface;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Store\Model\StoreManagerInterface;
-use Softaware\Blog\Model\Comment;
-use Softaware\Blog\Model\CommentFactory;
-use Softaware\Blog\Model\Config;
-use Softaware\Blog\Model\ResourceModel\Comment as CommentResource;
+use CommerceGears\Blog\Model\Comment;
+use CommerceGears\Blog\Model\CommentFactory;
+use CommerceGears\Blog\Model\Config;
+use CommerceGears\Blog\Model\ResourceModel\Comment as CommentResource;
 
 /**
  * Moderation: status and text of a comment, and an optional reply in the store's name.
  */
 class Save extends Action implements HttpPostActionInterface
 {
-    public const ADMIN_RESOURCE = 'Softaware_Blog::comments_moderate';
+    public const ADMIN_RESOURCE = 'CommerceGears_Blog::comments_moderate';
 
     public function __construct(
         Action\Context $context,

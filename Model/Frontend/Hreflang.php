@@ -1,21 +1,21 @@
 <?php
 /**
- * @category  Softaware
- * @package   Softaware_Blog
- * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
  */
 declare(strict_types=1);
 
-namespace Softaware\Blog\Model\Frontend;
+namespace CommerceGears\Blog\Model\Frontend;
 
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Store\Model\ScopeInterface;
 use Magento\Store\Model\StoreManagerInterface;
-use Softaware\Blog\Model\Config;
-use Softaware\Blog\Model\CurrentPage;
-use Softaware\Blog\Model\ResourceModel\Category as CategoryResource;
-use Softaware\Blog\Model\ResourceModel\Post as PostResource;
-use Softaware\Blog\Model\Url;
+use CommerceGears\Blog\Model\Config;
+use CommerceGears\Blog\Model\CurrentPage;
+use CommerceGears\Blog\Model\ResourceModel\Category as CategoryResource;
+use CommerceGears\Blog\Model\ResourceModel\Post as PostResource;
+use CommerceGears\Blog\Model\Url;
 
 /**
  * Alternate links between store views for the blog home page, categories and posts. One store view per

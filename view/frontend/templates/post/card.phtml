@@ -1,17 +1,17 @@
 <?php
 /**
- * @category  Softaware
- * @package   Softaware_Blog
- * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
  */
 
 /**
  * Post card (Luma). Rendered through AbstractBlog::renderCard().
  *
- * @var \Softaware\Blog\Block\AbstractBlog $block
+ * @var \CommerceGears\Blog\Block\AbstractBlog $block
  * @var \Magento\Framework\Escaper $escaper
  */
-/** @var \Softaware\Blog\Model\Post $post */
+/** @var \CommerceGears\Blog\Model\Post $post */
 $post = $block->getData('card_post');
 $variant = (string)$block->getData('card_variant');
 $tag = (string)$block->getData('card_heading');

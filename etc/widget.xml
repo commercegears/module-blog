@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
 <!--
 /**
- * @category  Softaware
- * @package   Softaware_Blog
- * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
  */
 -->
 <widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
-    <widget id="softaware_blog_recent_posts" class="Softaware\Blog\Block\Widget\RecentPosts" is_email_compatible="false">
-        <label translate="true">Softaware Blog: Recent Posts</label>
+    <widget id="commercegears_blog_recent_posts" class="CommerceGears\Blog\Block\Widget\RecentPosts" is_email_compatible="false">
+        <label translate="true">CommerceGears Blog: Recent Posts</label>
         <description translate="true">Latest blog posts, optionally from one category or featured posts only</description>
         <parameters>
             <parameter name="title" xsi:type="text" visible="true" sort_order="10">
@@ -20,7 +20,7 @@
                 <description translate="true">1 to 24.</description>
                 <value>3</value>
             </parameter>
-            <parameter name="category_id" xsi:type="select" visible="true" source_model="Softaware\Blog\Model\Source\CategoryOptions" sort_order="30">
+            <parameter name="category_id" xsi:type="select" visible="true" source_model="CommerceGears\Blog\Model\Source\CategoryOptions" sort_order="30">
                 <label translate="true">Category</label>
                 <description translate="true">Includes posts of its subcategories.</description>
             </parameter>
@@ -59,15 +59,15 @@
             </parameter>
             <parameter name="template" xsi:type="select" visible="false">
                 <options>
-                    <option name="default" value="Softaware_Blog::widget/recent-posts.phtml" selected="true">
+                    <option name="default" value="CommerceGears_Blog::widget/recent-posts.phtml" selected="true">
                         <label translate="true">Default Template</label>
                     </option>
                 </options>
             </parameter>
         </parameters>
     </widget>
-    <widget id="softaware_blog_categories" class="Softaware\Blog\Block\Widget\Categories" is_email_compatible="false">
-        <label translate="true">Softaware Blog: Categories</label>
+    <widget id="commercegears_blog_categories" class="CommerceGears\Blog\Block\Widget\Categories" is_email_compatible="false">
+        <label translate="true">CommerceGears Blog: Categories</label>
         <description translate="true">Links to the blog categories</description>
         <parameters>
             <parameter name="title" xsi:type="text" visible="true" sort_order="10">
@@ -80,15 +80,15 @@
             </parameter>
             <parameter name="template" xsi:type="select" visible="false">
                 <options>
-                    <option name="default" value="Softaware_Blog::widget/categories.phtml" selected="true">
+                    <option name="default" value="CommerceGears_Blog::widget/categories.phtml" selected="true">
                         <label translate="true">Default Template</label>
                     </option>
                 </options>
             </parameter>
         </parameters>
     </widget>
-    <widget id="softaware_blog_tags" class="Softaware\Blog\Block\Widget\TagCloud" is_email_compatible="false">
-        <label translate="true">Softaware Blog: Tags</label>
+    <widget id="commercegears_blog_tags" class="CommerceGears\Blog\Block\Widget\TagCloud" is_email_compatible="false">
+        <label translate="true">CommerceGears Blog: Tags</label>
         <description translate="true">Most used blog tags</description>
         <parameters>
             <parameter name="title" xsi:type="text" visible="true" sort_order="10">
@@ -102,7 +102,7 @@
             </parameter>
             <parameter name="template" xsi:type="select" visible="false">
                 <options>
-                    <option name="default" value="Softaware_Blog::widget/tags.phtml" selected="true">
+                    <option name="default" value="CommerceGears_Blog::widget/tags.phtml" selected="true">
                         <label translate="true">Default Template</label>
                     </option>
                 </options>

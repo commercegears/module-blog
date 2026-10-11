@@ -1,12 +1,12 @@
 <?php
 /**
- * @category  Softaware
- * @package   Softaware_Blog
- * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
  */
 declare(strict_types=1);
 
-namespace Softaware\Blog\Model;
+namespace CommerceGears\Blog\Model;
 
 use Magento\Catalog\Model\ResourceModel\Product as ProductResource;
 use Magento\Framework\App\Filesystem\DirectoryList;
@@ -20,8 +20,8 @@ use Magento\Framework\Filesystem;
 class SampleData
 {
     public const PREFIX = 'sample:';
-    private const NOTE = '<p><em>This is sample content from Softaware Blog. Edit or delete it under Softaware &gt; Blog &gt; Posts, '
-        . 'or remove all sample content with <code>bin/magento softaware:blog:sample-data --remove</code>.</em></p>';
+    private const NOTE = '<p><em>This is sample content from CommerceGears Blog. Edit or delete it under CommerceGears &gt; Blog &gt; Posts, '
+        . 'or remove all sample content with <code>bin/magento commercegears:blog:sample-data --remove</code>.</em></p>';
 
     public function __construct(
         private readonly ResourceConnection $resourceConnection,
@@ -46,7 +46,7 @@ class SampleData
         $connection = $this->resourceConnection->getConnection();
         return (bool)$connection->fetchOne(
             $connection->select()
-                ->from($this->resourceConnection->getTableName('softaware_blog_post'), ['post_id'])
+                ->from($this->resourceConnection->getTableName('commercegears_blog_post'), ['post_id'])
                 ->where('external_id LIKE ?', self::PREFIX . '%')
                 ->limit(1)
         );
@@ -64,9 +64,9 @@ class SampleData
         $author = $this->authorFactory->create();
         $author->setData([
             'name' => 'Alex Morgan',
-            'url_key' => $this->freeKey('softaware_blog_author', 'alex-morgan'),
+            'url_key' => $this->freeKey('commercegears_blog_author', 'alex-morgan'),
             'job_title' => 'Editor (sample author)',
-            'bio' => 'Sample author created by Softaware Blog\'s sample data. Replace this text with a short biography.',
+            'bio' => 'Sample author created by CommerceGears Blog\'s sample data. Replace this text with a short biography.',
             'is_active' => 1,
             'external_id' => self::PREFIX . 'author:1',
         ]);
@@ -81,7 +81,7 @@ class SampleData
             $category = $this->categoryFactory->create();
             $category->setData([
                 'name' => $name,
-                'url_key' => $this->freeKey('softaware_blog_category', $key),
+                'url_key' => $this->freeKey('commercegears_blog_category', $key),
                 'parent_id' => $parent ? $categories[$parent] : null,
                 'description' => '<p>' . $description . '</p>',
                 'is_active' => 1,
@@ -98,7 +98,7 @@ class SampleData
             $tag = $this->tagFactory->create();
             $tag->setData([
                 'name' => $name,
-                'url_key' => $this->freeKey('softaware_blog_tag', $key),
+                'url_key' => $this->freeKey('commercegears_blog_tag', $key),
                 'external_id' => self::PREFIX . 'tag:' . $key,
             ]);
             $this->tagResource->save($tag);
@@ -112,7 +112,7 @@ class SampleData
             $image = $this->createImage($data['colours'], $data['url_key']);
             $post->setData([
                 'title' => $data['title'],
-                'url_key' => $this->freeKey('softaware_blog_post', $data['url_key']),
+                'url_key' => $this->freeKey('commercegears_blog_post', $data['url_key']),
                 'short_content' => $data['excerpt'],
                 'content' => $data['content'] . self::NOTE,
                 'featured_image' => $image ?: null,
@@ -158,7 +158,7 @@ class SampleData
     public function remove(): array
     {
         $connection = $this->resourceConnection->getConnection();
-        $postTable = $this->resourceConnection->getTableName('softaware_blog_post');
+        $postTable = $this->resourceConnection->getTableName('commercegears_blog_post');
         $images = $connection->fetchCol(
             $connection->select()->from($postTable, ['featured_image'])
                 ->where('external_id LIKE ?', self::PREFIX . '%')
@@ -166,10 +166,10 @@ class SampleData
         );
         $result = [];
         foreach ([
-            'comments' => 'softaware_blog_comment',
-            'posts' => 'softaware_blog_post',
-            'tags' => 'softaware_blog_tag',
-            'authors' => 'softaware_blog_author',
+            'comments' => 'commercegears_blog_comment',
+            'posts' => 'commercegears_blog_post',
+            'tags' => 'commercegears_blog_tag',
+            'authors' => 'commercegears_blog_author',
         ] as $type => $table) {
             $result[$type] = $connection->delete(
                 $this->resourceConnection->getTableName($table),
@@ -178,7 +178,7 @@ class SampleData
         }
         // subcategories first (parent_id is set to NULL on delete, so the order only keeps the count right)
         $result['categories'] = $connection->delete(
-            $this->resourceConnection->getTableName('softaware_blog_category'),
+            $this->resourceConnection->getTableName('commercegears_blog_category'),
             ['external_id LIKE ?' => self::PREFIX . '%']
         );
         $media = $this->filesystem->getDirectoryWrite(DirectoryList::MEDIA);

@@ -1,21 +1,21 @@
 <!--
 /**
- * @category  Softaware
- * @package   Softaware_Blog
- * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
  */
 -->
-<div class="softaware-seo">
-    <div class="softaware-seo-score">
-        <div class="softaware-seo-score-value" data-bind="css: scoreClass(), text: score()"></div>
-        <div class="softaware-seo-score-text">
+<div class="commercegears-seo">
+    <div class="commercegears-seo-score">
+        <div class="commercegears-seo-score-value" data-bind="css: scoreClass(), text: score()"></div>
+        <div class="commercegears-seo-score-text">
             <strong data-bind="i18n: 'SEO score'"></strong>
             <small data-bind="i18n: 'Updates as you type. Saved with the post and shown in the posts grid. These are guidelines, not rules.'"></small>
         </div>
     </div>
-    <ul class="softaware-seo-list" aria-live="polite" data-bind="foreach: {data: checks(), as: 'check'}">
+    <ul class="commercegears-seo-list" aria-live="polite" data-bind="foreach: {data: checks(), as: 'check'}">
         <li data-bind="css: '_' + check.status">
-            <span class="softaware-seo-status" data-bind="text: $parent.statusLabel(check.status) + ': '"></span>
+            <span class="commercegears-seo-status" data-bind="text: $parent.statusLabel(check.status) + ': '"></span>
             <span data-bind="text: check.message"></span>
         </li>
     </ul>

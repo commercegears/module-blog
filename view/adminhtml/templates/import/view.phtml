@@ -1,10 +1,10 @@
 <?php
 /**
- * @category  Softaware
- * @package   Softaware_Blog
- * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
  *
- * @var \Softaware\Blog\Block\Adminhtml\Import\View $block
+ * @var \CommerceGears\Blog\Block\Adminhtml\Import\View $block
  * @var \Magento\Framework\Escaper $escaper
  */
 $job = $block->getJob();
@@ -12,7 +12,7 @@ if (!$job) {
     return;
 }
 ?>
-<p class="softaware-page-intro">
+<p class="commercegears-page-intro">
     <?= $escaper->escapeHtml(__(
         '%1, status: %2. Queued %3%4.',
         (string)($job->getData('original_name') ?: $job->getData('file_name')),
@@ -21,7 +21,7 @@ if (!$job) {
         $job->getData('finished_at') ? ', ' . __('finished %1', $block->formatUtc((string)$job->getData('finished_at'))) : ''
     )) ?>
 </p>
-<ul class="softaware-blog-import-stats">
+<ul class="commercegears-blog-import-stats">
     <?php foreach ($block->getCounts() as $label => $count): ?>
         <li><strong><?= (int)$count ?></strong><?= $escaper->escapeHtml($label) ?></li>
     <?php endforeach; ?>
@@ -35,5 +35,5 @@ if (!$job) {
     <?php endforeach; ?>
 </div>
 <h2 class="admin__legend"><?= $escaper->escapeHtml(__('Log')) ?></h2>
-<div class="softaware-blog-import-log" tabindex="0"><?= $escaper->escapeHtml((string)$job->getData('log') ?: __('Nothing logged yet. The job starts with the next cron run.')) ?></div>
-<p><a class="action-default" href="<?= $escaper->escapeUrl($block->getUrl('softaware_blog/import/index')) ?>"><?= $escaper->escapeHtml(__('Back to WordPress Import')) ?></a></p>
+<div class="commercegears-blog-import-log" tabindex="0"><?= $escaper->escapeHtml((string)$job->getData('log') ?: __('Nothing logged yet. The job starts with the next cron run.')) ?></div>
+<p><a class="action-default" href="<?= $escaper->escapeUrl($block->getUrl('commercegears_blog/import/index')) ?>"><?= $escaper->escapeHtml(__('Back to WordPress Import')) ?></a></p>

@@ -1,18 +1,18 @@
 <?php
 /**
- * @category  Softaware
- * @package   Softaware_Blog
- * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
  */
 declare(strict_types=1);
 
-namespace Softaware\Blog\Model\Frontend;
+namespace CommerceGears\Blog\Model\Frontend;
 
 use Magento\Framework\Data\Tree\Node;
 use Magento\Store\Model\StoreManagerInterface;
-use Softaware\Blog\Model\Config;
-use Softaware\Blog\Model\CurrentPage;
-use Softaware\Blog\Model\Url;
+use CommerceGears\Blog\Model\Config;
+use CommerceGears\Blog\Model\CurrentPage;
+use CommerceGears\Blog\Model\Url;
 
 /**
  * "Blog" link at the end of the main menu (Luma top menu and Hyvä navigation), when switched on in the settings.
@@ -39,7 +39,7 @@ class MenuLink
         $node = new Node(
             [
                 'name' => $this->config->getTitle($storeId),
-                'id' => 'softaware-blog',
+                'id' => 'commercegears-blog',
                 'url' => $this->url->getHomeUrl($storeId),
                 'has_active' => false,
                 'is_active' => $markActive && $this->currentPage->isBlogPage(),

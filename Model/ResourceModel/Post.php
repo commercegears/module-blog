@@ -1,26 +1,26 @@
 <?php
 /**
- * @category  Softaware
- * @package   Softaware_Blog
- * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
  */
 declare(strict_types=1);
 
-namespace Softaware\Blog\Model\ResourceModel;
+namespace CommerceGears\Blog\Model\ResourceModel;
 
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Model\AbstractModel;
 use Magento\Framework\Model\ResourceModel\Db\Context;
 use Magento\Framework\UrlInterface;
 use Magento\Store\Model\StoreManagerInterface;
-use Softaware\Blog\Model\Post as PostModel;
-use Softaware\Blog\Model\SeoChecklist;
-use Softaware\Blog\Model\UrlKeyFormatter;
-use Softaware\Blog\Model\UrlReservedWords;
+use CommerceGears\Blog\Model\Post as PostModel;
+use CommerceGears\Blog\Model\SeoChecklist;
+use CommerceGears\Blog\Model\UrlKeyFormatter;
+use CommerceGears\Blog\Model\UrlReservedWords;
 
 class Post extends AbstractContentResource
 {
-    public const TABLE = 'softaware_blog_post';
+    public const TABLE = 'commercegears_blog_post';
 
     public function __construct(
         Context $context,
@@ -40,7 +40,7 @@ class Post extends AbstractContentResource
 
     public function getContentTableName(): string
     {
-        return 'softaware_blog_post_content';
+        return 'commercegears_blog_post_content';
     }
 
     public function getStoreFields(): array
@@ -113,16 +113,16 @@ class Post extends AbstractContentResource
             if (in_array(0, $storeIds, true)) {
                 $storeIds = [0];
             }
-            $this->replaceLinks('softaware_blog_post_store', $postId, 'store_id', $storeIds);
+            $this->replaceLinks('commercegears_blog_post_store', $postId, 'store_id', $storeIds);
         }
         if ($object->hasData(PostModel::CATEGORY_IDS)) {
-            $this->replaceLinks('softaware_blog_post_category', $postId, 'category_id', array_filter($object->getCategoryIds()));
+            $this->replaceLinks('commercegears_blog_post_category', $postId, 'category_id', array_filter($object->getCategoryIds()));
         }
         if ($object->hasData(PostModel::TAG_IDS)) {
-            $this->replaceLinks('softaware_blog_post_tag', $postId, 'tag_id', array_filter($object->getTagIds()));
+            $this->replaceLinks('commercegears_blog_post_tag', $postId, 'tag_id', array_filter($object->getTagIds()));
         }
         if ($object->hasData(PostModel::PRODUCT_IDS)) {
-            $old = $this->getLinkIds('softaware_blog_post_product', $postId, 'product_id');
+            $old = $this->getLinkIds('commercegears_blog_post_product', $postId, 'product_id');
             $new = array_values(array_filter($object->getProductIds()));
             $this->saveProductLinks($postId, $new);
             $object->setData('_affected_product_ids', array_unique(array_merge($old, $new)));
@@ -139,9 +139,9 @@ class Post extends AbstractContentResource
         /** @var PostModel $object */
         if ($object->getId()) {
             $postId = (int)$object->getId();
-            $object->setData(PostModel::STORE_IDS, $this->getLinkIds('softaware_blog_post_store', $postId, 'store_id'));
-            $object->setData(PostModel::CATEGORY_IDS, $this->getLinkIds('softaware_blog_post_category', $postId, 'category_id'));
-            $object->setData(PostModel::TAG_IDS, $this->getLinkIds('softaware_blog_post_tag', $postId, 'tag_id'));
+            $object->setData(PostModel::STORE_IDS, $this->getLinkIds('commercegears_blog_post_store', $postId, 'store_id'));
+            $object->setData(PostModel::CATEGORY_IDS, $this->getLinkIds('commercegears_blog_post_category', $postId, 'category_id'));
+            $object->setData(PostModel::TAG_IDS, $this->getLinkIds('commercegears_blog_post_tag', $postId, 'tag_id'));
             $object->setData(PostModel::PRODUCT_IDS, $this->getProductIds($postId));
         }
         return parent::_afterLoad($object);
@@ -174,7 +174,7 @@ class Post extends AbstractContentResource
         $connection = $this->getConnection();
         return array_map('intval', $connection->fetchCol(
             $connection->select()
-                ->from($this->getTable('softaware_blog_post_product'), ['product_id'])
+                ->from($this->getTable('commercegears_blog_post_product'), ['product_id'])
                 ->where('post_id = ?', $postId)
                 ->order(['position ASC', 'product_id ASC'])
         ));
@@ -203,7 +203,7 @@ class Post extends AbstractContentResource
     private function saveProductLinks(int $postId, array $productIds): void
     {
         $connection = $this->getConnection();
-        $table = $this->getTable('softaware_blog_post_product');
+        $table = $this->getTable('commercegears_blog_post_product');
         $connection->delete($table, ['post_id = ?' => $postId]);
         if (!$productIds) {
             return;

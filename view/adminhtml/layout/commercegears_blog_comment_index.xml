@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="CommerceGears_Blog::css/admin.css"/>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block class="Magento\Backend\Block\Template" name="commercegears.blog.intro" template="CommerceGears_Blog::page/intro.phtml" before="-">
+                <arguments>
+                    <argument name="intro" xsi:type="string" translate="true">Comments from the post pages. Approve them to show them on the storefront, or reply in the store's name.</argument>
+                </arguments>
+            </block>
+            <uiComponent name="commercegears_blog_comment_listing"/>
+        </referenceContainer>
+    </body>
+</page>

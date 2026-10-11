@@ -1,0 +1,238 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
+ */
+-->
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">commercegears_blog_post_listing.commercegears_blog_post_listing_data_source</item>
+        </item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="add">
+                <url path="*/*/new"/>
+                <class>primary</class>
+                <label translate="true">Add New Post</label>
+            </button>
+        </buttons>
+        <spinner>commercegears_blog_post_listing_columns</spinner>
+        <deps>
+            <dep>commercegears_blog_post_listing.commercegears_blog_post_listing_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="commercegears_blog_post_listing_data_source" component="Magento_Ui/js/grid/provider">
+        <settings>
+            <storageConfig>
+                <param name="indexField" xsi:type="string">post_id</param>
+            </storageConfig>
+            <updateUrl path="mui/index/render"/>
+        </settings>
+        <aclResource>CommerceGears_Blog::posts</aclResource>
+        <dataProvider class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider" name="commercegears_blog_post_listing_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>post_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <listingToolbar name="listing_top">
+        <settings>
+            <sticky>true</sticky>
+        </settings>
+        <bookmark name="bookmarks"/>
+        <columnsControls name="columns_controls"/>
+        <filterSearch name="fulltext"/>
+        <filters name="listing_filters">
+            <filterSelect name="store_id" provider="${ $.parentName }" sortOrder="200">
+                <settings>
+                    <captionValue>0</captionValue>
+                    <options class="Magento\Cms\Ui\Component\Listing\Column\Cms\Options"/>
+                    <label translate="true">Store View</label>
+                    <dataScope>store_id</dataScope>
+                    <imports>
+                        <link name="visible">componentType = column, index = ${ $.index }:visible</link>
+                    </imports>
+                </settings>
+            </filterSelect>
+            <filterSelect name="category_id" provider="${ $.parentName }" sortOrder="210">
+                <settings>
+                    <options class="CommerceGears\Blog\Model\Source\CategoryTree"/>
+                    <caption translate="true">Any category</caption>
+                    <label translate="true">Category</label>
+                    <dataScope>category_id</dataScope>
+                </settings>
+            </filterSelect></filters>
+        <massaction name="listing_massaction">
+            <action name="publish">
+                <settings>
+                    <url path="commercegears_blog/post/massStatus">
+                        <param name="status">1</param>
+                    </url>
+                    <type>publish</type>
+                    <label translate="true">Publish</label>
+                </settings>
+            </action>
+            <action name="draft">
+                <settings>
+                    <url path="commercegears_blog/post/massStatus">
+                        <param name="status">0</param>
+                    </url>
+                    <type>draft</type>
+                    <label translate="true">Set to Draft</label>
+                </settings>
+            </action>
+            <action name="delete">
+                <settings>
+                    <confirm>
+                        <message translate="true">Delete the selected posts and their comments? This cannot be undone.</message>
+                        <title translate="true">Delete Posts</title>
+                    </confirm>
+                    <url path="commercegears_blog/post/massDelete"/>
+                    <type>delete</type>
+                    <label translate="true">Delete</label>
+                </settings>
+            </action>
+        </massaction>
+        <paging name="listing_paging"/>
+    </listingToolbar>
+    <columns name="commercegears_blog_post_listing_columns" component="CommerceGears_Blog/js/grid/listing">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="emptyTitle" xsi:type="string" translate="true">No posts yet</item>
+                <item name="emptyText" xsi:type="string" translate="true">Write your first post, add sample content with bin/magento commercegears:blog:sample-data, or bring your posts over from WordPress.</item>
+                <item name="emptyActionLabel" xsi:type="string" translate="true">Add Your First Post</item>
+                <item name="emptyActionUrl" xsi:type="url" path="commercegears_blog/post/new"/>
+            </item>
+        </argument>
+        <settings>
+            <childDefaults>
+                <param name="fieldAction" xsi:type="array">
+                    <item name="provider" xsi:type="string">commercegears_blog_post_listing.commercegears_blog_post_listing.commercegears_blog_post_listing_columns.actions</item>
+                    <item name="target" xsi:type="string">applyAction</item>
+                    <item name="params" xsi:type="array">
+                        <item name="0" xsi:type="string">edit</item>
+                        <item name="1" xsi:type="string">${ $.$data.rowIndex }</item>
+                    </item>
+                </param>
+            </childDefaults>
+        </settings>
+        <selectionsColumn name="ids" sortOrder="0">
+            <settings>
+                <indexField>post_id</indexField>
+            </settings>
+        </selectionsColumn>
+        <column name="post_id" sortOrder="10">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">ID</label>
+            </settings>
+        </column>
+        <column name="featured_image" class="CommerceGears\Blog\Ui\Component\Listing\Column\Thumbnail" sortOrder="15">
+            <settings>
+                <bodyTmpl>ui/grid/cells/html</bodyTmpl><sortable>false</sortable>
+                <label translate="true">Image</label>
+            </settings>
+        </column>
+        <column name="title" sortOrder="20">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Title</label>
+            </settings>
+        </column>
+        <column name="state" component="CommerceGears_Blog/js/grid/columns/status-badge" sortOrder="30">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="severity" xsi:type="array">
+                        <item name="published" xsi:type="string">grid-severity-notice</item>
+                        <item name="scheduled" xsi:type="string">grid-severity-minor</item>
+                        <item name="draft" xsi:type="string">grid-severity-major</item>
+                    </item>
+                </item>
+            </argument>
+            <settings>
+                <options class="CommerceGears\Blog\Model\Source\PostState"/>
+                <filter>select</filter>
+                <dataType>select</dataType>
+                <label translate="true">Status</label>
+            </settings>
+        </column>
+        <column name="publish_at" class="Magento\Ui\Component\Listing\Columns\Date" component="Magento_Ui/js/grid/columns/date" sortOrder="40">
+            <settings>
+                <filter>dateRange</filter>
+                <dataType>date</dataType><sorting>desc</sorting>
+                <label translate="true">Publish Date</label>
+            </settings>
+        </column>
+        <column name="author_name" sortOrder="50">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Author</label>
+            </settings>
+        </column>
+        <column name="store_id" class="Magento\Store\Ui\Component\Listing\Column\Store" sortOrder="60">
+            <settings>
+                <bodyTmpl>ui/grid/cells/html</bodyTmpl>
+                <sortable>false</sortable>
+                <label translate="true">Store View</label>
+            </settings>
+        </column>
+        <column name="is_featured" component="Magento_Ui/js/grid/columns/select" sortOrder="70">
+            <settings>
+                <options class="Magento\Config\Model\Config\Source\Yesno"/>
+                <filter>select</filter>
+                <dataType>select</dataType>
+                <label translate="true">Featured</label>
+            </settings>
+        </column>
+        <column name="comments_pending" sortOrder="80">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">Pending Comments</label>
+            </settings>
+        </column>
+        <column name="comments_approved" sortOrder="85">
+            <settings>
+                <filter>textRange</filter><visible>false</visible>
+                <label translate="true">Comments</label>
+            </settings>
+        </column>
+        <column name="seo_score" component="CommerceGears_Blog/js/grid/columns/score" sortOrder="90">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">SEO Score</label>
+            </settings>
+        </column>
+        <column name="url_key" sortOrder="95">
+            <settings>
+                <filter>text</filter><visible>false</visible>
+                <label translate="true">URL Key</label>
+            </settings>
+        </column>
+        <column name="updated_at" class="Magento\Ui\Component\Listing\Columns\Date" component="Magento_Ui/js/grid/columns/date" sortOrder="100">
+            <settings>
+                <filter>dateRange</filter>
+                <dataType>date</dataType>
+                <label translate="true">Updated</label>
+            </settings>
+        </column>
+        <actionsColumn name="actions" class="CommerceGears\Blog\Ui\Component\Listing\Column\Actions" sortOrder="200">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="editUrlPath" xsi:type="string">commercegears_blog/post/edit</item>
+                    <item name="deleteUrlPath" xsi:type="string">commercegears_blog/post/delete</item>
+                    <item name="deleteResource" xsi:type="string">CommerceGears_Blog::posts_delete</item>
+                    <item name="entityLabel" xsi:type="string" translate="true">Post</item>
+                    <item name="titleField" xsi:type="string">title</item>
+                </item>
+            </argument>
+            <settings>
+                <indexField>post_id</indexField>
+            </settings>
+        </actionsColumn>
+    </columns>
+</listing>

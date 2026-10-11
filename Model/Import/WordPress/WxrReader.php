@@ -1,12 +1,12 @@
 <?php
 /**
- * @category  Softaware
- * @package   Softaware_Blog
- * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
  */
 declare(strict_types=1);
 
-namespace Softaware\Blog\Model\Import\WordPress;
+namespace CommerceGears\Blog\Model\Import\WordPress;
 
 /**
  * Streams a WordPress export file (WXR, Tools > Export in WordPress) with XMLReader, so files of any size are

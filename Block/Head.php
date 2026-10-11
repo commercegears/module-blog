@@ -1,28 +1,28 @@
 <?php
 /**
- * @category  Softaware
- * @package   Softaware_Blog
- * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
  */
 declare(strict_types=1);
 
-namespace Softaware\Blog\Block;
+namespace CommerceGears\Blog\Block;
 
 use Magento\Framework\View\Element\Template;
 use Magento\Framework\View\Element\Template\Context;
 use Magento\Store\Model\ScopeInterface;
-use Softaware\Blog\Model\Config;
-use Softaware\Blog\Model\CurrentPage;
-use Softaware\Blog\Model\Frontend\Hreflang;
-use Softaware\Blog\Model\Frontend\PageMeta;
-use Softaware\Blog\Model\Frontend\StructuredData;
+use CommerceGears\Blog\Model\Config;
+use CommerceGears\Blog\Model\CurrentPage;
+use CommerceGears\Blog\Model\Frontend\Hreflang;
+use CommerceGears\Blog\Model\Frontend\PageMeta;
+use CommerceGears\Blog\Model\Frontend\StructuredData;
 
 /**
  * <head> additions of blog pages: Open Graph / Twitter tags, hreflang links and JSON-LD.
  */
 class Head extends Template
 {
-    protected $_template = 'Softaware_Blog::head.phtml';
+    protected $_template = 'CommerceGears_Blog::head.phtml';
 
     public function __construct(
         Context $context,
@@ -99,7 +99,7 @@ class Head extends Template
         try {
             return $this->hreflang->getLinks();
         } catch (\Throwable $e) {
-            $this->_logger->error('Softaware_Blog hreflang: ' . $e->getMessage());
+            $this->_logger->error('CommerceGears_Blog hreflang: ' . $e->getMessage());
             return [];
         }
     }
@@ -112,7 +112,7 @@ class Head extends Template
         try {
             $nodes = $this->structuredData->getNodes();
         } catch (\Throwable $e) {
-            $this->_logger->error('Softaware_Blog JSON-LD: ' . $e->getMessage());
+            $this->_logger->error('CommerceGears_Blog JSON-LD: ' . $e->getMessage());
             return [];
         }
         return array_map(

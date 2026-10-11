@@ -1,0 +1,114 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
+ */
+-->
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">commercegears_blog_import_job_listing.commercegears_blog_import_job_listing_data_source</item>
+        </item>
+    </argument>
+    <settings>
+        <spinner>commercegears_blog_import_job_listing_columns</spinner>
+        <deps>
+            <dep>commercegears_blog_import_job_listing.commercegears_blog_import_job_listing_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="commercegears_blog_import_job_listing_data_source" component="Magento_Ui/js/grid/provider">
+        <settings>
+            <storageConfig>
+                <param name="indexField" xsi:type="string">job_id</param>
+            </storageConfig>
+            <updateUrl path="mui/index/render"/>
+        </settings>
+        <aclResource>CommerceGears_Blog::import</aclResource>
+        <dataProvider class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider" name="commercegears_blog_import_job_listing_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>job_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <listingToolbar name="listing_top">
+        <settings>
+            <sticky>true</sticky>
+        </settings>
+        <bookmark name="bookmarks"/>
+        <columnsControls name="columns_controls"/>
+        <filters name="listing_filters"></filters>
+        <paging name="listing_paging"/>
+    </listingToolbar>
+    <columns name="commercegears_blog_import_job_listing_columns" component="CommerceGears_Blog/js/grid/listing">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="emptyTitle" xsi:type="string" translate="true">No imports yet</item>
+                <item name="emptyText" xsi:type="string" translate="true">Upload a WordPress export file above. Its progress and log appear here.</item>
+            </item>
+        </argument>
+        <column name="job_id" sortOrder="10">
+            <settings>
+                <filter>textRange</filter><sorting>desc</sorting>
+                <label translate="true">Job</label>
+            </settings>
+        </column>
+        <column name="original_name" sortOrder="20">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">File</label>
+            </settings>
+        </column>
+        <column name="status" component="CommerceGears_Blog/js/grid/columns/status-badge" sortOrder="30">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="severity" xsi:type="array">
+                        <item name="done" xsi:type="string">grid-severity-notice</item>
+                        <item name="queued" xsi:type="string">grid-severity-minor</item>
+                        <item name="running" xsi:type="string">grid-severity-minor</item>
+                        <item name="failed" xsi:type="string">grid-severity-critical</item>
+                    </item>
+                </item>
+            </argument>
+            <settings>
+                <options class="CommerceGears\Blog\Model\Source\ImportStatus"/>
+                <filter>select</filter>
+                <dataType>select</dataType>
+                <label translate="true">Status</label>
+            </settings>
+        </column>
+        <column name="summary" class="CommerceGears\Blog\Ui\Component\Listing\Column\ImportJobSummary" sortOrder="40">
+            <settings>
+                <sortable>false</sortable>
+                <label translate="true">Progress</label>
+            </settings>
+        </column>
+        <column name="created_by" sortOrder="50">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Started By</label>
+            </settings>
+        </column>
+        <column name="created_at" class="Magento\Ui\Component\Listing\Columns\Date" component="Magento_Ui/js/grid/columns/date" sortOrder="60">
+            <settings>
+                <filter>dateRange</filter>
+                <dataType>date</dataType>
+                <label translate="true">Queued</label>
+            </settings>
+        </column>
+        <column name="finished_at" class="Magento\Ui\Component\Listing\Columns\Date" component="Magento_Ui/js/grid/columns/date" sortOrder="70">
+            <settings>
+                <filter>dateRange</filter>
+                <dataType>date</dataType>
+                <label translate="true">Finished</label>
+            </settings>
+        </column>
+        <actionsColumn name="actions" class="CommerceGears\Blog\Ui\Component\Listing\Column\ImportJobActions" sortOrder="200">
+            <settings>
+                <indexField>job_id</indexField>
+            </settings>
+        </actionsColumn>
+    </columns>
+</listing>

@@ -1,12 +1,12 @@
 <?php
 /**
- * @category  Softaware
- * @package   Softaware_Blog
- * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
  */
 declare(strict_types=1);
 
-namespace Softaware\Blog\Model\ResourceModel\Comment\Grid;
+namespace CommerceGears\Blog\Model\ResourceModel\Comment\Grid;
 
 use Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult;
 
@@ -19,7 +19,7 @@ class Collection extends SearchResult
     {
         parent::_initSelect();
         $this->getSelect()->joinLeft(
-            ['post' => $this->getTable('softaware_blog_post')],
+            ['post' => $this->getTable('commercegears_blog_post')],
             'post.post_id = main_table.post_id',
             ['post_title' => 'post.title']
         );

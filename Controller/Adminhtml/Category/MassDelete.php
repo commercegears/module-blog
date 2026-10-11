@@ -1,12 +1,12 @@
 <?php
 /**
- * @category  Softaware
- * @package   Softaware_Blog
- * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
  */
 declare(strict_types=1);
 
-namespace Softaware\Blog\Controller\Adminhtml\Category;
+namespace CommerceGears\Blog\Controller\Adminhtml\Category;
 
 use Magento\Backend\App\Action;
 use Magento\Framework\App\Action\HttpPostActionInterface;
@@ -14,13 +14,13 @@ use Magento\Ui\Component\MassAction\Filter;
 
 class MassDelete extends Action implements HttpPostActionInterface
 {
-    public const ADMIN_RESOURCE = 'Softaware_Blog::categories';
+    public const ADMIN_RESOURCE = 'CommerceGears_Blog::categories';
 
     public function __construct(
         Action\Context $context,
         private readonly Filter $filter,
-        private readonly \Softaware\Blog\Model\ResourceModel\Category\CollectionFactory $collectionFactory,
-        private readonly \Softaware\Blog\Model\ResourceModel\Category $resource
+        private readonly \CommerceGears\Blog\Model\ResourceModel\Category\CollectionFactory $collectionFactory,
+        private readonly \CommerceGears\Blog\Model\ResourceModel\Category $resource
     ) {
         parent::__construct($context);
     }

@@ -1,12 +1,12 @@
 <?php
 /**
- * @category  Softaware
- * @package   Softaware_Blog
- * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
  */
 declare(strict_types=1);
 
-namespace Softaware\Blog\Block\Adminhtml\Edit;
+namespace CommerceGears\Blog\Block\Adminhtml\Edit;
 
 use Magento\Backend\Block\Widget\Context;
 
@@ -18,11 +18,11 @@ class GenericButton
 {
     /** controller => [entity label, delete ACL resource] */
     private const ENTITIES = [
-        'post' => ['post', 'Softaware_Blog::posts_delete'],
-        'category' => ['category', 'Softaware_Blog::categories'],
-        'tag' => ['tag', 'Softaware_Blog::tags'],
-        'author' => ['author', 'Softaware_Blog::authors'],
-        'comment' => ['comment', 'Softaware_Blog::comments_delete'],
+        'post' => ['post', 'CommerceGears_Blog::posts_delete'],
+        'category' => ['category', 'CommerceGears_Blog::categories'],
+        'tag' => ['tag', 'CommerceGears_Blog::tags'],
+        'author' => ['author', 'CommerceGears_Blog::authors'],
+        'comment' => ['comment', 'CommerceGears_Blog::comments_delete'],
     ];
 
     public function __construct(protected readonly Context $context)

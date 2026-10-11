@@ -1,7 +1,7 @@
 /**
- * @category  Softaware
- * @package   Softaware_Blog
- * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
  */
 /**
  * Select column shown as a Magento status badge (grid-severity-* classes). Config "severity" maps option values to
@@ -14,7 +14,7 @@ define([
 
     return Select.extend({
         defaults: {
-            bodyTmpl: 'Softaware_Blog/grid/cells/status-badge',
+            bodyTmpl: 'CommerceGears_Blog/grid/cells/status-badge',
             severity: {}
         },
 

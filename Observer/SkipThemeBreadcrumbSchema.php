@@ -1,23 +1,23 @@
 <?php
 /**
- * @category  Softaware
- * @package   Softaware_Blog
- * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
  */
 declare(strict_types=1);
 
-namespace Softaware\Blog\Observer;
+namespace CommerceGears\Blog\Observer;
 
 use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
 use Magento\Framework\View\LayoutInterface;
 use Magento\Store\Model\StoreManagerInterface;
-use Softaware\Blog\Model\Config;
-use Softaware\Blog\Model\CurrentPage;
+use CommerceGears\Blog\Model\Config;
+use CommerceGears\Blog\Model\CurrentPage;
 
 /**
  * On blog pages the module writes its own BreadcrumbList, so Hyvä's breadcrumb JSON-LD is switched off
- * (same flag Softaware_Seo uses on catalog pages).
+ * (same flag CommerceGears_Seo uses on catalog pages).
  */
 class SkipThemeBreadcrumbSchema implements ObserverInterface
 {

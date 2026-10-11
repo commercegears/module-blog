@@ -107,7 +107,7 @@
     ],
     "works_well_with": [
         {
-            "package": "softaware/module-seo-suite",
+            "package": "commercegears/module-seo-suite",
             "text": "Store-wide SEO (robots rules, organisation data, redirects) next to the blog's own meta data and structured data."
         }
     ]

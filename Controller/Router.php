@@ -1,12 +1,12 @@
 <?php
 /**
- * @category  Softaware
- * @package   Softaware_Blog
- * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
  */
 declare(strict_types=1);
 
-namespace Softaware\Blog\Controller;
+namespace CommerceGears\Blog\Controller;
 
 use Magento\Framework\App\Action\Forward;
 use Magento\Framework\App\Action\Redirect;
@@ -18,12 +18,12 @@ use Magento\Framework\App\ResponseInterface;
 use Magento\Framework\App\RouterInterface;
 use Magento\Framework\UrlInterface;
 use Magento\Store\Model\StoreManagerInterface;
-use Softaware\Blog\Model\Config;
-use Softaware\Blog\Model\ResourceModel\Author as AuthorResource;
-use Softaware\Blog\Model\ResourceModel\Category as CategoryResource;
-use Softaware\Blog\Model\ResourceModel\Post as PostResource;
-use Softaware\Blog\Model\ResourceModel\Tag as TagResource;
-use Softaware\Blog\Model\Router\PathResolver;
+use CommerceGears\Blog\Model\Config;
+use CommerceGears\Blog\Model\ResourceModel\Author as AuthorResource;
+use CommerceGears\Blog\Model\ResourceModel\Category as CategoryResource;
+use CommerceGears\Blog\Model\ResourceModel\Post as PostResource;
+use CommerceGears\Blog\Model\ResourceModel\Tag as TagResource;
+use CommerceGears\Blog\Model\Router\PathResolver;
 
 /**
  * Maps /<blog path>/... to the blog controllers and sends 301 redirects to the canonical address
@@ -46,7 +46,7 @@ class Router implements RouterInterface
 
     public function match(RequestInterface $request): ?ActionInterface
     {
-        if (!$request instanceof HttpRequest || $request->getModuleName() === 'softaware_blog') {
+        if (!$request instanceof HttpRequest || $request->getModuleName() === 'commercegears_blog') {
             return null;
         }
         $storeId = (int)$this->storeManager->getStore()->getId();
@@ -96,7 +96,7 @@ class Router implements RouterInterface
             return $this->actionFactory->create(Redirect::class);
         }
 
-        $request->setModuleName('softaware_blog')
+        $request->setModuleName('commercegears_blog')
             ->setControllerName($match['controller'])
             ->setActionName($match['action']);
         if ($id) {

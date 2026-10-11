@@ -1,26 +1,26 @@
 <?php
 /**
- * @category  Softaware
- * @package   Softaware_Blog
- * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
  */
 declare(strict_types=1);
 
-namespace Softaware\Blog\Controller\Adminhtml\Category;
+namespace CommerceGears\Blog\Controller\Adminhtml\Category;
 
 use Magento\Backend\App\Action;
 use Magento\Framework\App\Action\HttpPostActionInterface;
 use Magento\Framework\App\Request\DataPersistorInterface;
 use Magento\Framework\Exception\LocalizedException;
-use Softaware\Blog\Model\Category;
-use Softaware\Blog\Model\CategoryFactory;
-use Softaware\Blog\Model\ResourceModel\Category as CategoryResource;
-use Softaware\Blog\Model\UrlKeyFormatter;
+use CommerceGears\Blog\Model\Category;
+use CommerceGears\Blog\Model\CategoryFactory;
+use CommerceGears\Blog\Model\ResourceModel\Category as CategoryResource;
+use CommerceGears\Blog\Model\UrlKeyFormatter;
 
 class Save extends Action implements HttpPostActionInterface
 {
-    public const ADMIN_RESOURCE = 'Softaware_Blog::categories';
-    public const PERSIST_KEY = 'softaware_blog_category_form_data_source';
+    public const ADMIN_RESOURCE = 'CommerceGears_Blog::categories';
+    public const PERSIST_KEY = 'commercegears_blog_category_form_data_source';
 
     public function __construct(
         Action\Context $context,

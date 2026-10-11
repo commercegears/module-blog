@@ -1,15 +1,15 @@
 <?php
 /**
- * @category  Softaware
- * @package   Softaware_Blog
- * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
  */
 declare(strict_types=1);
 
-namespace Softaware\Blog\Model;
+namespace CommerceGears\Blog\Model;
 
-use Softaware\Blog\Api\Data\PostInterface;
-use Softaware\Blog\Model\ResourceModel\Post as PostResource;
+use CommerceGears\Blog\Api\Data\PostInterface;
+use CommerceGears\Blog\Model\ResourceModel\Post as PostResource;
 
 class Post extends AbstractContentModel implements PostInterface
 {
@@ -25,7 +25,7 @@ class Post extends AbstractContentModel implements PostInterface
     ];
 
     protected $_cacheTag = self::CACHE_TAG;
-    protected $_eventPrefix = 'softaware_blog_post';
+    protected $_eventPrefix = 'commercegears_blog_post';
 
     protected function _construct()
     {

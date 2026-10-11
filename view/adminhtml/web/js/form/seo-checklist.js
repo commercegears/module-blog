@@ -1,10 +1,10 @@
 /**
- * @category  Softaware
- * @package   Softaware_Blog
- * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
  */
 /**
- * Live SEO checklist of the post editor. Same rules as Softaware\Blog\Model\SeoChecklist (which stores the score
+ * Live SEO checklist of the post editor. Same rules as CommerceGears\Blog\Model\SeoChecklist (which stores the score
  * on save); keep both in step.
  */
 define([
@@ -59,7 +59,7 @@ define([
 
     return Component.extend({
         defaults: {
-            template: 'Softaware_Blog/form/seo-checklist',
+            template: 'CommerceGears_Blog/form/seo-checklist',
             ownHosts: [],
             wordsPerMinute: 200,
             limits: {

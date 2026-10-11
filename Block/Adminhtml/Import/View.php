@@ -1,23 +1,23 @@
 <?php
 /**
- * @category  Softaware
- * @package   Softaware_Blog
- * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
  */
 declare(strict_types=1);
 
-namespace Softaware\Blog\Block\Adminhtml\Import;
+namespace CommerceGears\Blog\Block\Adminhtml\Import;
 
 use Magento\Backend\Block\Template;
-use Softaware\Blog\Model\ImportJob;
-use Softaware\Blog\Model\Source\ImportStatus;
+use CommerceGears\Blog\Model\ImportJob;
+use CommerceGears\Blog\Model\Source\ImportStatus;
 
 /**
  * Details, counts and log of an import job.
  */
 class View extends Template
 {
-    protected $_template = 'Softaware_Blog::import/view.phtml';
+    protected $_template = 'CommerceGears_Blog::import/view.phtml';
 
     /**
      * @param array<string, mixed> $data

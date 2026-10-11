@@ -1,17 +1,17 @@
 <?php
 /**
- * @category  Softaware
- * @package   Softaware_Blog
- * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
  */
 declare(strict_types=1);
 
-namespace Softaware\Blog\Console\Command;
+namespace CommerceGears\Blog\Console\Command;
 
 use Magento\Framework\App\Area;
 use Magento\Framework\App\Cache\Manager as CacheManager;
 use Magento\Framework\App\State as AppState;
-use Softaware\Blog\Model\SampleData as SampleDataModel;
+use CommerceGears\Blog\Model\SampleData as SampleDataModel;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -32,7 +32,7 @@ class SampleData extends Command
 
     protected function configure(): void
     {
-        $this->setName('softaware:blog:sample-data')
+        $this->setName('commercegears:blog:sample-data')
             ->setDescription('Add sample blog posts, categories, tags and an author (or remove them with --remove)')
             ->addOption('remove', null, InputOption::VALUE_NONE, 'Remove the sample content');
     }

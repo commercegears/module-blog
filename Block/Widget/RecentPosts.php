@@ -1,22 +1,22 @@
 <?php
 /**
- * @category  Softaware
- * @package   Softaware_Blog
- * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
  */
 declare(strict_types=1);
 
-namespace Softaware\Blog\Block\Widget;
+namespace CommerceGears\Blog\Block\Widget;
 
-use Softaware\Blog\Model\Post;
+use CommerceGears\Blog\Model\Post;
 
 /**
- * Widget "Softaware Blog: Recent Posts".
+ * Widget "CommerceGears Blog: Recent Posts".
  */
 class RecentPosts extends AbstractWidget
 {
     protected const TEMPLATES = [
-        'Softaware_Blog::widget/recent-posts.phtml' => 'Softaware_Blog::hyva/widget/recent-posts.phtml',
+        'CommerceGears_Blog::widget/recent-posts.phtml' => 'CommerceGears_Blog::hyva/widget/recent-posts.phtml',
     ];
 
     /**

@@ -1,12 +1,12 @@
 <?php
 /**
- * @category  Softaware
- * @package   Softaware_Blog
- * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
  */
 declare(strict_types=1);
 
-namespace Softaware\Blog\Model;
+namespace CommerceGears\Blog\Model;
 
 use Magento\Framework\App\Filesystem\DirectoryList;
 use Magento\Framework\Exception\LocalizedException;
@@ -17,12 +17,12 @@ use Magento\MediaStorage\Model\File\UploaderFactory;
 use Magento\Store\Model\StoreManagerInterface;
 
 /**
- * Stores blog images in pub/media/softaware_blog/<folder>/<year>/<month>/ and returns the path relative to
- * pub/media/softaware_blog/.
+ * Stores blog images in pub/media/commercegears_blog/<folder>/<year>/<month>/ and returns the path relative to
+ * pub/media/commercegears_blog/.
  */
 class ImageUploader
 {
-    public const BASE_PATH = 'softaware_blog';
+    public const BASE_PATH = 'commercegears_blog';
     public const ALLOWED_EXTENSIONS = ['jpg', 'jpeg', 'gif', 'png', 'webp'];
     public const MAX_BYTES = 10485760;
 
@@ -46,7 +46,7 @@ class ImageUploader
         $uploader->setAllowedExtensions(self::ALLOWED_EXTENSIONS);
         $uploader->setAllowRenameFiles(true);
         $uploader->setFilesDispersion(false);
-        $uploader->addValidateCallback('softaware_blog_image', $this->imageAdapterFactory->create(), 'validateUploadFile');
+        $uploader->addValidateCallback('commercegears_blog_image', $this->imageAdapterFactory->create(), 'validateUploadFile');
         $relativeDir = $this->getRelativeDir($folder);
         $media = $this->filesystem->getDirectoryWrite(DirectoryList::MEDIA);
         $result = $uploader->save($media->getAbsolutePath(self::BASE_PATH . '/' . $relativeDir));
@@ -93,7 +93,7 @@ class ImageUploader
     }
 
     /**
-     * A path starting with "/" is relative to pub/media/, anything else to pub/media/softaware_blog/.
+     * A path starting with "/" is relative to pub/media/, anything else to pub/media/commercegears_blog/.
      */
     public function getUrl(string $file): string
     {
@@ -140,7 +140,7 @@ class ImageUploader
         $url = (string)($value[0]['url'] ?? '');
         $marker = '/' . self::BASE_PATH . '/';
         if ($url !== '' && ($file === '' || !str_contains($url, $marker))) {
-            // Picked from the media gallery: a path below pub/media/softaware_blog/, or "/<path>" below pub/media/.
+            // Picked from the media gallery: a path below pub/media/commercegears_blog/, or "/<path>" below pub/media/.
             $mediaUrl = $this->storeManager->getStore()->getBaseUrl(UrlInterface::URL_TYPE_MEDIA);
             if (str_contains($url, $marker)) {
                 $file = substr($url, strpos($url, $marker) + strlen($marker));

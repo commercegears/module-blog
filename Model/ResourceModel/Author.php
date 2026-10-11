@@ -1,23 +1,23 @@
 <?php
 /**
- * @category  Softaware
- * @package   Softaware_Blog
- * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
  */
 declare(strict_types=1);
 
-namespace Softaware\Blog\Model\ResourceModel;
+namespace CommerceGears\Blog\Model\ResourceModel;
 
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Model\AbstractModel;
 use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
 use Magento\Framework\Model\ResourceModel\Db\Context;
-use Softaware\Blog\Model\Author as AuthorModel;
-use Softaware\Blog\Model\UrlKeyFormatter;
+use CommerceGears\Blog\Model\Author as AuthorModel;
+use CommerceGears\Blog\Model\UrlKeyFormatter;
 
 class Author extends AbstractDb
 {
-    public const TABLE = 'softaware_blog_author';
+    public const TABLE = 'commercegears_blog_author';
 
     public function __construct(
         Context $context,

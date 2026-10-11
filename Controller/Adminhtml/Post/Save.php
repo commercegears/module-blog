@@ -1,34 +1,34 @@
 <?php
 /**
- * @category  Softaware
- * @package   Softaware_Blog
- * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
  */
 declare(strict_types=1);
 
-namespace Softaware\Blog\Controller\Adminhtml\Post;
+namespace CommerceGears\Blog\Controller\Adminhtml\Post;
 
 use Magento\Backend\App\Action;
 use Magento\Framework\App\Action\HttpPostActionInterface;
 use Magento\Framework\App\Request\DataPersistorInterface;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Stdlib\DateTime\TimezoneInterface;
-use Softaware\Blog\Api\PostRepositoryInterface;
-use Softaware\Blog\Model\ImageUploader;
-use Softaware\Blog\Model\Post;
-use Softaware\Blog\Model\PostFactory;
-use Softaware\Blog\Model\ResourceModel\Post as PostResource;
-use Softaware\Blog\Model\ResourceModel\Tag as TagResource;
-use Softaware\Blog\Model\TagFactory;
-use Softaware\Blog\Model\UrlKeyFormatter;
+use CommerceGears\Blog\Api\PostRepositoryInterface;
+use CommerceGears\Blog\Model\ImageUploader;
+use CommerceGears\Blog\Model\Post;
+use CommerceGears\Blog\Model\PostFactory;
+use CommerceGears\Blog\Model\ResourceModel\Post as PostResource;
+use CommerceGears\Blog\Model\ResourceModel\Tag as TagResource;
+use CommerceGears\Blog\Model\TagFactory;
+use CommerceGears\Blog\Model\UrlKeyFormatter;
 
 /**
  * Saves a post: the default values, or (with a store view) the store view's own values.
  */
 class Save extends Action implements HttpPostActionInterface
 {
-    public const ADMIN_RESOURCE = 'Softaware_Blog::posts_save';
-    public const PERSIST_KEY = 'softaware_blog_post_form_data_source';
+    public const ADMIN_RESOURCE = 'CommerceGears_Blog::posts_save';
+    public const PERSIST_KEY = 'commercegears_blog_post_form_data_source';
 
     public function __construct(
         Action\Context $context,
@@ -100,7 +100,7 @@ class Save extends Action implements HttpPostActionInterface
      */
     private function applyGlobalValues(Post $post, array $data, int $id): void
     {
-        $canPublish = $this->_authorization->isAllowed('Softaware_Blog::posts_publish');
+        $canPublish = $this->_authorization->isAllowed('CommerceGears_Blog::posts_publish');
         if ($canPublish) {
             $post->setStatus((int)($data['status'] ?? Post::STATUS_DRAFT));
             $post->setPublishAt($this->normaliseDate((string)($data['publish_at'] ?? '')));

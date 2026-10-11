@@ -1,17 +1,17 @@
 <?xml version="1.0"?>
 <!--
 /**
- * @category  Softaware
- * @package   Softaware_Blog
- * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
  */
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
     <system>
-        <section id="softaware_blog" translate="label" type="text" sortOrder="95" showInDefault="1" showInWebsite="1" showInStore="1">
+        <section id="commercegears_blog" translate="label" type="text" sortOrder="95" showInDefault="1" showInWebsite="1" showInStore="1">
             <label>Blog</label>
-            <tab>softaware</tab>
-            <resource>Softaware_Blog::config</resource>
+            <tab>commercegears</tab>
+            <resource>CommerceGears_Blog::config</resource>
             <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>General</label>
                 <attribute type="expanded">1</attribute>
@@ -27,30 +27,30 @@
                 </field>
                 <field id="route" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Blog URL Path</label>
-                    <backend_model>Softaware\Blog\Model\Config\Backend\UrlPart</backend_model>
+                    <backend_model>CommerceGears\Blog\Model\Config\Backend\UrlPart</backend_model>
                     <validate>required-entry validate-no-html-tags</validate>
                     <comment>The blog home page address, for example "blog" for /blog. Letters, digits and hyphens; a slash separates levels ("company/news"). Default: blog.</comment>
                 </field>
                 <field id="url_suffix" translate="label comment" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>URL Suffix</label>
-                    <source_model>Softaware\Blog\Model\Source\UrlSuffix</source_model>
+                    <source_model>CommerceGears\Blog\Model\Source\UrlSuffix</source_model>
                     <comment>Added to post, category, tag and author addresses. Changing it keeps old addresses working: they redirect to the new ones. Default: none.</comment>
                 </field>
                 <field id="category_prefix" translate="label comment" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Category URL Prefix</label>
-                    <backend_model>Softaware\Blog\Model\Config\Backend\UrlPart</backend_model>
+                    <backend_model>CommerceGears\Blog\Model\Config\Backend\UrlPart</backend_model>
                     <validate>required-entry validate-no-html-tags</validate>
                     <comment>Category addresses: /blog/category/running. Default: category.</comment>
                 </field>
                 <field id="tag_prefix" translate="label comment" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Tag URL Prefix</label>
-                    <backend_model>Softaware\Blog\Model\Config\Backend\UrlPart</backend_model>
+                    <backend_model>CommerceGears\Blog\Model\Config\Backend\UrlPart</backend_model>
                     <validate>required-entry validate-no-html-tags</validate>
                     <comment>Tag addresses: /blog/tag/beginners. Default: tag.</comment>
                 </field>
                 <field id="author_prefix" translate="label comment" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Author URL Prefix</label>
-                    <backend_model>Softaware\Blog\Model\Config\Backend\UrlPart</backend_model>
+                    <backend_model>CommerceGears\Blog\Model\Config\Backend\UrlPart</backend_model>
                     <validate>required-entry validate-no-html-tags</validate>
                     <comment>Author addresses: /blog/author/alex-morgan. Default: author.</comment>
                 </field>
@@ -201,27 +201,27 @@
                 </field>
                 <field id="robots_post" translate="label comment" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Default Robots for Posts</label>
-                    <source_model>Softaware\Blog\Model\Source\Robots</source_model>
+                    <source_model>CommerceGears\Blog\Model\Source\Robots</source_model>
                     <comment>A post can override it. Default: INDEX, FOLLOW.</comment>
                 </field>
                 <field id="robots_category" translate="label comment" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Default Robots for Categories</label>
-                    <source_model>Softaware\Blog\Model\Source\Robots</source_model>
+                    <source_model>CommerceGears\Blog\Model\Source\Robots</source_model>
                     <comment>A category can override it. Default: INDEX, FOLLOW.</comment>
                 </field>
                 <field id="robots_tag" translate="label comment" type="select" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Robots for Tag Pages</label>
-                    <source_model>Softaware\Blog\Model\Source\Robots</source_model>
+                    <source_model>CommerceGears\Blog\Model\Source\Robots</source_model>
                     <comment>A tag can override it. Default: NOINDEX, FOLLOW (tag pages often repeat category pages).</comment>
                 </field>
                 <field id="robots_author" translate="label comment" type="select" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Robots for Author Pages</label>
-                    <source_model>Softaware\Blog\Model\Source\Robots</source_model>
+                    <source_model>CommerceGears\Blog\Model\Source\Robots</source_model>
                     <comment>Default: INDEX, FOLLOW.</comment>
                 </field>
                 <field id="robots_paginated" translate="label comment" type="select" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Robots for Page 2 and Later</label>
-                    <source_model>Softaware\Blog\Model\Source\Robots</source_model>
+                    <source_model>CommerceGears\Blog\Model\Source\Robots</source_model>
                     <comment>Applies to every paginated list. Default: INDEX, FOLLOW (the canonical points to the page itself).</comment>
                 </field>
                 <field id="open_graph" translate="label comment" type="select" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
@@ -331,8 +331,8 @@
                 </field>
                 <field id="auto_approve" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Publish Without Review</label>
-                    <source_model>Softaware\Blog\Model\Source\AutoApprove</source_model>
-                    <comment>Comments that are not published right away wait in Softaware &gt; Blog &gt; Comments. Default: Never.</comment>
+                    <source_model>CommerceGears\Blog\Model\Source\AutoApprove</source_model>
+                    <comment>Comments that are not published right away wait in CommerceGears &gt; Blog &gt; Comments. Default: Never.</comment>
                     <depends><field id="enabled">1</field></depends>
                 </field>
                 <field id="hold_links" translate="label comment" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
@@ -373,8 +373,8 @@
                 </field>
                 <field id="recaptcha" translate="label comment" type="select" sortOrder="100" showInDefault="1" showInWebsite="1" canRestore="1">
                     <label>Google reCAPTCHA on the Comment Form</label>
-                    <source_model>Softaware\Blog\Model\Source\RecaptchaType</source_model>
-                    <config_path>recaptcha_frontend/type_for/softaware_blog_comment</config_path>
+                    <source_model>CommerceGears\Blog\Model\Source\RecaptchaType</source_model>
+                    <config_path>recaptcha_frontend/type_for/commercegears_blog_comment</config_path>
                     <comment>Uses Magento's reCAPTCHA modules (keys in Security &gt; Google reCAPTCHA Storefront); ignored when they are not installed. A hidden honeypot field is always used. Default: No.</comment>
                     <depends><field id="enabled">1</field></depends>
                 </field>
@@ -398,7 +398,7 @@
                 <field id="email_template" translate="label comment" type="select" sortOrder="140" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>E-mail Template</label>
                     <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
-                    <comment>Default: "New Blog Comment" (Softaware Blog).</comment>
+                    <comment>Default: "New Blog Comment" (CommerceGears Blog).</comment>
                     <depends><field id="enabled">1</field><field id="notify">1</field></depends>
                 </field>
             </group>

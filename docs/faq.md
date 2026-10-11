@@ -1,4 +1,4 @@
-# Softaware Blog for Magento 2: FAQ
+# CommerceGears Blog for Magento 2: FAQ
 
 **Does it work with Hyvä?**
 
@@ -31,8 +31,8 @@ Map) includes the blog home page, categories and posts, optionally tag and autho
 
 **How do I move my blog from WordPress?**
 
-Export All content in WordPress (Tools > Export) and upload the file under Softaware > Blog > WordPress Import, or
-import it with `bin/magento softaware:blog:import-wordpress <file>`. Posts, categories, tags, authors, comments and
+Export All content in WordPress (Tools > Export) and upload the file under CommerceGears > Blog > WordPress Import, or
+import it with `bin/magento commercegears:blog:import-wordpress <file>`. Posts, categories, tags, authors, comments and
 images on your WordPress site are imported, and 301 redirects are created from the old post addresses. Large blogs are
 imported in steps by cron.
 

@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
 <!--
 /**
- * @category  Softaware
- * @package   Softaware_Blog
- * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
  */
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
     <default>
-        <softaware_blog>
+        <commercegears_blog>
             <general>
                 <enabled>1</enabled>
                 <title>Blog</title>
@@ -82,8 +82,8 @@
                 <hourly_limit>5</hourly_limit>
                 <notify>1</notify>
                 <email_identity>general</email_identity>
-                <email_template>softaware_blog_comments_email_template</email_template>
+                <email_template>commercegears_blog_comments_email_template</email_template>
             </comments>
-        </softaware_blog>
+        </commercegears_blog>
     </default>
 </config>

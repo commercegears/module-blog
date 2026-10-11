@@ -1,12 +1,12 @@
 <?php
 /**
- * @category  Softaware
- * @package   Softaware_Blog
- * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
  */
 declare(strict_types=1);
 
-namespace Softaware\Blog\Model;
+namespace CommerceGears\Blog\Model;
 
 use Magento\Framework\App\DeploymentConfig;
 use Magento\Framework\Config\ConfigOptionsListConstants;
@@ -44,6 +44,6 @@ class Preview
     private function sign(int $postId, int $expires): string
     {
         $key = (string)$this->deploymentConfig->get(ConfigOptionsListConstants::CONFIG_PATH_CRYPT_KEY);
-        return hash_hmac('sha256', 'softaware_blog_preview|' . $postId . '|' . $expires, $key);
+        return hash_hmac('sha256', 'commercegears_blog_preview|' . $postId . '|' . $expires, $key);
     }
 }

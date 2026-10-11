@@ -1,16 +1,16 @@
 <?php
 /**
- * @category  Softaware
- * @package   Softaware_Blog
- * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
  */
 declare(strict_types=1);
 
-namespace Softaware\Blog\Model\ResourceModel\Category;
+namespace CommerceGears\Blog\Model\ResourceModel\Category;
 
-use Softaware\Blog\Model\Category;
-use Softaware\Blog\Model\ResourceModel\AbstractContentCollection;
-use Softaware\Blog\Model\ResourceModel\Category as CategoryResource;
+use CommerceGears\Blog\Model\Category;
+use CommerceGears\Blog\Model\ResourceModel\AbstractContentCollection;
+use CommerceGears\Blog\Model\ResourceModel\Category as CategoryResource;
 
 class Collection extends AbstractContentCollection
 {

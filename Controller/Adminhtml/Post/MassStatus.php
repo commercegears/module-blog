@@ -1,26 +1,26 @@
 <?php
 /**
- * @category  Softaware
- * @package   Softaware_Blog
- * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
  */
 declare(strict_types=1);
 
-namespace Softaware\Blog\Controller\Adminhtml\Post;
+namespace CommerceGears\Blog\Controller\Adminhtml\Post;
 
 use Magento\Backend\App\Action;
 use Magento\Framework\App\Action\HttpPostActionInterface;
 use Magento\Ui\Component\MassAction\Filter;
-use Softaware\Blog\Model\Post;
-use Softaware\Blog\Model\ResourceModel\Post as PostResource;
-use Softaware\Blog\Model\ResourceModel\Post\CollectionFactory;
+use CommerceGears\Blog\Model\Post;
+use CommerceGears\Blog\Model\ResourceModel\Post as PostResource;
+use CommerceGears\Blog\Model\ResourceModel\Post\CollectionFactory;
 
 /**
  * Publish (status=1) or unpublish (status=0) the selected posts.
  */
 class MassStatus extends Action implements HttpPostActionInterface
 {
-    public const ADMIN_RESOURCE = 'Softaware_Blog::posts_publish';
+    public const ADMIN_RESOURCE = 'CommerceGears_Blog::posts_publish';
 
     public function __construct(
         Action\Context $context,

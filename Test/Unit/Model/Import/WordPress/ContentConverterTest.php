@@ -1,15 +1,15 @@
 <?php
 /**
- * @category  Softaware
- * @package   Softaware_Blog
- * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
  */
 declare(strict_types=1);
 
-namespace Softaware\Blog\Test\Unit\Model\Import\WordPress;
+namespace CommerceGears\Blog\Test\Unit\Model\Import\WordPress;
 
 use PHPUnit\Framework\TestCase;
-use Softaware\Blog\Model\Import\WordPress\ContentConverter;
+use CommerceGears\Blog\Model\Import\WordPress\ContentConverter;
 
 class ContentConverterTest extends TestCase
 {
@@ -55,11 +55,11 @@ class ContentConverterTest extends TestCase
             . '<a href="https://e.org/page/">Page</a><img src="data:image/png;base64,xx">';
         self::assertSame(['https://e.org/small.jpg', 'https://e.org/big.jpg'], $this->converter->findImageUrls($html));
         $replaced = $this->converter->replaceImageUrls($html, [
-            'https://e.org/small.jpg' => '{{media url="softaware_blog/post/small.jpg"}}',
-            'https://e.org/big.jpg' => '{{media url="softaware_blog/post/big.jpg"}}',
+            'https://e.org/small.jpg' => '{{media url="commercegears_blog/post/small.jpg"}}',
+            'https://e.org/big.jpg' => '{{media url="commercegears_blog/post/big.jpg"}}',
         ]);
         self::assertSame(
-            '<a href="{{media url="softaware_blog/post/big.jpg"}}"><img class="x" src="{{media url="softaware_blog/post/small.jpg"}}" alt="A"></a>'
+            '<a href="{{media url="commercegears_blog/post/big.jpg"}}"><img class="x" src="{{media url="commercegears_blog/post/small.jpg"}}" alt="A"></a>'
                 . '<a href="https://e.org/page/">Page</a><img src="data:image/png;base64,xx">',
             $replaced
         );

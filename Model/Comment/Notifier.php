@@ -1,12 +1,12 @@
 <?php
 /**
- * @category  Softaware
- * @package   Softaware_Blog
- * @copyright Copyright © Softaware Commerce Ltd (https://softawarecommerce.com/)
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
  */
 declare(strict_types=1);
 
-namespace Softaware\Blog\Model\Comment;
+namespace CommerceGears\Blog\Model\Comment;
 
 use Magento\Backend\Model\UrlInterface as BackendUrl;
 use Magento\Framework\App\Area;
@@ -16,10 +16,10 @@ use Magento\Framework\Mail\TransportInterface;
 use Magento\Framework\Translate\Inline\StateInterface as InlineTranslation;
 use Magento\Store\Model\ScopeInterface;
 use Psr\Log\LoggerInterface;
-use Softaware\Blog\Model\Comment;
-use Softaware\Blog\Model\Config;
-use Softaware\Blog\Model\Post;
-use Softaware\Blog\Model\Url;
+use CommerceGears\Blog\Model\Comment;
+use CommerceGears\Blog\Model\Config;
+use CommerceGears\Blog\Model\Post;
+use CommerceGears\Blog\Model\Url;
 
 /**
  * E-mails the store about a new comment.
@@ -46,7 +46,7 @@ class Notifier
             $this->buildTransport($comment, $post, $storeId)->sendMessage();
             return true;
         } catch (\Throwable $e) {
-            $this->logger->error('Softaware_Blog comment notification failed: ' . $e->getMessage());
+            $this->logger->error('CommerceGears_Blog comment notification failed: ' . $e->getMessage());
             return false;
         } finally {
             $this->inlineTranslation->resume();
@@ -74,7 +74,7 @@ class Notifier
             'admin_url' => $this->getAdminUrl((int)$comment->getId()),
         ];
         return $this->transportBuilder
-            ->setTemplateIdentifier($this->config->getValue('comments/email_template', $storeId) ?: 'softaware_blog_comments_email_template')
+            ->setTemplateIdentifier($this->config->getValue('comments/email_template', $storeId) ?: 'commercegears_blog_comments_email_template')
             ->setTemplateOptions(['area' => Area::AREA_FRONTEND, 'store' => $storeId])
             ->setTemplateVars($vars)
             ->setFromByScope($this->config->getValue('comments/email_identity', $storeId) ?: 'general', $storeId)
@@ -86,7 +86,7 @@ class Notifier
     {
         try {
             $this->backendUrl->turnOffSecretKey();
-            $url = $this->backendUrl->getUrl('softaware_blog/comment/edit', ['id' => $commentId]);
+            $url = $this->backendUrl->getUrl('commercegears_blog/comment/edit', ['id' => $commentId]);
             $this->backendUrl->turnOnSecretKey();
             return $url;
         } catch (\Throwable) {

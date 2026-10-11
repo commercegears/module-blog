@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category  CommerceGears
+ * @package   CommerceGears_Blog
+ * @copyright Copyright © CommerceGears (https://commercegears.com/)
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="page.main.title" remove="true"/>
+        <referenceContainer name="content">
+            <block class="CommerceGears\Blog\Block\Post\View" name="commercegears.blog.post" template="CommerceGears_Blog::post/view.phtml"/>
+            <block class="CommerceGears\Blog\Block\Post\RelatedProducts" name="commercegears.blog.post.products"
+                   template="CommerceGears_Blog::post/related-products.phtml" after="commercegears.blog.post"/>
+            <block class="CommerceGears\Blog\Block\Post\RelatedPosts" name="commercegears.blog.post.related"
+                   template="CommerceGears_Blog::post/related-posts.phtml" after="commercegears.blog.post.products"/>
+            <block class="CommerceGears\Blog\Block\Post\Comments" name="commercegears.blog.post.comments"
+                   template="CommerceGears_Blog::post/comments.phtml" after="commercegears.blog.post.related"/>
+        </referenceContainer>
+    </body>
+</page>
