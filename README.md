@@ -53,6 +53,10 @@ Alpine CSP-safe). Requires `softaware/module-core` ^1.3.
   content; the import log lists them. Images hosted outside the WordPress site stay linked to their source.
 - Redirects are created for post addresses with a path (`/2024/05/my-post/`), not for `?p=123` links or archive pages.
 - Authors are the same in every store view.
+- Changing a post's URL key or the blog path does not create redirects from the old addresses (add them in Marketing >
+  SEO & Search > URL Rewrites).
+- The hourly comment limit uses the visitor's IP address as Magento sees it; behind a proxy or CDN, set up Magento to
+  read the visitor's address from the proxy's header.
 - The footer link setting applies to Luma-based themes; Hyvä footers are theme templates.
 
 Documentation: `docs/user-guide.md`, `docs/faq.md`.

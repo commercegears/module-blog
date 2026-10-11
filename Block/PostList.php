@@ -45,7 +45,9 @@ class PostList extends AbstractBlog implements IdentityInterface
                     $collection->addAuthorFilter((int)$this->currentPage->getAuthor()->getId());
                     break;
                 default:
-                    $collection->excludeIds(array_map(static fn (Post $post) => (int)$post->getId(), $this->getFeaturedPosts()));
+                    // featured posts are shown above the list on page 1 and left out of the list on every page,
+                    // so that the pages do not shift (no post shown twice or skipped)
+                    $collection->excludeIds(array_map(static fn (Post $post) => (int)$post->getId(), $this->loadFeaturedPosts()));
             }
             $collection->setPageSize($this->config->getPostsPerPage($storeId));
             $collection->setCurPage($this->currentPage->getPageNumber());
@@ -71,10 +73,18 @@ class PostList extends AbstractBlog implements IdentityInterface
      */
     public function getFeaturedPosts(): array
     {
+        return $this->currentPage->getPageNumber() === 1 ? $this->loadFeaturedPosts() : [];
+    }
+
+    /**
+     * @return Post[] featured posts of the blog home page (any page number)
+     */
+    private function loadFeaturedPosts(): array
+    {
         if ($this->featured === null) {
             $storeId = $this->getStoreId();
             $this->featured = [];
-            if ($this->currentPage->getType() === CurrentPage::TYPE_HOME && $this->currentPage->getPageNumber() === 1
+            if ($this->currentPage->getType() === CurrentPage::TYPE_HOME
                 && $this->config->getFlag('list/show_featured', $storeId)
             ) {
                 $this->featured = $this->catalog->getRecentPosts(

@@ -69,4 +69,11 @@ class ContentConverterTest extends TestCase
     {
         self::assertSame(['gallery', 'contact-form-7'], $this->converter->findShortcodes('[gallery ids="1,2"] text [contact-form-7 id="3"]'));
     }
+
+    public function testTemplateDirectivesStayText(): void
+    {
+        $html = $this->converter->convert('<p>Use {{block class="Magento\\Cms\\Block\\Block" block_id="x"}} or {{ name }}</p>');
+        self::assertStringNotContainsString('{{', $html);
+        self::assertStringContainsString('&#123;&#123;block class=', $html);
+    }
 }

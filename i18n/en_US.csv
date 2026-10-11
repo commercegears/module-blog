@@ -118,6 +118,7 @@ Published,Published
 "Thank you. Your comment has been published.","Thank you. Your comment has been published."
 Blog,Blog
 """%1"" is not a valid URL part. Use lower case letters, digits and hyphens%2.","""%1"" is not a valid URL part. Use lower case letters, digits and hyphens%2."
+"The blog path cannot start with ""%1"": Magento or an extension already uses that address.","The blog path cannot start with ""%1"": Magento or an extension already uses that address."
 "Page %1","Page %1"
 Home,Home
 "Posts tagged ""%1""","Posts tagged ""%1"""

@@ -41,6 +41,8 @@ class MassStatus extends Action implements HttpPostActionInterface
                 continue;
             }
             $post->setStatus($status);
+            // product pages that list the post as a related post are refreshed in the full-page cache too
+            $post->setData('_affected_product_ids', $this->postResource->getProductIds((int)$post->getId()));
             $this->postResource->save($post);
             $count++;
         }

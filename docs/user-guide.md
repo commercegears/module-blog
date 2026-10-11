@@ -48,6 +48,8 @@ Stores > Configuration > Softaware > Blog. Every setting can be set per website 
 - Enabled: switches the storefront pages, widgets, feed and sitemap entries on or off.
 - Blog Title: heading of the blog home page, breadcrumb and menu link.
 - Blog URL Path: address of the blog home page, for example `blog` for /blog or `company/news` for /company/news.
+  It cannot start with an address Magento or an extension already uses (for example `checkout` or `customer`).
+  Changing it does not redirect the old blog addresses; add redirects in Marketing > SEO & Search > URL Rewrites.
 - URL Suffix: none (/blog/my-post), `.html` or a slash. Old addresses redirect (301) to the new form when you change it.
 - Category, Tag and Author URL Prefix: the part between the blog path and the name, for example /blog/category/running.
 - Link in the Main Menu: adds the blog title as the last item of the category menu (Luma and Hyvä).
@@ -192,6 +194,9 @@ posts imported before are skipped (or updated when you choose so), comments and 
 Image downloads are protected: only http and https on the standard ports, no addresses that resolve to private or
 internal networks, at most three redirects, 20 seconds and 10 MB per image, and the file must be a JPEG, PNG, GIF or
 WebP image.
+
+Text in the WordPress content that looks like a Magento directive (`{{...}}`, for example in code samples) is kept as
+text and is not run as a directive.
 
 ## Command line
 

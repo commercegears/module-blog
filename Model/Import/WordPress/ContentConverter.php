@@ -34,6 +34,9 @@ class ContentConverter
             $html = $this->autop($html);
         }
         $html = (string)preg_replace("/\n{3,}/", "\n\n", $html);
+        // Magento runs post content through its template filter: "{{" in WordPress text (code samples, or text
+        // written to look like a directive) must stay text and never become a {{block}}/{{widget}} directive
+        $html = str_replace('{{', '&#123;&#123;', $html);
         return trim($html);
     }
 
