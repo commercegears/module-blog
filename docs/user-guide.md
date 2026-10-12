@@ -16,7 +16,7 @@ templates for Luma and for Hyvä.
 ## Installation
 
 CommerceGears modules are installed with Composer from repo.commercegears.com. Set up access once as described on
-https://commercegears.com/shop/composer-access/, then:
+https://commercegears.com/composer-access/, then:
 
 ```
 composer require commercegears/module-blog
