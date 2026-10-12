@@ -110,5 +110,26 @@
             "package": "commercegears/module-seo-suite",
             "text": "Store-wide SEO (robots rules, organisation data, redirects) next to the blog's own meta data and structured data."
         }
-    ]
+    ],
+    "demo": {
+        "storefront": [
+            {
+                "label": "Luma blog with guided tour",
+                "url": "https://demo.commercegears.com/blog?tour=blog",
+                "image": "docs/images/luma-blog.png"
+            },
+            {
+                "label": "Hyvä blog with guided tour",
+                "url": "https://demo.commercegears.com/hyva/blog?tour=blog",
+                "image": "docs/images/hyva-blog.png"
+            }
+        ],
+        "admin": [
+            {
+                "label": "Admin panel",
+                "url": "https://demo.commercegears.com/try-admin/blog",
+                "image": "docs/images/admin-posts.png"
+            }
+        ]
+    }
 }
