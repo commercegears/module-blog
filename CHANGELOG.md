@@ -1,5 +1,8 @@
 # Changelog
 
+## 2.0.3 (2026-10-12)
+- Improvement: compatible with Magento 2.4.6 (PHP 8.2).
+
 ## 2.0.2 (2026-10-12)
 - Improvement: live demo links (storefront guided tour and admin demo)
 

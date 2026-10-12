@@ -8,8 +8,8 @@ templates for Luma and for Hyvä.
 
 | | |
 |---|---|
-| Magento | Magento Open Source or Adobe Commerce 2.4.7 to 2.4.9 |
-| PHP | 8.2, 8.3, 8.4 or 8.5 (with the curl, dom and xmlreader extensions) |
+| Magento | Magento Open Source or Adobe Commerce 2.4.6 to 2.4.9 |
+| PHP | 8.2, 8.3, 8.4 or 8.5 (with the curl, dom and xmlreader extensions; Magento 2.4.6: PHP 8.2) |
 | Themes | Luma (and themes based on it) and Hyvä |
 | Other | `commercegears/module-core` 1.3 or later (installed automatically), Magento cron for scheduled posts and imports |
 
