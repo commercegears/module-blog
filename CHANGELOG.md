@@ -1,7 +1,7 @@
 # Changelog
 
 ## 2.1.0 (2026-10-15)
-New: German translation of the blog pages, comments and comment e-mail.
+- New: German translation of the blog pages, comments and comment e-mail.
 
 ## 2.0.3 (2026-10-12)
 - Improvement: compatible with Magento 2.4.6 (PHP 8.2).
