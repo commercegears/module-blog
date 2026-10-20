@@ -1,5 +1,8 @@
 # Changelog
 
+## 2.1.1 (2026-10-20)
+- Fix: Hyvä product pages no longer write a layout notice to the system log on every visit.
+
 ## 2.1.0 (2026-10-15)
 - New: German translation of the blog pages, comments and comment e-mail.
 

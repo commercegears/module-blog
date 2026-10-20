@@ -45,7 +45,7 @@ Cron jobs: `commercegears_blog_publish_scheduled` (every 5 minutes, group `defau
 ## Compatibility
 
 Magento Open Source and Adobe Commerce 2.4.6 to 2.4.9, PHP 8.2 to 8.5 (Magento 2.4.6: PHP 8.2), Luma and Hyvä themes (Hyvä templates are
-Alpine CSP-safe). Requires `commercegears/module-core` ^1.3.
+Alpine CSP-safe). Requires `commercegears/module-core` ^2.0.
 
 ## Limitations
 

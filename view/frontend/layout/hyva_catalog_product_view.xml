@@ -11,7 +11,7 @@
         <referenceBlock name="commercegears.blog.product.posts" remove="true"/>
         <referenceContainer name="content">
             <block class="CommerceGears\Blog\Block\Product\RelatedPosts" name="commercegears.blog.product.posts.hyva"
-                   template="CommerceGears_Blog::hyva/product/related-posts.phtml" after="related"/>
+                   template="CommerceGears_Blog::hyva/product/related-posts.phtml" after="-"/>
         </referenceContainer>
     </body>
 </page>
