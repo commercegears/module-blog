@@ -103,7 +103,8 @@ Add New Post opens the editor:
 - **Search Engine Optimisation**: focus keyword, meta title, meta description, meta keywords, robots and a custom
   canonical URL (only for posts that copy a page elsewhere).
 - **Related Products**: Add Related Products opens a product grid; pick products and drag the rows into order. The
-  products are shown below the post, and the post appears in the "From our blog" block of these product pages.
+  products are shown below the post with their price and an Add to Cart button (Choose options for products with
+  options), and the post appears in the "From our blog" block of these product pages.
 
 ![Post editor](images/admin-post-edit.png)
 

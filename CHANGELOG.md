@@ -1,6 +1,7 @@
 # Changelog
 
-## 2.1.1 (2026-10-20)
+## 2.2.0 (2026-10-20)
+- New: Add to Cart button for the products in a post on Luma (Choose options for products with options).
 - Fix: Hyvä product pages no longer write a layout notice to the system log on every visit.
 
 ## 2.1.0 (2026-10-15)

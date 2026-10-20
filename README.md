@@ -15,7 +15,7 @@
   internal links, image alt texts and reading time, updated as you type; the score is shown in the posts grid.
 - Comments with moderation (approve, reject, reply in the store's name), honeypot, hourly limit per IP address,
   optional Google reCAPTCHA (Magento's reCAPTCHA modules), optional consent checkbox and an e-mail to the store.
-- Related products on posts, related posts on product pages, previous/next post, related posts.
+- Related products on posts (with price and Add to Cart), related posts on product pages, previous/next post, related posts.
 - CMS widgets: Recent Posts, Categories and Tags. RSS feed for the blog and for each category.
 - WordPress import: upload the WordPress export file (WXR) in the admin or import it on the command line. Posts,
   categories (with parents), tags, authors and comments are imported, images on the WordPress site are downloaded,
