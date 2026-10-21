@@ -69,3 +69,8 @@ request.
 
 Access is set per role under System > Permissions > User Roles: posts (create and edit, publish, delete), categories,
 tags, authors, comments (moderate, delete), the WordPress import and the settings each have their own permission.
+
+**Is the Blog module free?**
+
+Yes. The Blog module is free to download from commercegears.com and is installed with Composer like our other
+modules. It needs `commercegears/module-core`, which Composer installs automatically.
